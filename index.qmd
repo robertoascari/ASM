@@ -1,0 +1,54 @@
+---
+title: "Analisi Statistica Multivariata - Modelli Statistici & R"
+subtitle: "CdL Triennale in Scienze Statistiche ed Economiche (SSE)"
+author: "[Ascari Roberto]{.text-primary}"
+institute: "_Università degli Studi di Milano-Bicocca_"
+lang: it
+execute:
+  cache: true
+page-layout: full
+format:
+  html:
+    theme: simplex
+    css: styles.css
+    toc: true
+editor: visual
+---
+
+------------------------------------------------------------------------
+
+[**Modelli Statistici & R**]{.text-primary} è uno dei due moduli che formano l'insegnamento [**Analisi Statistica Multivariata**]{.text-primary}.
+
+
+Link e-learning: [link](https://elearning.unimib.it/course/view.php?id=55020)
+
+## Mettere programma dettagliato corso
+- Introduzione al linguaggio R (calcolo scientifico, elementi di programmazione, dataframes)
+
+- Statistica descrittiva in R (statistica univariata e bivariata, rappresentazioni grafiche, analisi descrittiva dei dati)
+
+- Calcolo delle probabilità in R (variabili aleatorie, metodi Monte Carlo)
+
+- Inferenza statistica in R (metodi numerici per l'analisi di verosimiglianza, proprietà degli stimatori)
+
+- Regressione lineare semplice e multipla
+
+- Specificazione del modello
+
+- Stima dei parametri (metodo dei minimi quadrati e di massima verosimiglianza)
+
+- Verifica di ipotesi lineari
+
+- Metodi diagnostici
+
+- Tecniche per la selezione delle variabili
+
+- Previsione
+
+## Mettere libri di testo
+
+## Mettere sezione dataset
+
+## Esame
+
+------------------------------------------------------------------------

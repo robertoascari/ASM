@@ -1,0 +1,37 @@
+[
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Analisi Statistica Multivariata - Modelli Statistici & R",
+    "section": "",
+    "text": "Modelli Statistici & R è uno dei due moduli che formano l’insegnamento Analisi Statistica Multivariata.\nLink e-learning: link"
+  },
+  {
+    "objectID": "index.html#mettere-programma-dettagliato-corso",
+    "href": "index.html#mettere-programma-dettagliato-corso",
+    "title": "Analisi Statistica Multivariata - Modelli Statistici & R",
+    "section": "Mettere programma dettagliato corso",
+    "text": "Mettere programma dettagliato corso\n\nIntroduzione al linguaggio R (calcolo scientifico, elementi di programmazione, dataframes)\nStatistica descrittiva in R (statistica univariata e bivariata, rappresentazioni grafiche, analisi descrittiva dei dati)\nCalcolo delle probabilità in R (variabili aleatorie, metodi Monte Carlo)\nInferenza statistica in R (metodi numerici per l’analisi di verosimiglianza, proprietà degli stimatori)\nRegressione lineare semplice e multipla\nSpecificazione del modello\nStima dei parametri (metodo dei minimi quadrati e di massima verosimiglianza)\nVerifica di ipotesi lineari\nMetodi diagnostici\nTecniche per la selezione delle variabili\nPrevisione"
+  },
+  {
+    "objectID": "index.html#mettere-libri-di-testo",
+    "href": "index.html#mettere-libri-di-testo",
+    "title": "Analisi Statistica Multivariata - Modelli Statistici & R",
+    "section": "Mettere libri di testo",
+    "text": "Mettere libri di testo"
+  },
+  {
+    "objectID": "index.html#mettere-sezione-dataset",
+    "href": "index.html#mettere-sezione-dataset",
+    "title": "Analisi Statistica Multivariata - Modelli Statistici & R",
+    "section": "Mettere sezione dataset",
+    "text": "Mettere sezione dataset"
+  },
+  {
+    "objectID": "index.html#esame",
+    "href": "index.html#esame",
+    "title": "Analisi Statistica Multivariata - Modelli Statistici & R",
+    "section": "Esame",
+    "text": "Esame"
+  }
+]
