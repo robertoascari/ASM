@@ -4,7 +4,7 @@
     "href": "index.html",
     "title": "Analisi Statistica Multivariata - Modelli Statistici & R",
     "section": "",
-    "text": "Modelli Statistici & R è uno dei due moduli che formano l’insegnamento Analisi Statistica Multivariata.\nLink e-learning: link"
+    "text": "Modelli Statistici & R è uno dei due moduli che formano l’insegnamento Analisi Statistica Multivariata. La pagina e-learning di riferimento per l’a.a. 2024/25 è raggiungibile al seguente link)."
   },
   {
     "objectID": "index.html#mettere-programma-dettagliato-corso",
@@ -14,11 +14,18 @@
     "text": "Mettere programma dettagliato corso\n\nIntroduzione al linguaggio R (calcolo scientifico, elementi di programmazione, dataframes)\nStatistica descrittiva in R (statistica univariata e bivariata, rappresentazioni grafiche, analisi descrittiva dei dati)\nCalcolo delle probabilità in R (variabili aleatorie, metodi Monte Carlo)\nInferenza statistica in R (metodi numerici per l’analisi di verosimiglianza, proprietà degli stimatori)\nRegressione lineare semplice e multipla\nSpecificazione del modello\nStima dei parametri (metodo dei minimi quadrati e di massima verosimiglianza)\nVerifica di ipotesi lineari\nMetodi diagnostici\nTecniche per la selezione delle variabili\nPrevisione"
   },
   {
+    "objectID": "index.html#section",
+    "href": "index.html#section",
+    "title": "Analisi Statistica Multivariata - Modelli Statistici & R",
+    "section": "",
+    "text": "Link a R e RStudio\nR\nRStudio"
+  },
+  {
     "objectID": "index.html#mettere-libri-di-testo",
     "href": "index.html#mettere-libri-di-testo",
     "title": "Analisi Statistica Multivariata - Modelli Statistici & R",
     "section": "Mettere libri di testo",
-    "text": "Mettere libri di testo"
+    "text": "Mettere libri di testo\n\nAlbert, J. & M. Rizzo (2012). R by Example. Springer.\nVenables, W. N., Smith D. M. & the R Core Team (2021). An Introduction to\nM. Grigoletto, F. Pauli, L. Ventura, Modello lineare, teoria e applicazioni con R. Giappichelli, 2017\nJ. Fox. Applied regression analysis and generalized linear models, third edition. Sage. Piccolo, D. (2010), Statistica, Terza edizione, Il Mulino."
   },
   {
     "objectID": "index.html#mettere-sezione-dataset",
@@ -32,6 +39,6 @@
     "href": "index.html#esame",
     "title": "Analisi Statistica Multivariata - Modelli Statistici & R",
     "section": "Esame",
-    "text": "Esame"
+    "text": "Esame\nParziali\nIntero, struttura"
   }
 ]

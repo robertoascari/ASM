@@ -17,38 +17,63 @@ editor: visual
 
 ------------------------------------------------------------------------
 
-[**Modelli Statistici & R**]{.text-primary} è uno dei due moduli che formano l'insegnamento [**Analisi Statistica Multivariata**]{.text-primary}.
+[**Modelli Statistici & R**]{.text-primary} è uno dei due moduli che formano l'insegnamento [**Analisi Statistica Multivariata**]{.text-primary}. La pagina e-learning di riferimento per l'a.a. 2024/25 è raggiungibile al seguente [link](https://elearning.unimib.it/course/view.php?id=55020)).
 
 
-Link e-learning: [link](https://elearning.unimib.it/course/view.php?id=55020)
+
 
 ## Mettere programma dettagliato corso
-- Introduzione al linguaggio R (calcolo scientifico, elementi di programmazione, dataframes)
 
-- Statistica descrittiva in R (statistica univariata e bivariata, rappresentazioni grafiche, analisi descrittiva dei dati)
+-   Introduzione al linguaggio R (calcolo scientifico, elementi di programmazione, dataframes)
 
-- Calcolo delle probabilità in R (variabili aleatorie, metodi Monte Carlo)
+-   Statistica descrittiva in R (statistica univariata e bivariata, rappresentazioni grafiche, analisi descrittiva dei dati)
 
-- Inferenza statistica in R (metodi numerici per l'analisi di verosimiglianza, proprietà degli stimatori)
+-   Calcolo delle probabilità in R (variabili aleatorie, metodi Monte Carlo)
 
-- Regressione lineare semplice e multipla
+-   Inferenza statistica in R (metodi numerici per l'analisi di verosimiglianza, proprietà degli stimatori)
 
-- Specificazione del modello
+-   Regressione lineare semplice e multipla
 
-- Stima dei parametri (metodo dei minimi quadrati e di massima verosimiglianza)
+-   Specificazione del modello
 
-- Verifica di ipotesi lineari
+-   Stima dei parametri (metodo dei minimi quadrati e di massima verosimiglianza)
 
-- Metodi diagnostici
+-   Verifica di ipotesi lineari
 
-- Tecniche per la selezione delle variabili
+-   Metodi diagnostici
 
-- Previsione
+-   Tecniche per la selezione delle variabili
+
+-   Previsione
+
+##
+
+Link a R e RStudio
+
+[R](https://cran.r-project.org/bin/windows/base/)
+
+[RStudio](https://posit.co/download/rstudio-desktop/)
+
+
 
 ## Mettere libri di testo
+
+
+- Albert, J. & M. Rizzo (2012). R by Example. Springer.
+
+- Venables, W. N., Smith D. M. & the R Core Team (2021). An Introduction to 
+
+- M. Grigoletto, F. Pauli, L. Ventura, Modello lineare, teoria e applicazioni con R. Giappichelli, 2017
+
+- J. Fox. Applied regression analysis and generalized linear models, third edition. Sage.
+Piccolo, D. (2010), Statistica, Terza edizione, Il Mulino.
 
 ## Mettere sezione dataset
 
 ## Esame
+
+Parziali
+
+Intero, struttura
 
 ------------------------------------------------------------------------
