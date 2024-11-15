@@ -175,6 +175,8 @@ window.Quarto = {
   <li><a href="#esercizio-4-2" id="toc-esercizio-4-2" class="nav-link" data-scroll-target="#esercizio-4-2">Esercizio 4</a></li>
   <li><a href="#esercizio-5-2" id="toc-esercizio-5-2" class="nav-link" data-scroll-target="#esercizio-5-2">Esercizio 5</a></li>
   <li><a href="#esercizio-6-1" id="toc-esercizio-6-1" class="nav-link" data-scroll-target="#esercizio-6-1">Esercizio 6</a></li>
+  <li><a href="#esercizio-7-1" id="toc-esercizio-7-1" class="nav-link" data-scroll-target="#esercizio-7-1">Esercizio 7</a></li>
+  <li><a href="#esercizio-8-1" id="toc-esercizio-8-1" class="nav-link" data-scroll-target="#esercizio-8-1">Esercizio 8</a></li>
   </ul></li>
   <li><a href="#parte-4-inferenza" id="toc-parte-4-inferenza" class="nav-link" data-scroll-target="#parte-4-inferenza">Parte 4: Inferenza</a></li>
   </ul>
@@ -1496,6 +1498,119 @@ Soluzione
 <div class="sourceCode cell-code" id="cb79"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb79-1"><a href="#cb79-1" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(<span class="fu">cbind</span>(p_x, </span>
 <span id="cb79-2"><a href="#cb79-2" aria-hidden="true" tabindex="-1"></a>            <span class="fu">table</span>(sample1)<span class="sc">/</span>n, </span>
 <span id="cb79-3"><a href="#cb79-3" aria-hidden="true" tabindex="-1"></a>            <span class="fu">table</span>(sample2)<span class="sc">/</span>n), <span class="dv">4</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</section>
+<section id="esercizio-7-1" class="level3">
+<h3 class="anchored" data-anchor-id="esercizio-7-1">Esercizio 7</h3>
+<p>Si estragga un campione di ampiezza <span class="math inline">\(n = 200\)</span> da una Normale con media <span class="math inline">\(\mu = 15\)</span> e varianza <span class="math inline">\(\sigma^2 = 20\)</span>.</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Soluzione</summary>
+<div class="sourceCode cell-code" id="cb80"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb80-1"><a href="#cb80-1" aria-hidden="true" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">200</span></span>
+<span id="cb80-2"><a href="#cb80-2" aria-hidden="true" tabindex="-1"></a>mu <span class="ot">&lt;-</span> <span class="dv">15</span></span>
+<span id="cb80-3"><a href="#cb80-3" aria-hidden="true" tabindex="-1"></a>sigma2 <span class="ot">&lt;-</span> <span class="dv">20</span></span>
+<span id="cb80-4"><a href="#cb80-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb80-5"><a href="#cb80-5" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">678</span>)</span>
+<span id="cb80-6"><a href="#cb80-6" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(n, mu, <span class="fu">sqrt</span>(sigma2))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<ol type="1">
+<li>Si considerino <span class="math inline">\(\mu\)</span> e <span class="math inline">\(\sigma^2\)</span> entrambi ignoti. Si fornisca una stima per entrambi i parametri. Qual è l’errore commesso dai due stimatori, in questo caso?</li>
+</ol>
+<div class="cell">
+<details class="code-fold">
+<summary>Soluzione</summary>
+<div class="sourceCode cell-code" id="cb81"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb81-1"><a href="#cb81-1" aria-hidden="true" tabindex="-1"></a>mu_hat <span class="ot">&lt;-</span> <span class="fu">mean</span>(y); mu_hat</span>
+<span id="cb81-2"><a href="#cb81-2" aria-hidden="true" tabindex="-1"></a>sigma2_hat <span class="ot">&lt;-</span> <span class="fu">var</span>(y); sigma2_hat</span>
+<span id="cb81-3"><a href="#cb81-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb81-4"><a href="#cb81-4" aria-hidden="true" tabindex="-1"></a>mu <span class="sc">-</span> mu_hat</span>
+<span id="cb81-5"><a href="#cb81-5" aria-hidden="true" tabindex="-1"></a>sigma2 <span class="sc">-</span> sigma2_hat</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<ol start="2" type="1">
+<li>Si vuole sottoporre a verifica <span class="math inline">\(H_0: \mu = 5\)</span> vs.&nbsp;<span class="math inline">\(H_1: \mu \neq 5\)</span> ad un livello <span class="math inline">\(\alpha = 0.05\)</span>. Si determini la conclusione inferenziale ricorrendo alla regione critica.</li>
+</ol>
+<div class="cell">
+<details class="code-fold">
+<summary>Soluzione</summary>
+<div class="sourceCode cell-code" id="cb82"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb82-1"><a href="#cb82-1" aria-hidden="true" tabindex="-1"></a>mu_star <span class="ot">&lt;-</span> <span class="dv">5</span></span>
+<span id="cb82-2"><a href="#cb82-2" aria-hidden="true" tabindex="-1"></a>alpha <span class="ot">&lt;-</span> <span class="fl">0.05</span></span>
+<span id="cb82-3"><a href="#cb82-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb82-4"><a href="#cb82-4" aria-hidden="true" tabindex="-1"></a>stat_test <span class="ot">&lt;-</span> (mu_hat <span class="sc">-</span> mu_star)<span class="sc">/</span><span class="fu">sqrt</span>(sigma2_hat<span class="sc">/</span>n)</span>
+<span id="cb82-5"><a href="#cb82-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb82-6"><a href="#cb82-6" aria-hidden="true" tabindex="-1"></a>soglia <span class="ot">&lt;-</span> <span class="fu">qt</span>(<span class="dv">1</span> <span class="sc">-</span> (alpha<span class="sc">/</span><span class="dv">2</span>), n <span class="sc">-</span> <span class="dv">1</span>)</span>
+<span id="cb82-7"><a href="#cb82-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb82-8"><a href="#cb82-8" aria-hidden="true" tabindex="-1"></a><span class="fu">ifelse</span>(<span class="fu">abs</span>(stat_test) <span class="sc">&gt;=</span> <span class="fu">abs</span>(soglia), <span class="st">"Rifiuto H0"</span>, <span class="st">"Non rifiuto H0"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<ol start="3" type="1">
+<li>Si risolva il punto precedente ricorrendo al concetto di p-value.</li>
+</ol>
+<div class="cell">
+<details class="code-fold">
+<summary>Soluzione</summary>
+<div class="sourceCode cell-code" id="cb83"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb83-1"><a href="#cb83-1" aria-hidden="true" tabindex="-1"></a>p_value <span class="ot">&lt;-</span> <span class="fu">pnorm</span>(<span class="sc">-</span><span class="fu">abs</span>(stat_test)); p_value</span>
+<span id="cb83-2"><a href="#cb83-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb83-3"><a href="#cb83-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ifelse</span>(p_value <span class="sc">&lt;</span> alpha, <span class="st">"Rifiuto H0"</span>, <span class="st">"Non rifiuto H0"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</section>
+<section id="esercizio-8-1" class="level3">
+<h3 class="anchored" data-anchor-id="esercizio-8-1">Esercizio 8</h3>
+<p>Una distribuzione (multivariata) per <a href="https://en.wikipedia.org/wiki/Compositional_data">dati composizionali</a> è la distribuzione <a href="https://en.wikipedia.org/wiki/Dirichlet_distribution">Dirichlet</a>. Siano <span class="math inline">\(\displaystyle \textbf{x} = (x_1, \dots, x_D)^\intercal \in \mathcal{S}^D = \{ \textbf{x} = (x_1, \dots, x_D)^\intercal : x_d &gt; 0, \sum_{d=1}^D x_d = 1\}\)</span>, <span class="math inline">\(\boldsymbol{\alpha} = (\alpha_1, \dots, \alpha_D)^\intercal\)</span> un vettore <span class="math inline">\(D\)</span>-dimensionale con elementi positivi e <span class="math inline">\(\displaystyle \alpha^+ = \sum_{d=1}^D \alpha_d\)</span>; la funzione di densità congiunta della Dirichlet è data da <span class="math display">\[\displaystyle f(\textbf{x}; \boldsymbol{\alpha}) = \frac{\Gamma(\alpha^+)}{\prod_{d=1}^D \Gamma(\alpha_d)} \prod_{d=1}^D x_d^{\alpha_d - 1},\]</span> se <span class="math inline">\(\textbf{x}\in\mathcal{S}^D\)</span> e 0 altrimenti.</p>
+<ol type="1">
+<li>Si implementi una funzione <code>ddir</code> che permetta di calcolare la densità congiunta di un vettore composizionale <span class="math inline">\(\textbf{x}\)</span> e la si valuti nel punto <span class="math inline">\(\textbf{x} = (.2, .1, .4, .05, .25)^\intercal\)</span> con <span class="math inline">\(\boldsymbol{\alpha} = (4, 1, 10, 5, 2)^\intercal\)</span>.</li>
+</ol>
+<div class="cell">
+<details class="code-fold">
+<summary>Soluzione</summary>
+<div class="sourceCode cell-code" id="cb84"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb84-1"><a href="#cb84-1" aria-hidden="true" tabindex="-1"></a>ddir <span class="ot">&lt;-</span> <span class="cf">function</span>(x, alpha){</span>
+<span id="cb84-2"><a href="#cb84-2" aria-hidden="true" tabindex="-1"></a>  aplus <span class="ot">&lt;-</span> <span class="fu">sum</span>(alpha)</span>
+<span id="cb84-3"><a href="#cb84-3" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb84-4"><a href="#cb84-4" aria-hidden="true" tabindex="-1"></a>  dens <span class="ot">&lt;-</span> <span class="fu">gamma</span>(aplus)<span class="sc">/</span>(<span class="fu">prod</span>(<span class="fu">gamma</span>(alpha)))<span class="sc">*</span> <span class="fu">prod</span>(x<span class="sc">^</span>(alpha<span class="dv">-1</span>))</span>
+<span id="cb84-5"><a href="#cb84-5" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb84-6"><a href="#cb84-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(dens)</span>
+<span id="cb84-7"><a href="#cb84-7" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb84-8"><a href="#cb84-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb84-9"><a href="#cb84-9" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">c</span>(.<span class="dv">2</span>, .<span class="dv">1</span>, .<span class="dv">4</span>, .<span class="dv">05</span>, .<span class="dv">25</span>)</span>
+<span id="cb84-10"><a href="#cb84-10" aria-hidden="true" tabindex="-1"></a>alpha <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">4</span>, <span class="dv">1</span>, <span class="dv">10</span>, <span class="dv">5</span>, <span class="dv">2</span>)</span>
+<span id="cb84-11"><a href="#cb84-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb84-12"><a href="#cb84-12" aria-hidden="true" tabindex="-1"></a><span class="fu">ddir</span>(x, alpha)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<ol start="2" type="1">
+<li>Siano <span class="math inline">\(Y_1, \dots Y_D\)</span> delle variabili casuali indipendenti tali che <span class="math inline">\(Y_d \sim Gamma(\alpha_d, 1)\)</span>. Definendo <span class="math inline">\(\displaystyle Y^+ = \sum_{d=1}^D Y_d\)</span>, si può dimostrare che <span class="math inline">\(\displaystyle (Y_1 / Y^+, \dots, Y_D/Y^+)^\intercal \sim Dirichlet(\boldsymbol{\alpha})\)</span>. Si utilizzi questa relazione per costruire un vettore <code>sample_dir</code> di valori pseudo-casuali da una Dirichlet con <span class="math inline">\(D = 5\)</span> e <span class="math inline">\(\boldsymbol{\alpha} = (4, 2, 10, 5, 3)^\intercal\)</span>.</li>
+</ol>
+<div class="cell">
+<details class="code-fold">
+<summary>Soluzione</summary>
+<div class="sourceCode cell-code" id="cb85"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb85-1"><a href="#cb85-1" aria-hidden="true" tabindex="-1"></a>D <span class="ot">&lt;-</span> <span class="dv">5</span></span>
+<span id="cb85-2"><a href="#cb85-2" aria-hidden="true" tabindex="-1"></a>B <span class="ot">&lt;-</span> <span class="dv">5000</span></span>
+<span id="cb85-3"><a href="#cb85-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb85-4"><a href="#cb85-4" aria-hidden="true" tabindex="-1"></a>alpha <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">4</span>, <span class="dv">2</span>, <span class="dv">10</span>, <span class="dv">5</span>, <span class="dv">3</span>)</span>
+<span id="cb85-5"><a href="#cb85-5" aria-hidden="true" tabindex="-1"></a>y_matrix <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="cn">NA</span>, <span class="at">ncol =</span> D, <span class="at">nrow =</span> B)</span>
+<span id="cb85-6"><a href="#cb85-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb85-7"><a href="#cb85-7" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(d <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>D){</span>
+<span id="cb85-8"><a href="#cb85-8" aria-hidden="true" tabindex="-1"></a>  y_matrix[,d] <span class="ot">&lt;-</span> <span class="fu">rgamma</span>(B, alpha[d], <span class="dv">1</span>)</span>
+<span id="cb85-9"><a href="#cb85-9" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb85-10"><a href="#cb85-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb85-11"><a href="#cb85-11" aria-hidden="true" tabindex="-1"></a>sample_dir <span class="ot">&lt;-</span> <span class="fu">t</span>(<span class="fu">apply</span>(y_matrix, <span class="dv">1</span>, <span class="cf">function</span>(x) x<span class="sc">/</span><span class="fu">sum</span>(x)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<ol start="3" type="1">
+<li>Si confronti la distribuzione del terzo elemento di <code>sample_dir</code> con quella di una <span class="math inline">\(Beta(\alpha_3, \alpha^+ - \alpha_3)\)</span>. Si commenti questo confronto, facendo autonomamente una ricerca sul legame che intercorre tra queste due distribuzioni.</li>
+</ol>
+<div class="cell">
+<details class="code-fold">
+<summary>Soluzione</summary>
+<div class="sourceCode cell-code" id="cb86"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb86-1"><a href="#cb86-1" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>))</span>
+<span id="cb86-2"><a href="#cb86-2" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(sample_dir[,<span class="dv">3</span>], <span class="at">main =</span> <span class="st">"Istogramma X_3"</span>, <span class="at">prob =</span> T)</span>
+<span id="cb86-3"><a href="#cb86-3" aria-hidden="true" tabindex="-1"></a><span class="fu">curve</span>(<span class="fu">dbeta</span>(x, alpha[<span class="dv">3</span>], <span class="fu">sum</span>(alpha) <span class="sc">-</span> alpha[<span class="dv">3</span>]), <span class="at">col =</span> <span class="st">"red"</span>, <span class="at">add =</span> T)</span>
+<span id="cb86-4"><a href="#cb86-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb86-5"><a href="#cb86-5" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">ecdf</span>(sample_dir[,<span class="dv">3</span>]))</span>
+<span id="cb86-6"><a href="#cb86-6" aria-hidden="true" tabindex="-1"></a><span class="fu">curve</span>(<span class="fu">pbeta</span>(x, alpha[<span class="dv">3</span>], <span class="fu">sum</span>(alpha) <span class="sc">-</span> alpha[<span class="dv">3</span>]), <span class="at">col =</span> <span class="st">"red"</span>, <span class="at">add =</span> T)</span>
+<span id="cb86-7"><a href="#cb86-7" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">1</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 </section>

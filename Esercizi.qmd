@@ -1474,5 +1474,192 @@ round(cbind(p_x,
 ```
 
 
+### Esercizio 7
+
+Si estragga un campione di ampiezza $n = 200$ da una Normale con media $\mu = 15$ e varianza $\sigma^2 = 20$. 
+
+```{r}
+#| echo: true
+#| eval: false
+#| code-fold: true
+#| code-summary: "Soluzione"
+
+n <- 200
+mu <- 15
+sigma2 <- 20
+
+set.seed(678)
+y <- rnorm(n, mu, sqrt(sigma2))
+```
+
+1. Si considerino $\mu$ e $\sigma^2$ entrambi ignoti. Si fornisca una stima per entrambi i parametri. Qual è l'errore commesso dai due stimatori, in questo caso?
+
+```{r}
+#| echo: true
+#| eval: false
+#| code-fold: true
+#| code-summary: "Soluzione"
+
+mu_hat <- mean(y); mu_hat
+sigma2_hat <- var(y); sigma2_hat
+
+mu - mu_hat
+sigma2 - sigma2_hat
+```
+
+2. Si vuole sottoporre a verifica $H_0: \mu = 5$ vs. $H_1: \mu \neq 5$ ad un livello $\alpha = 0.05$. Si determini la conclusione inferenziale ricorrendo alla regione critica.
+
+```{r}
+#| echo: true
+#| eval: false
+#| code-fold: true
+#| code-summary: "Soluzione"
+
+mu_star <- 5
+alpha <- 0.05
+
+stat_test <- (mu_hat - mu_star)/sqrt(sigma2_hat/n)
+
+soglia <- qt(1 - (alpha/2), n - 1)
+
+ifelse(abs(stat_test) >= abs(soglia), "Rifiuto H0", "Non rifiuto H0")
+
+```
+
+3. Si risolva il punto precedente ricorrendo al concetto di p-value.
+
+```{r}
+#| echo: true
+#| eval: false
+#| code-fold: true
+#| code-summary: "Soluzione"
+
+p_value <- pnorm(-abs(stat_test)); p_value
+
+ifelse(p_value < alpha, "Rifiuto H0", "Non rifiuto H0")
+```
+
+
+### Esercizio 8
+
+Una distribuzione (multivariata) per [dati composizionali](https://en.wikipedia.org/wiki/Compositional_data) è la distribuzione [Dirichlet](https://en.wikipedia.org/wiki/Dirichlet_distribution). Siano $\displaystyle \textbf{x} = (x_1, \dots, x_D)^\intercal \in \mathcal{S}^D = \{ \textbf{x} = (x_1, \dots, x_D)^\intercal : x_d > 0, \sum_{d=1}^D x_d = 1\}$, $\boldsymbol{\alpha} = (\alpha_1, \dots, \alpha_D)^\intercal$ un vettore $D$-dimensionale con elementi positivi e $\displaystyle \alpha^+ = \sum_{d=1}^D \alpha_d$; la funzione di densità congiunta della Dirichlet è data da $$\displaystyle f(\textbf{x}; \boldsymbol{\alpha}) = \frac{\Gamma(\alpha^+)}{\prod_{d=1}^D \Gamma(\alpha_d)} \prod_{d=1}^D x_d^{\alpha_d - 1},$$ se $\textbf{x}\in\mathcal{S}^D$ e 0 altrimenti.
+
+1. Si implementi una funzione `ddir` che permetta di calcolare la densità congiunta di un vettore composizionale $\textbf{x}$ e la si valuti nel punto $\textbf{x} = (.2, .1, .4, .05, .25)^\intercal$ con $\boldsymbol{\alpha} = (4, 1, 10, 5, 2)^\intercal$.
+
+```{r}
+#| echo: true
+#| eval: false
+#| code-fold: true
+#| code-summary: "Soluzione"
+
+ddir <- function(x, alpha){
+  aplus <- sum(alpha)
+  
+  dens <- gamma(aplus)/(prod(gamma(alpha)))* prod(x^(alpha-1))
+  
+  return(dens)
+}
+
+x <- c(.2, .1, .4, .05, .25)
+alpha <- c(4, 1, 10, 5, 2)
+
+ddir(x, alpha)
+```
+
+2. Siano $Y_1, \dots Y_D$ delle variabili casuali indipendenti tali che $Y_d \sim Gamma(\alpha_d, 1)$. Definendo $\displaystyle Y^+ = \sum_{d=1}^D Y_d$, si può dimostrare che $\displaystyle (Y_1 / Y^+, \dots, Y_D/Y^+)^\intercal \sim Dirichlet(\boldsymbol{\alpha})$. Si utilizzi questa relazione per costruire un vettore `sample_dir` di valori pseudo-casuali da una Dirichlet con $D = 5$ e $\boldsymbol{\alpha} = (4, 2, 10, 5, 3)^\intercal$.
+
+```{r}
+#| echo: true
+#| eval: false
+#| code-fold: true
+#| code-summary: "Soluzione"
+
+D <- 5
+B <- 5000
+
+alpha <- c(4, 2, 10, 5, 3)
+y_matrix <- matrix(NA, ncol = D, nrow = B)
+
+for(d in 1:D){
+  y_matrix[,d] <- rgamma(B, alpha[d], 1)
+}
+
+sample_dir <- t(apply(y_matrix, 1, function(x) x/sum(x)))
+```
+
+3.    Si confronti la distribuzione del terzo elemento di `sample_dir` con quella di una $Beta(\alpha_3, \alpha^+ - \alpha_3)$. Si commenti questo confronto, facendo autonomamente una ricerca sul legame che intercorre tra queste due distribuzioni.
+
+```{r}
+#| echo: true
+#| eval: false
+#| code-fold: true
+#| code-summary: "Soluzione"
+
+par(mfrow=c(1, 2))
+hist(sample_dir[,3], main = "Istogramma X_3", prob = T)
+curve(dbeta(x, alpha[3], sum(alpha) - alpha[3]), col = "red", add = T)
+
+plot(ecdf(sample_dir[,3]))
+curve(pbeta(x, alpha[3], sum(alpha) - alpha[3]), col = "red", add = T)
+par(mfrow=c(1, 1))
+```
+
+### Esercizio 9
+
+Si supponga di essere interessato ad approssimare, mediante il metodo Monte Carlo, il valore del seguente integrale: $$\int_{-\infty}^{+\infty} \frac{f(x)}{g(x)} \phi(x) dx,$$ dove $phi(x)$ rappresenta la funzione di densità di una Normale standard.
+
+1. Si dica perché il seguente funzione non porta ad una soluzione corretta.
+
+```{r}
+my_integral <- function(B = 5000) {
+  int <- mean(f(rnorm(B)) / g(rnorm(B)))
+  
+  return(int)
+}
+```
+
+
+2. Si costruisca una funzione che permetta di calcolare il corretto valore dell'integrale proposto.
+
+```{r}
+#| echo: true
+#| eval: false
+#| code-fold: true
+#| code-summary: "Soluzione"
+
+my_integral_2 <- function(B = 5000) {
+  
+  y <- rnorm(B)
+  
+  int <- mean(f(y) / g(y))
+  
+  return(int)
+}
+```
+
+3. Si considerino le funzioni $f(x) = \sqrt{|x|}$ e $g(x) = x^2 + 1$. Si calcoli il valore dell'integrale con gli approcci del punto 1 e punto 2 li si confronti con la funzione `integrate`.
+
+```{r}
+my_integral <- function(B = 5000) {
+  int <- mean(sqrt(abs(rnorm(B))) / (rnorm(B)^2+1))
+  
+  return(int)
+}
+
+my_integral_2 <- function(B = 5000) {
+  
+  y <- rnorm(B)
+  
+  int <- mean(sqrt(abs(y)) / (y^2+1))
+  
+  return(int)
+}
+
+my_integral()
+my_integral_2()
+
+integrate(function(x) sqrt(abs(x))/(x^2+1) * dnorm(x), lower=-Inf, upper=Inf)
+```
+
 
 ## Parte 4: Inferenza
