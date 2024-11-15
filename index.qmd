@@ -22,58 +22,63 @@ editor: visual
 
 
 
-## Mettere programma dettagliato corso
+## Programma dettagliato del corso
 
--   Introduzione al linguaggio R (calcolo scientifico, elementi di programmazione, dataframes)
+### Parte 1:
+-   **Introduzione al linguaggio R:** utilizzo di R come calcolatrice scientifica; introduzione agli oggetti e alle loro classi (vettori, booleani, matrici, data.frame, liste); strutture condizionali e cicli; funzioni.
 
--   Statistica descrittiva in R (statistica univariata e bivariata, rappresentazioni grafiche, analisi descrittiva dei dati)
+-   **Statistica descrittiva in R:** rivisitazione dei principali argomenti di statistica descrittiva univariata e bivariata applicata a dataset, incluse rappresentazioni grafiche e loro personalizzazioni.
 
--   Calcolo delle probabilità in R (variabili aleatorie, metodi Monte Carlo)
+-   **Calcolo delle probabilità in R:** principali funzioni per lavorare con variabili casuali; metodi Monte Carlo per approssimare integrali e probabilità.
 
--   Inferenza statistica in R (metodi numerici per l'analisi di verosimiglianza, proprietà degli stimatori)
+-   **Inferenza statistica in R:** studio delle proprietà degli stimatori mediante simulazioni; metodi numerici per l'analisi di verosimiglianza.
 
--   Regressione lineare semplice e multipla
+### Parte 2:
 
--   Specificazione del modello
+- **Variabili casuali multidimensionali:** funzione di densità e di ripartizione congiunte; marginalizzazione; momenti; vettore delle medie e matrice di varianze e covarianze; v.c. Normale multivariata e sue proprietà.
 
--   Stima dei parametri (metodo dei minimi quadrati e di massima verosimiglianza)
+-   **Specificazione del modello:** fasi per la specificazione di un modello statistico; classificazione dei modelli.
 
--   Verifica di ipotesi lineari
+- **Modello di regressione lineare semplice:** assunzioni; interpretazione dei parametri; stima dei parametri (minimi quadrati e massima verosimiglianza); proprietà degli stimatori; teorema di Gauss-Markov; indice di determinazione lineare $R^2$.
 
--   Metodi diagnostici
+- **Verifica ed utilizzo del modello:**  verifiche di ipotesi sul valore di un singolo coefficiente; verifica di ipotesi sulla bontà del modello; utilizzo del modello per fare previsione puntuale ed intervallare.
 
--   Tecniche per la selezione delle variabili
+- **Diagnostica del modello:** metodi per valutare le assunzioni relative alla struttura del modello, agli errori e all'assenza di osservazioni inusuali.
 
--   Previsione
+- **Modello di regressione lineare multiplo:** specificazione del modello in forma matriciale e sue assunzioni; interpretazione dei parametri; stima dei parametri (minimi quadrati e massima verosimiglianza); proprietà degli stimatori; teorema di Gauss-Markov; indice di determinazione multipla $R^2$. 
 
-##
+- **Variabili qualitative:** inserimento di variabili qualitative nel modello mediante l'inserimento di dummy; interazioni.
 
-Link a R e RStudio
+- **Verifica di un sistema di ipotesi lineare:** teoria generale e casi particolari.
 
-[R](https://cran.r-project.org/bin/windows/base/)
-
-[RStudio](https://posit.co/download/rstudio-desktop/)
-
+- **Selezione del modello:** contributo assoluto e relativo di una variabile esplicativa; indice di determinazione parziale (IDP); selezione criterion-based delle variabili esplicative tramite approccio backward, forward e stepwise; AIC e BIC.
 
 
-## Mettere libri di testo
+
+## Esercizi aggiuntivi:
+
+Ulteriori esercizi relativi alla Parte 1 del corso possono essere trovati al seguente [link](Esercizi.qmd).
 
 
-- Albert, J. & M. Rizzo (2012). R by Example. Springer.
+## Link a R e RStudio
 
-- Venables, W. N., Smith D. M. & the R Core Team (2021). An Introduction to 
+Ai seguenti link è possibile scaricare le ultime versioni di 
+[R](https://cran.r-project.org/bin/windows/base/) e di [RStudio](https://posit.co/download/rstudio-desktop/).
 
-- M. Grigoletto, F. Pauli, L. Ventura, Modello lineare, teoria e applicazioni con R. Giappichelli, 2017
 
-- J. Fox. Applied regression analysis and generalized linear models, third edition. Sage.
-Piccolo, D. (2010), Statistica, Terza edizione, Il Mulino.
 
-## Mettere sezione dataset
 
-## Esame
+## Libri di testo
 
-Parziali
 
-Intero, struttura
+- Albert, J. & M. Rizzo (2012). *R by Example*. Springer.
+
+- M. Grigoletto, F. Pauli, L. Ventura, *Modello lineare, teoria e applicazioni con R*. Giappichelli, 2017
+
+- J. Fox. *Applied regression analysis and generalized linear models*, third edition. Sage.
+
+- D. Piccolo, D. *Statistica*, Terza edizione, Il Mulino.
+
+
 
 ------------------------------------------------------------------------
