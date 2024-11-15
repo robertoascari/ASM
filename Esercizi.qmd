@@ -1663,3 +1663,7 @@ integrate(function(x) sqrt(abs(x))/(x^2+1) * dnorm(x), lower=-Inf, upper=Inf)
 
 
 ## Parte 4: Inferenza
+
+### Verificare il TCL
+
+###
