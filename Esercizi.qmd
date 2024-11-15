@@ -1640,6 +1640,11 @@ my_integral_2 <- function(B = 5000) {
 3. Si considerino le funzioni $f(x) = \sqrt{|x|}$ e $g(x) = x^2 + 1$. Si calcoli il valore dell'integrale con gli approcci del punto 1 e punto 2 li si confronti con la funzione `integrate`.
 
 ```{r}
+#| echo: true
+#| eval: false
+#| code-fold: true
+#| code-summary: "Soluzione"
+
 my_integral <- function(B = 5000) {
   int <- mean(sqrt(abs(rnorm(B))) / (rnorm(B)^2+1))
   
