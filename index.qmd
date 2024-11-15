@@ -19,12 +19,15 @@ editor: visual
 
 [**Modelli Statistici & R**]{.text-primary} è uno dei due moduli che formano l'insegnamento [**Analisi Statistica Multivariata**]{.text-primary}. La pagina e-learning di riferimento per l'a.a. 2024/25 è raggiungibile al seguente [link](https://elearning.unimib.it/course/view.php?id=55020)).
 
+## Link a R e RStudio
 
+Ai seguenti link è possibile scaricare le ultime versioni di [R](https://cran.r-project.org/bin/windows/base/) e di [RStudio](https://posit.co/download/rstudio-desktop/).
 
 
 ## Programma dettagliato del corso
 
 ### Parte 1: introduzione ad R
+
 -   **Introduzione al linguaggio R:** utilizzo di R come calcolatrice scientifica; introduzione agli oggetti e alle loro classi (vettori, booleani, matrici, data.frame, liste); strutture condizionali e cicli; funzioni.
 
 -   **Statistica descrittiva in R:** rivisitazione dei principali argomenti di statistica descrittiva univariata e bivariata applicata a dataset, incluse rappresentazioni grafiche e loro personalizzazioni.
@@ -35,50 +38,38 @@ editor: visual
 
 ### Parte 2: Modelli Statistici
 
-- **Variabili casuali multidimensionali:** funzione di densità e di ripartizione congiunte; marginalizzazione; momenti; vettore delle medie e matrice di varianze e covarianze; v.c. Normale multivariata e sue proprietà.
+-   **Variabili casuali multidimensionali:** funzione di densità e di ripartizione congiunte; marginalizzazione; momenti; vettore delle medie e matrice di varianze e covarianze; v.c. Normale multivariata e sue proprietà.
 
 -   **Specificazione del modello:** fasi per la specificazione di un modello statistico; classificazione dei modelli.
 
-- **Modello di regressione lineare semplice:** assunzioni; interpretazione dei parametri; stima dei parametri (minimi quadrati e massima verosimiglianza); proprietà degli stimatori; teorema di Gauss-Markov; indice di determinazione lineare $R^2$.
+-   **Modello di regressione lineare semplice:** assunzioni; interpretazione dei parametri; stima dei parametri (minimi quadrati e massima verosimiglianza); proprietà degli stimatori; teorema di Gauss-Markov; indice di determinazione lineare $R^2$.
 
-- **Verifica ed utilizzo del modello:**  verifiche di ipotesi sul valore di un singolo coefficiente; verifica di ipotesi sulla bontà del modello; utilizzo del modello per fare previsione puntuale ed intervallare.
+-   **Verifica ed utilizzo del modello:** verifiche di ipotesi sul valore di un singolo coefficiente; verifica di ipotesi sulla bontà del modello; utilizzo del modello per fare previsione puntuale ed intervallare.
 
-- **Diagnostica del modello:** metodi per valutare le assunzioni relative alla struttura del modello, agli errori e all'assenza di osservazioni inusuali.
+-   **Diagnostica del modello:** metodi per valutare le assunzioni relative alla struttura del modello, agli errori e all'assenza di osservazioni inusuali.
 
-- **Modello di regressione lineare multiplo:** specificazione del modello in forma matriciale e sue assunzioni; interpretazione dei parametri; stima dei parametri (minimi quadrati e massima verosimiglianza); proprietà degli stimatori; teorema di Gauss-Markov; indice di determinazione multipla $R^2$. 
+-   **Modello di regressione lineare multiplo:** specificazione del modello in forma matriciale e sue assunzioni; interpretazione dei parametri; stima dei parametri (minimi quadrati e massima verosimiglianza); proprietà degli stimatori; teorema di Gauss-Markov; indice di determinazione multipla $R^2$.
 
-- **Variabili qualitative:** inserimento di variabili qualitative nel modello mediante l'inserimento di dummy; interazioni.
+-   **Variabili qualitative:** inserimento di variabili qualitative nel modello mediante l'inserimento di dummy; interazioni.
 
-- **Verifica di un sistema di ipotesi lineare:** teoria generale e casi particolari.
+-   **Verifica di un sistema di ipotesi lineare:** teoria generale e casi particolari.
 
-- **Selezione del modello:** contributo assoluto e relativo di una variabile esplicativa; indice di determinazione parziale (IDP); selezione criterion-based delle variabili esplicative tramite approccio backward, forward e stepwise; AIC e BIC.
-
-
+-   **Selezione del modello:** contributo assoluto e relativo di una variabile esplicativa; indice di determinazione parziale (IDP); selezione criterion-based delle variabili esplicative tramite approccio backward, forward e stepwise; AIC e BIC.
 
 ## Esercizi aggiuntivi:
 
-Ulteriori esercizi relativi alla Parte 1 del corso possono essere trovati al seguente [link](Esercizi.qmd).
-
-
-## Link a R e RStudio
-
-Ai seguenti link è possibile scaricare le ultime versioni di 
-[R](https://cran.r-project.org/bin/windows/base/) e di [RStudio](https://posit.co/download/rstudio-desktop/).
-
+Ulteriori esercizi relativi alla Parte 1 del corso possono essere trovati al seguente [link](esercizi.qmd).
 
 
 
 ## Libri di testo
 
+-   Albert, J. & M. Rizzo (2012). *R by Example*. Springer.
 
-- Albert, J. & M. Rizzo (2012). *R by Example*. Springer.
+-   M. Grigoletto, F. Pauli, L. Ventura, *Modello lineare, teoria e applicazioni con R*. Giappichelli, 2017
 
-- M. Grigoletto, F. Pauli, L. Ventura, *Modello lineare, teoria e applicazioni con R*. Giappichelli, 2017
+-   J. Fox. *Applied regression analysis and generalized linear models*, third edition. Sage.
 
-- J. Fox. *Applied regression analysis and generalized linear models*, third edition. Sage.
-
-- D. Piccolo, D. *Statistica*, Terza edizione, Il Mulino.
-
-
+-   D. Piccolo, D. *Statistica*, Terza edizione, Il Mulino.
 
 ------------------------------------------------------------------------

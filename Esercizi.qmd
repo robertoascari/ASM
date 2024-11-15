@@ -1327,4 +1327,152 @@ table(esiti)/B
 plot(table(esiti)/B, main = "Distribuzione di probabilità di X", ylab="Prob. (approx.)")
 ```
 
+### Esercizio 5
+
+La variabile casuale Weibull, molto utilizzata nella teoria dei valori estremi, è caratterizzata dalla seguente funzione di densità:
+
+$\displaystyle f(y; \alpha, \beta) = \alpha \beta y^{\beta - 1} e^{-\alpha y^\beta}$, se $y > 0$, dove $\alpha$ e $\beta$ sono due parametri positivi.
+
+1.  Si scriva una funzione in `R` chiamata `my_dweibull` che calcoli la funzione di densità di una Weibull.
+
+```{r}
+#| echo: true
+#| eval: false
+#| code-fold: true
+#| code-summary: "Soluzione"
+
+my_dweibull <- function(x, alpha, beta){
+  dens <- alpha*beta*(x^(beta-1))*exp(-alpha*(x^beta))
+  return(dens)
+}
+
+my_dweibull(4, 1, .2)
+```
+
+2.  Si ottenga analiticamente la funzione di ripartizione di una Weibull e la si implementi in R, creando una funzione `my_pweibull`.
+
+<details>
+
+<summary>Soluzione</summary>
+
+La funzione di ripartizione può essere ottenuta risolvendo il seguente integrale: $F(t; \alpha, \beta) = \displaystyle \int_0^t \alpha \beta y^{\beta - 1} e^{-\alpha y^\beta} dy$.
+
+Tramite sostituzione $(s = y^\beta, ds = \beta y^{\beta -1} dy)$, si ottiene $\displaystyle F(t; \alpha, \beta) = \int_0^{t^\beta} \alpha  e^{-\alpha s} ds = 1 - e^{-\alpha t^\beta}$.
+
+```{r}
+#| eval: false
+
+my_pweibull <- function(q, alpha, beta){
+  rip <- ifelse(q < 0, 0, 1 - exp(-alpha * (q^beta)))
+  return(rip)
+}
+
+my_pweibull(4, 1, .2)
+```
+
+</details>
+
+3.  Si ottenga analiticamente la funzione quantile (inversa della funzione di ripartizione) di una Weibull e la si implementi in R, creando una funzione `my_qweibull`.
+
+<details>
+
+<summary>Soluzione</summary>
+
+Per ottenere la funzione quantile è necessario invertire la funzione di ripartizione ottenuta al punto precedente: $\displaystyle Q(u) = F^{-1}(u), u \in (0,1)$. Isolando $t$ dall'espressione $1- e^{-\alpha * t^\beta}$, si ottiene $Q(u) = \left[ -\frac{1}{\alpha} \log(1-u) \right]^{1/\beta}$.
+
+```{r}
+#| eval: false
+
+my_qweibull <- function(u, alpha, beta){
+  q <- (-alpha^(-1) * log(1-u))^(1/beta)
+  return(q)
+}
+
+my_qweibull(.73, 1, .2)
+```
+
+</details>
+
+4.  Si utilizzi il metodo della trasformata inversa per creare una funzione `my_rweibull` per generare `n` valori pseudo-casuali da una Weibull.
+
+```{r}
+#| echo: true
+#| eval: false
+#| code-fold: true
+#| code-summary: "Soluzione"
+
+my_rweibull <- function(n, alpha, beta){
+  sample <- numeric(n)
+  
+  for(i in 1:n){
+    sample[i] <- my_qweibull(u = runif(1), alpha, beta)
+  }
+  return(sample)
+}
+```
+
+5.  Si verifichi che la funzione `my_rweibull` permette di estrarre valori pseudo-casuali dalla funzione di densità in analisi.
+
+```{r}
+#| echo: true
+#| eval: false
+#| code-fold: true
+#| code-summary: "Soluzione"
+
+n <- 8000
+sample <- my_rweibull(n, 5, 2)
+
+par(mfrow=c(1,2))
+hist(sample, prob = T)
+curve(my_dweibull(x, 5, 2), add=T, col = 2)
+plot(ecdf(sample))
+curve(my_pweibull(x, 5, 2), add=T, col = 2)
+par(mfrow=c(1,1))
+
+```
+
+### Esercizio 6
+
+Si consideri una variabile casuale discreta $X$ con supporto $\mathcal{S}_X = \{2, 4, 6, 8, 10, 12\}$ e  funzione di probabilità: $\displaystyle p(x) = \frac{1}{441} \left(\frac{x}{2} \right)^3, x \in \mathcal{S}_X$. 
+
+1.    Si propongano due metodi per estrarre `n` valori pseudo casuali da $X$.
+
+```{r}
+#| echo: true
+#| eval: false
+#| code-fold: true
+#| code-summary: "Soluzione"
+
+S_X <- 2*(1:6)
+p_x <- (1/441)*(S_X/2)^3
+
+n <- 8000
+
+# Metodo 1:
+set.seed(369)
+
+aa <- cumsum(c(0, p_x))
+
+u <- runif(n)
+sample1 <- S_X[as.numeric(cut(u, aa))]
+
+# Metodo 2:
+sample2 <- sample(S_X, n, replace = T, prob = p_x)
+```
+
+2.    Si proponga un modo per verificare se i metodi proposti sembrano generare valori proprio dalla distribuzione desiderata.
+
+```{r}
+#| echo: true
+#| eval: false
+#| code-fold: true
+#| code-summary: "Soluzione"
+
+round(cbind(p_x, 
+            table(sample1)/n, 
+            table(sample2)/n), 4)
+```
+
+
+
 ## Parte 4: Inferenza

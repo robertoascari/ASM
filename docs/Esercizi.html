@@ -173,6 +173,8 @@ window.Quarto = {
   <li><a href="#esercizio-2-difficile" id="toc-esercizio-2-difficile" class="nav-link" data-scroll-target="#esercizio-2-difficile">Esercizio 2 (difficile):</a></li>
   <li><a href="#esercizio-3-2" id="toc-esercizio-3-2" class="nav-link" data-scroll-target="#esercizio-3-2">Esercizio 3</a></li>
   <li><a href="#esercizio-4-2" id="toc-esercizio-4-2" class="nav-link" data-scroll-target="#esercizio-4-2">Esercizio 4</a></li>
+  <li><a href="#esercizio-5-2" id="toc-esercizio-5-2" class="nav-link" data-scroll-target="#esercizio-5-2">Esercizio 5</a></li>
+  <li><a href="#esercizio-6-1" id="toc-esercizio-6-1" class="nav-link" data-scroll-target="#esercizio-6-1">Esercizio 6</a></li>
   </ul></li>
   <li><a href="#parte-4-inferenza" id="toc-parte-4-inferenza" class="nav-link" data-scroll-target="#parte-4-inferenza">Parte 4: Inferenza</a></li>
   </ul>
@@ -1369,6 +1371,131 @@ Si ottenga la matrice di varianze e covarianze del dataset <code>medals_composit
 <span id="cb72-12"><a href="#cb72-12" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(esiti)<span class="sc">/</span>B</span>
 <span id="cb72-13"><a href="#cb72-13" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb72-14"><a href="#cb72-14" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">table</span>(esiti)<span class="sc">/</span>B, <span class="at">main =</span> <span class="st">"Distribuzione di probabilità di X"</span>, <span class="at">ylab=</span><span class="st">"Prob. (approx.)"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</section>
+<section id="esercizio-5-2" class="level3">
+<h3 class="anchored" data-anchor-id="esercizio-5-2">Esercizio 5</h3>
+<p>La variabile casuale Weibull, molto utilizzata nella teoria dei valori estremi, è caratterizzata dalla seguente funzione di densità:</p>
+<p><span class="math inline">\(\displaystyle f(y; \alpha, \beta) = \alpha \beta y^{\beta - 1} e^{-\alpha y^\beta}\)</span>, se <span class="math inline">\(y &gt; 0\)</span>, dove <span class="math inline">\(\alpha\)</span> e <span class="math inline">\(\beta\)</span> sono due parametri positivi.</p>
+<ol type="1">
+<li>Si scriva una funzione in <code>R</code> chiamata <code>my_dweibull</code> che calcoli la funzione di densità di una Weibull.</li>
+</ol>
+<div class="cell">
+<details class="code-fold">
+<summary>Soluzione</summary>
+<div class="sourceCode cell-code" id="cb73"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb73-1"><a href="#cb73-1" aria-hidden="true" tabindex="-1"></a>my_dweibull <span class="ot">&lt;-</span> <span class="cf">function</span>(x, alpha, beta){</span>
+<span id="cb73-2"><a href="#cb73-2" aria-hidden="true" tabindex="-1"></a>  dens <span class="ot">&lt;-</span> alpha<span class="sc">*</span>beta<span class="sc">*</span>(x<span class="sc">^</span>(beta<span class="dv">-1</span>))<span class="sc">*</span><span class="fu">exp</span>(<span class="sc">-</span>alpha<span class="sc">*</span>(x<span class="sc">^</span>beta))</span>
+<span id="cb73-3"><a href="#cb73-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(dens)</span>
+<span id="cb73-4"><a href="#cb73-4" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb73-5"><a href="#cb73-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb73-6"><a href="#cb73-6" aria-hidden="true" tabindex="-1"></a><span class="fu">my_dweibull</span>(<span class="dv">4</span>, <span class="dv">1</span>, .<span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<ol start="2" type="1">
+<li>Si ottenga analiticamente la funzione di ripartizione di una Weibull e la si implementi in R, creando una funzione <code>my_pweibull</code>.</li>
+</ol>
+<details>
+<summary>
+Soluzione
+</summary>
+<p>La funzione di ripartizione può essere ottenuta risolvendo il seguente integrale: <span class="math inline">\(F(t; \alpha, \beta) = \displaystyle \int_0^t \alpha \beta y^{\beta - 1} e^{-\alpha y^\beta} dy\)</span>.</p>
+<p>Tramite sostituzione <span class="math inline">\((s = y^\beta, ds = \beta y^{\beta -1} dy)\)</span>, si ottiene <span class="math inline">\(\displaystyle F(t; \alpha, \beta) = \int_0^{t^\beta} \alpha  e^{-\alpha s} ds = 1 - e^{-\alpha t^\beta}\)</span>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb74"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb74-1"><a href="#cb74-1" aria-hidden="true" tabindex="-1"></a>my_pweibull <span class="ot">&lt;-</span> <span class="cf">function</span>(q, alpha, beta){</span>
+<span id="cb74-2"><a href="#cb74-2" aria-hidden="true" tabindex="-1"></a>  rip <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(q <span class="sc">&lt;</span> <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">1</span> <span class="sc">-</span> <span class="fu">exp</span>(<span class="sc">-</span>alpha <span class="sc">*</span> (q<span class="sc">^</span>beta)))</span>
+<span id="cb74-3"><a href="#cb74-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(rip)</span>
+<span id="cb74-4"><a href="#cb74-4" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb74-5"><a href="#cb74-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb74-6"><a href="#cb74-6" aria-hidden="true" tabindex="-1"></a><span class="fu">my_pweibull</span>(<span class="dv">4</span>, <span class="dv">1</span>, .<span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</details>
+<ol start="3" type="1">
+<li>Si ottenga analiticamente la funzione quantile (inversa della funzione di ripartizione) di una Weibull e la si implementi in R, creando una funzione <code>my_qweibull</code>.</li>
+</ol>
+<details>
+<summary>
+Soluzione
+</summary>
+<p>Per ottenere la funzione quantile è necessario invertire la funzione di ripartizione ottenuta al punto precedente: <span class="math inline">\(\displaystyle Q(u) = F^{-1}(u), u \in (0,1)\)</span>. Isolando <span class="math inline">\(t\)</span> dall’espressione <span class="math inline">\(1- e^{-\alpha * t^\beta}\)</span>, si ottiene <span class="math inline">\(Q(u) = \left[ -\frac{1}{\alpha} \log(1-u) \right]^{1/\beta}\)</span>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb75"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb75-1"><a href="#cb75-1" aria-hidden="true" tabindex="-1"></a>my_qweibull <span class="ot">&lt;-</span> <span class="cf">function</span>(u, alpha, beta){</span>
+<span id="cb75-2"><a href="#cb75-2" aria-hidden="true" tabindex="-1"></a>  q <span class="ot">&lt;-</span> (<span class="sc">-</span>alpha<span class="sc">^</span>(<span class="sc">-</span><span class="dv">1</span>) <span class="sc">*</span> <span class="fu">log</span>(<span class="dv">1</span><span class="sc">-</span>u))<span class="sc">^</span>(<span class="dv">1</span><span class="sc">/</span>beta)</span>
+<span id="cb75-3"><a href="#cb75-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(q)</span>
+<span id="cb75-4"><a href="#cb75-4" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb75-5"><a href="#cb75-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb75-6"><a href="#cb75-6" aria-hidden="true" tabindex="-1"></a><span class="fu">my_qweibull</span>(.<span class="dv">73</span>, <span class="dv">1</span>, .<span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</details>
+<ol start="4" type="1">
+<li>Si utilizzi il metodo della trasformata inversa per creare una funzione <code>my_rweibull</code> per generare <code>n</code> valori pseudo-casuali da una Weibull.</li>
+</ol>
+<div class="cell">
+<details class="code-fold">
+<summary>Soluzione</summary>
+<div class="sourceCode cell-code" id="cb76"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb76-1"><a href="#cb76-1" aria-hidden="true" tabindex="-1"></a>my_rweibull <span class="ot">&lt;-</span> <span class="cf">function</span>(n, alpha, beta){</span>
+<span id="cb76-2"><a href="#cb76-2" aria-hidden="true" tabindex="-1"></a>  sample <span class="ot">&lt;-</span> <span class="fu">numeric</span>(n)</span>
+<span id="cb76-3"><a href="#cb76-3" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb76-4"><a href="#cb76-4" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>n){</span>
+<span id="cb76-5"><a href="#cb76-5" aria-hidden="true" tabindex="-1"></a>    sample[i] <span class="ot">&lt;-</span> <span class="fu">my_qweibull</span>(<span class="at">u =</span> <span class="fu">runif</span>(<span class="dv">1</span>), alpha, beta)</span>
+<span id="cb76-6"><a href="#cb76-6" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb76-7"><a href="#cb76-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(sample)</span>
+<span id="cb76-8"><a href="#cb76-8" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<ol start="5" type="1">
+<li>Si verifichi che la funzione <code>my_rweibull</code> permette di estrarre valori pseudo-casuali dalla funzione di densità in analisi.</li>
+</ol>
+<div class="cell">
+<details class="code-fold">
+<summary>Soluzione</summary>
+<div class="sourceCode cell-code" id="cb77"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb77-1"><a href="#cb77-1" aria-hidden="true" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">8000</span></span>
+<span id="cb77-2"><a href="#cb77-2" aria-hidden="true" tabindex="-1"></a>sample <span class="ot">&lt;-</span> <span class="fu">my_rweibull</span>(n, <span class="dv">5</span>, <span class="dv">2</span>)</span>
+<span id="cb77-3"><a href="#cb77-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb77-4"><a href="#cb77-4" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>))</span>
+<span id="cb77-5"><a href="#cb77-5" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(sample, <span class="at">prob =</span> T)</span>
+<span id="cb77-6"><a href="#cb77-6" aria-hidden="true" tabindex="-1"></a><span class="fu">curve</span>(<span class="fu">my_dweibull</span>(x, <span class="dv">5</span>, <span class="dv">2</span>), <span class="at">add=</span>T, <span class="at">col =</span> <span class="dv">2</span>)</span>
+<span id="cb77-7"><a href="#cb77-7" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">ecdf</span>(sample))</span>
+<span id="cb77-8"><a href="#cb77-8" aria-hidden="true" tabindex="-1"></a><span class="fu">curve</span>(<span class="fu">my_pweibull</span>(x, <span class="dv">5</span>, <span class="dv">2</span>), <span class="at">add=</span>T, <span class="at">col =</span> <span class="dv">2</span>)</span>
+<span id="cb77-9"><a href="#cb77-9" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">1</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</section>
+<section id="esercizio-6-1" class="level3">
+<h3 class="anchored" data-anchor-id="esercizio-6-1">Esercizio 6</h3>
+<p>Si consideri una variabile casuale discreta <span class="math inline">\(X\)</span> con supporto <span class="math inline">\(\mathcal{S}_X = \{2, 4, 6, 8, 10, 12\}\)</span> e funzione di probabilità: <span class="math inline">\(\displaystyle p(x) = \frac{1}{441} \left(\frac{x}{2} \right)^3, x \in \mathcal{S}_X\)</span>.</p>
+<ol type="1">
+<li>Si propongano due metodi per estrarre <code>n</code> valori pseudo casuali da <span class="math inline">\(X\)</span>.</li>
+</ol>
+<div class="cell">
+<details class="code-fold">
+<summary>Soluzione</summary>
+<div class="sourceCode cell-code" id="cb78"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb78-1"><a href="#cb78-1" aria-hidden="true" tabindex="-1"></a>S_X <span class="ot">&lt;-</span> <span class="dv">2</span><span class="sc">*</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">6</span>)</span>
+<span id="cb78-2"><a href="#cb78-2" aria-hidden="true" tabindex="-1"></a>p_x <span class="ot">&lt;-</span> (<span class="dv">1</span><span class="sc">/</span><span class="dv">441</span>)<span class="sc">*</span>(S_X<span class="sc">/</span><span class="dv">2</span>)<span class="sc">^</span><span class="dv">3</span></span>
+<span id="cb78-3"><a href="#cb78-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb78-4"><a href="#cb78-4" aria-hidden="true" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">8000</span></span>
+<span id="cb78-5"><a href="#cb78-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb78-6"><a href="#cb78-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Metodo 1:</span></span>
+<span id="cb78-7"><a href="#cb78-7" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">369</span>)</span>
+<span id="cb78-8"><a href="#cb78-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb78-9"><a href="#cb78-9" aria-hidden="true" tabindex="-1"></a>aa <span class="ot">&lt;-</span> <span class="fu">cumsum</span>(<span class="fu">c</span>(<span class="dv">0</span>, p_x))</span>
+<span id="cb78-10"><a href="#cb78-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb78-11"><a href="#cb78-11" aria-hidden="true" tabindex="-1"></a>u <span class="ot">&lt;-</span> <span class="fu">runif</span>(n)</span>
+<span id="cb78-12"><a href="#cb78-12" aria-hidden="true" tabindex="-1"></a>sample1 <span class="ot">&lt;-</span> S_X[<span class="fu">as.numeric</span>(<span class="fu">cut</span>(u, aa))]</span>
+<span id="cb78-13"><a href="#cb78-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb78-14"><a href="#cb78-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Metodo 2:</span></span>
+<span id="cb78-15"><a href="#cb78-15" aria-hidden="true" tabindex="-1"></a>sample2 <span class="ot">&lt;-</span> <span class="fu">sample</span>(S_X, n, <span class="at">replace =</span> T, <span class="at">prob =</span> p_x)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<ol start="2" type="1">
+<li>Si proponga un modo per verificare se i metodi proposti sembrano generare valori proprio dalla distribuzione desiderata.</li>
+</ol>
+<div class="cell">
+<details class="code-fold">
+<summary>Soluzione</summary>
+<div class="sourceCode cell-code" id="cb79"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb79-1"><a href="#cb79-1" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(<span class="fu">cbind</span>(p_x, </span>
+<span id="cb79-2"><a href="#cb79-2" aria-hidden="true" tabindex="-1"></a>            <span class="fu">table</span>(sample1)<span class="sc">/</span>n, </span>
+<span id="cb79-3"><a href="#cb79-3" aria-hidden="true" tabindex="-1"></a>            <span class="fu">table</span>(sample2)<span class="sc">/</span>n), <span class="dv">4</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 </section>
