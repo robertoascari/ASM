@@ -24,7 +24,7 @@ editor: visual
 
 ## Programma dettagliato del corso
 
-### Parte 1:
+### Parte 1: introduzione ad R
 -   **Introduzione al linguaggio R:** utilizzo di R come calcolatrice scientifica; introduzione agli oggetti e alle loro classi (vettori, booleani, matrici, data.frame, liste); strutture condizionali e cicli; funzioni.
 
 -   **Statistica descrittiva in R:** rivisitazione dei principali argomenti di statistica descrittiva univariata e bivariata applicata a dataset, incluse rappresentazioni grafiche e loro personalizzazioni.
@@ -33,7 +33,7 @@ editor: visual
 
 -   **Inferenza statistica in R:** studio delle proprietà degli stimatori mediante simulazioni; metodi numerici per l'analisi di verosimiglianza.
 
-### Parte 2:
+### Parte 2: Modelli Statistici
 
 - **Variabili casuali multidimensionali:** funzione di densità e di ripartizione congiunte; marginalizzazione; momenti; vettore delle medie e matrice di varianze e covarianze; v.c. Normale multivariata e sue proprietà.
 
