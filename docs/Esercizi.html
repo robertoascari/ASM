@@ -181,8 +181,10 @@ window.Quarto = {
   </ul></li>
   <li><a href="#parte-4-inferenza" id="toc-parte-4-inferenza" class="nav-link" data-scroll-target="#parte-4-inferenza">Parte 4: Inferenza</a>
   <ul class="collapse">
-  <li><a href="#verificare-il-tcl" id="toc-verificare-il-tcl" class="nav-link" data-scroll-target="#verificare-il-tcl">Verificare il TCL</a></li>
-  <li><a href="#section" id="toc-section" class="nav-link" data-scroll-target="#section"></a></li>
+  <li><a href="#esercizio-1-2" id="toc-esercizio-1-2" class="nav-link" data-scroll-target="#esercizio-1-2">Esercizio 1</a></li>
+  <li><a href="#esercizio-2-2" id="toc-esercizio-2-2" class="nav-link" data-scroll-target="#esercizio-2-2">Esercizio 2</a></li>
+  <li><a href="#esercizio-3-3" id="toc-esercizio-3-3" class="nav-link" data-scroll-target="#esercizio-3-3">Esercizio 3</a></li>
+  <li><a href="#esercizio-4-3" id="toc-esercizio-4-3" class="nav-link" data-scroll-target="#esercizio-4-3">Esercizio 4</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -1505,6 +1507,19 @@ Soluzione
 <span id="cb79-3"><a href="#cb79-3" aria-hidden="true" tabindex="-1"></a>            <span class="fu">table</span>(sample2)<span class="sc">/</span>n), <span class="dv">4</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
+<ol start="3" type="1">
+<li>Si usi uno dei campioni ottenuti per approssimare il valore atteso, il momento secondo e la varianza di <span class="math inline">\(X\)</span>.</li>
+</ol>
+<div class="cell">
+<details class="code-fold">
+<summary>Soluzione</summary>
+<div class="sourceCode cell-code" id="cb80"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb80-1"><a href="#cb80-1" aria-hidden="true" tabindex="-1"></a>mu <span class="ot">&lt;-</span> <span class="fu">mean</span>(sample1)</span>
+<span id="cb80-2"><a href="#cb80-2" aria-hidden="true" tabindex="-1"></a>mom2 <span class="ot">&lt;-</span> <span class="fu">mean</span>(sample1<span class="sc">^</span><span class="dv">2</span>)</span>
+<span id="cb80-3"><a href="#cb80-3" aria-hidden="true" tabindex="-1"></a>var <span class="ot">&lt;-</span> <span class="fu">mean</span>((sample1<span class="sc">-</span><span class="fu">mean</span>(sample1))<span class="sc">^</span><span class="dv">2</span>)</span>
+<span id="cb80-4"><a href="#cb80-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Oppure </span></span>
+<span id="cb80-5"><a href="#cb80-5" aria-hidden="true" tabindex="-1"></a><span class="co">#var &lt;- mom2 - mu^2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
 </section>
 <section id="esercizio-7-1" class="level3">
 <h3 class="anchored" data-anchor-id="esercizio-7-1">Esercizio 7</h3>
@@ -1512,12 +1527,12 @@ Soluzione
 <div class="cell">
 <details class="code-fold">
 <summary>Soluzione</summary>
-<div class="sourceCode cell-code" id="cb80"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb80-1"><a href="#cb80-1" aria-hidden="true" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">200</span></span>
-<span id="cb80-2"><a href="#cb80-2" aria-hidden="true" tabindex="-1"></a>mu <span class="ot">&lt;-</span> <span class="dv">15</span></span>
-<span id="cb80-3"><a href="#cb80-3" aria-hidden="true" tabindex="-1"></a>sigma2 <span class="ot">&lt;-</span> <span class="dv">20</span></span>
-<span id="cb80-4"><a href="#cb80-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb80-5"><a href="#cb80-5" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">678</span>)</span>
-<span id="cb80-6"><a href="#cb80-6" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(n, mu, <span class="fu">sqrt</span>(sigma2))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb81"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb81-1"><a href="#cb81-1" aria-hidden="true" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">200</span></span>
+<span id="cb81-2"><a href="#cb81-2" aria-hidden="true" tabindex="-1"></a>mu <span class="ot">&lt;-</span> <span class="dv">15</span></span>
+<span id="cb81-3"><a href="#cb81-3" aria-hidden="true" tabindex="-1"></a>sigma2 <span class="ot">&lt;-</span> <span class="dv">20</span></span>
+<span id="cb81-4"><a href="#cb81-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb81-5"><a href="#cb81-5" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">678</span>)</span>
+<span id="cb81-6"><a href="#cb81-6" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(n, mu, <span class="fu">sqrt</span>(sigma2))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 <ol type="1">
@@ -1526,11 +1541,11 @@ Soluzione
 <div class="cell">
 <details class="code-fold">
 <summary>Soluzione</summary>
-<div class="sourceCode cell-code" id="cb81"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb81-1"><a href="#cb81-1" aria-hidden="true" tabindex="-1"></a>mu_hat <span class="ot">&lt;-</span> <span class="fu">mean</span>(y); mu_hat</span>
-<span id="cb81-2"><a href="#cb81-2" aria-hidden="true" tabindex="-1"></a>sigma2_hat <span class="ot">&lt;-</span> <span class="fu">var</span>(y); sigma2_hat</span>
-<span id="cb81-3"><a href="#cb81-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb81-4"><a href="#cb81-4" aria-hidden="true" tabindex="-1"></a>mu <span class="sc">-</span> mu_hat</span>
-<span id="cb81-5"><a href="#cb81-5" aria-hidden="true" tabindex="-1"></a>sigma2 <span class="sc">-</span> sigma2_hat</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb82"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb82-1"><a href="#cb82-1" aria-hidden="true" tabindex="-1"></a>mu_hat <span class="ot">&lt;-</span> <span class="fu">mean</span>(y); mu_hat</span>
+<span id="cb82-2"><a href="#cb82-2" aria-hidden="true" tabindex="-1"></a>sigma2_hat <span class="ot">&lt;-</span> <span class="fu">var</span>(y); sigma2_hat</span>
+<span id="cb82-3"><a href="#cb82-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb82-4"><a href="#cb82-4" aria-hidden="true" tabindex="-1"></a>mu <span class="sc">-</span> mu_hat</span>
+<span id="cb82-5"><a href="#cb82-5" aria-hidden="true" tabindex="-1"></a>sigma2 <span class="sc">-</span> sigma2_hat</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 <ol start="2" type="1">
@@ -1539,14 +1554,14 @@ Soluzione
 <div class="cell">
 <details class="code-fold">
 <summary>Soluzione</summary>
-<div class="sourceCode cell-code" id="cb82"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb82-1"><a href="#cb82-1" aria-hidden="true" tabindex="-1"></a>mu_star <span class="ot">&lt;-</span> <span class="dv">5</span></span>
-<span id="cb82-2"><a href="#cb82-2" aria-hidden="true" tabindex="-1"></a>alpha <span class="ot">&lt;-</span> <span class="fl">0.05</span></span>
-<span id="cb82-3"><a href="#cb82-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb82-4"><a href="#cb82-4" aria-hidden="true" tabindex="-1"></a>stat_test <span class="ot">&lt;-</span> (mu_hat <span class="sc">-</span> mu_star)<span class="sc">/</span><span class="fu">sqrt</span>(sigma2_hat<span class="sc">/</span>n)</span>
-<span id="cb82-5"><a href="#cb82-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb82-6"><a href="#cb82-6" aria-hidden="true" tabindex="-1"></a>soglia <span class="ot">&lt;-</span> <span class="fu">qt</span>(<span class="dv">1</span> <span class="sc">-</span> (alpha<span class="sc">/</span><span class="dv">2</span>), n <span class="sc">-</span> <span class="dv">1</span>)</span>
-<span id="cb82-7"><a href="#cb82-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb82-8"><a href="#cb82-8" aria-hidden="true" tabindex="-1"></a><span class="fu">ifelse</span>(<span class="fu">abs</span>(stat_test) <span class="sc">&gt;=</span> <span class="fu">abs</span>(soglia), <span class="st">"Rifiuto H0"</span>, <span class="st">"Non rifiuto H0"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb83"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb83-1"><a href="#cb83-1" aria-hidden="true" tabindex="-1"></a>mu_star <span class="ot">&lt;-</span> <span class="dv">5</span></span>
+<span id="cb83-2"><a href="#cb83-2" aria-hidden="true" tabindex="-1"></a>alpha <span class="ot">&lt;-</span> <span class="fl">0.05</span></span>
+<span id="cb83-3"><a href="#cb83-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb83-4"><a href="#cb83-4" aria-hidden="true" tabindex="-1"></a>stat_test <span class="ot">&lt;-</span> (mu_hat <span class="sc">-</span> mu_star)<span class="sc">/</span><span class="fu">sqrt</span>(sigma2_hat<span class="sc">/</span>n)</span>
+<span id="cb83-5"><a href="#cb83-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb83-6"><a href="#cb83-6" aria-hidden="true" tabindex="-1"></a>soglia <span class="ot">&lt;-</span> <span class="fu">qt</span>(<span class="dv">1</span> <span class="sc">-</span> (alpha<span class="sc">/</span><span class="dv">2</span>), n <span class="sc">-</span> <span class="dv">1</span>)</span>
+<span id="cb83-7"><a href="#cb83-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb83-8"><a href="#cb83-8" aria-hidden="true" tabindex="-1"></a><span class="fu">ifelse</span>(<span class="fu">abs</span>(stat_test) <span class="sc">&gt;=</span> <span class="fu">abs</span>(soglia), <span class="st">"Rifiuto H0"</span>, <span class="st">"Non rifiuto H0"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 <ol start="3" type="1">
@@ -1555,9 +1570,9 @@ Soluzione
 <div class="cell">
 <details class="code-fold">
 <summary>Soluzione</summary>
-<div class="sourceCode cell-code" id="cb83"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb83-1"><a href="#cb83-1" aria-hidden="true" tabindex="-1"></a>p_value <span class="ot">&lt;-</span> <span class="fu">pnorm</span>(<span class="sc">-</span><span class="fu">abs</span>(stat_test)); p_value</span>
-<span id="cb83-2"><a href="#cb83-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb83-3"><a href="#cb83-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ifelse</span>(p_value <span class="sc">&lt;</span> alpha, <span class="st">"Rifiuto H0"</span>, <span class="st">"Non rifiuto H0"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb84"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb84-1"><a href="#cb84-1" aria-hidden="true" tabindex="-1"></a>p_value <span class="ot">&lt;-</span> <span class="fu">pnorm</span>(<span class="sc">-</span><span class="fu">abs</span>(stat_test)); p_value</span>
+<span id="cb84-2"><a href="#cb84-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb84-3"><a href="#cb84-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ifelse</span>(p_value <span class="sc">&lt;</span> alpha, <span class="st">"Rifiuto H0"</span>, <span class="st">"Non rifiuto H0"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 </section>
@@ -1570,18 +1585,18 @@ Soluzione
 <div class="cell">
 <details class="code-fold">
 <summary>Soluzione</summary>
-<div class="sourceCode cell-code" id="cb84"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb84-1"><a href="#cb84-1" aria-hidden="true" tabindex="-1"></a>ddir <span class="ot">&lt;-</span> <span class="cf">function</span>(x, alpha){</span>
-<span id="cb84-2"><a href="#cb84-2" aria-hidden="true" tabindex="-1"></a>  aplus <span class="ot">&lt;-</span> <span class="fu">sum</span>(alpha)</span>
-<span id="cb84-3"><a href="#cb84-3" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb84-4"><a href="#cb84-4" aria-hidden="true" tabindex="-1"></a>  dens <span class="ot">&lt;-</span> <span class="fu">gamma</span>(aplus)<span class="sc">/</span>(<span class="fu">prod</span>(<span class="fu">gamma</span>(alpha)))<span class="sc">*</span> <span class="fu">prod</span>(x<span class="sc">^</span>(alpha<span class="dv">-1</span>))</span>
-<span id="cb84-5"><a href="#cb84-5" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb84-6"><a href="#cb84-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(dens)</span>
-<span id="cb84-7"><a href="#cb84-7" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb84-8"><a href="#cb84-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb84-9"><a href="#cb84-9" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">c</span>(.<span class="dv">2</span>, .<span class="dv">1</span>, .<span class="dv">4</span>, .<span class="dv">05</span>, .<span class="dv">25</span>)</span>
-<span id="cb84-10"><a href="#cb84-10" aria-hidden="true" tabindex="-1"></a>alpha <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">4</span>, <span class="dv">1</span>, <span class="dv">10</span>, <span class="dv">5</span>, <span class="dv">2</span>)</span>
-<span id="cb84-11"><a href="#cb84-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb84-12"><a href="#cb84-12" aria-hidden="true" tabindex="-1"></a><span class="fu">ddir</span>(x, alpha)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb85"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb85-1"><a href="#cb85-1" aria-hidden="true" tabindex="-1"></a>ddir <span class="ot">&lt;-</span> <span class="cf">function</span>(x, alpha){</span>
+<span id="cb85-2"><a href="#cb85-2" aria-hidden="true" tabindex="-1"></a>  aplus <span class="ot">&lt;-</span> <span class="fu">sum</span>(alpha)</span>
+<span id="cb85-3"><a href="#cb85-3" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb85-4"><a href="#cb85-4" aria-hidden="true" tabindex="-1"></a>  dens <span class="ot">&lt;-</span> <span class="fu">gamma</span>(aplus)<span class="sc">/</span>(<span class="fu">prod</span>(<span class="fu">gamma</span>(alpha)))<span class="sc">*</span> <span class="fu">prod</span>(x<span class="sc">^</span>(alpha<span class="dv">-1</span>))</span>
+<span id="cb85-5"><a href="#cb85-5" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb85-6"><a href="#cb85-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(dens)</span>
+<span id="cb85-7"><a href="#cb85-7" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb85-8"><a href="#cb85-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb85-9"><a href="#cb85-9" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">c</span>(.<span class="dv">2</span>, .<span class="dv">1</span>, .<span class="dv">4</span>, .<span class="dv">05</span>, .<span class="dv">25</span>)</span>
+<span id="cb85-10"><a href="#cb85-10" aria-hidden="true" tabindex="-1"></a>alpha <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">4</span>, <span class="dv">1</span>, <span class="dv">10</span>, <span class="dv">5</span>, <span class="dv">2</span>)</span>
+<span id="cb85-11"><a href="#cb85-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb85-12"><a href="#cb85-12" aria-hidden="true" tabindex="-1"></a><span class="fu">ddir</span>(x, alpha)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 <ol start="2" type="1">
@@ -1590,17 +1605,17 @@ Soluzione
 <div class="cell">
 <details class="code-fold">
 <summary>Soluzione</summary>
-<div class="sourceCode cell-code" id="cb85"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb85-1"><a href="#cb85-1" aria-hidden="true" tabindex="-1"></a>D <span class="ot">&lt;-</span> <span class="dv">5</span></span>
-<span id="cb85-2"><a href="#cb85-2" aria-hidden="true" tabindex="-1"></a>B <span class="ot">&lt;-</span> <span class="dv">5000</span></span>
-<span id="cb85-3"><a href="#cb85-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb85-4"><a href="#cb85-4" aria-hidden="true" tabindex="-1"></a>alpha <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">4</span>, <span class="dv">2</span>, <span class="dv">10</span>, <span class="dv">5</span>, <span class="dv">3</span>)</span>
-<span id="cb85-5"><a href="#cb85-5" aria-hidden="true" tabindex="-1"></a>y_matrix <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="cn">NA</span>, <span class="at">ncol =</span> D, <span class="at">nrow =</span> B)</span>
-<span id="cb85-6"><a href="#cb85-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb85-7"><a href="#cb85-7" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(d <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>D){</span>
-<span id="cb85-8"><a href="#cb85-8" aria-hidden="true" tabindex="-1"></a>  y_matrix[,d] <span class="ot">&lt;-</span> <span class="fu">rgamma</span>(B, alpha[d], <span class="dv">1</span>)</span>
-<span id="cb85-9"><a href="#cb85-9" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb85-10"><a href="#cb85-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb85-11"><a href="#cb85-11" aria-hidden="true" tabindex="-1"></a>sample_dir <span class="ot">&lt;-</span> <span class="fu">t</span>(<span class="fu">apply</span>(y_matrix, <span class="dv">1</span>, <span class="cf">function</span>(x) x<span class="sc">/</span><span class="fu">sum</span>(x)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb86"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb86-1"><a href="#cb86-1" aria-hidden="true" tabindex="-1"></a>D <span class="ot">&lt;-</span> <span class="dv">5</span></span>
+<span id="cb86-2"><a href="#cb86-2" aria-hidden="true" tabindex="-1"></a>B <span class="ot">&lt;-</span> <span class="dv">5000</span></span>
+<span id="cb86-3"><a href="#cb86-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb86-4"><a href="#cb86-4" aria-hidden="true" tabindex="-1"></a>alpha <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">4</span>, <span class="dv">2</span>, <span class="dv">10</span>, <span class="dv">5</span>, <span class="dv">3</span>)</span>
+<span id="cb86-5"><a href="#cb86-5" aria-hidden="true" tabindex="-1"></a>y_matrix <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="cn">NA</span>, <span class="at">ncol =</span> D, <span class="at">nrow =</span> B)</span>
+<span id="cb86-6"><a href="#cb86-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb86-7"><a href="#cb86-7" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(d <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>D){</span>
+<span id="cb86-8"><a href="#cb86-8" aria-hidden="true" tabindex="-1"></a>  y_matrix[,d] <span class="ot">&lt;-</span> <span class="fu">rgamma</span>(B, alpha[d], <span class="dv">1</span>)</span>
+<span id="cb86-9"><a href="#cb86-9" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb86-10"><a href="#cb86-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb86-11"><a href="#cb86-11" aria-hidden="true" tabindex="-1"></a>sample_dir <span class="ot">&lt;-</span> <span class="fu">t</span>(<span class="fu">apply</span>(y_matrix, <span class="dv">1</span>, <span class="cf">function</span>(x) x<span class="sc">/</span><span class="fu">sum</span>(x)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 <ol start="3" type="1">
@@ -1609,13 +1624,13 @@ Soluzione
 <div class="cell">
 <details class="code-fold">
 <summary>Soluzione</summary>
-<div class="sourceCode cell-code" id="cb86"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb86-1"><a href="#cb86-1" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>))</span>
-<span id="cb86-2"><a href="#cb86-2" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(sample_dir[,<span class="dv">3</span>], <span class="at">main =</span> <span class="st">"Istogramma X_3"</span>, <span class="at">prob =</span> T)</span>
-<span id="cb86-3"><a href="#cb86-3" aria-hidden="true" tabindex="-1"></a><span class="fu">curve</span>(<span class="fu">dbeta</span>(x, alpha[<span class="dv">3</span>], <span class="fu">sum</span>(alpha) <span class="sc">-</span> alpha[<span class="dv">3</span>]), <span class="at">col =</span> <span class="st">"red"</span>, <span class="at">add =</span> T)</span>
-<span id="cb86-4"><a href="#cb86-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb86-5"><a href="#cb86-5" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">ecdf</span>(sample_dir[,<span class="dv">3</span>]))</span>
-<span id="cb86-6"><a href="#cb86-6" aria-hidden="true" tabindex="-1"></a><span class="fu">curve</span>(<span class="fu">pbeta</span>(x, alpha[<span class="dv">3</span>], <span class="fu">sum</span>(alpha) <span class="sc">-</span> alpha[<span class="dv">3</span>]), <span class="at">col =</span> <span class="st">"red"</span>, <span class="at">add =</span> T)</span>
-<span id="cb86-7"><a href="#cb86-7" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">1</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb87"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb87-1"><a href="#cb87-1" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>))</span>
+<span id="cb87-2"><a href="#cb87-2" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(sample_dir[,<span class="dv">3</span>], <span class="at">main =</span> <span class="st">"Istogramma X_3"</span>, <span class="at">prob =</span> T)</span>
+<span id="cb87-3"><a href="#cb87-3" aria-hidden="true" tabindex="-1"></a><span class="fu">curve</span>(<span class="fu">dbeta</span>(x, alpha[<span class="dv">3</span>], <span class="fu">sum</span>(alpha) <span class="sc">-</span> alpha[<span class="dv">3</span>]), <span class="at">col =</span> <span class="st">"red"</span>, <span class="at">add =</span> T)</span>
+<span id="cb87-4"><a href="#cb87-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb87-5"><a href="#cb87-5" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">ecdf</span>(sample_dir[,<span class="dv">3</span>]))</span>
+<span id="cb87-6"><a href="#cb87-6" aria-hidden="true" tabindex="-1"></a><span class="fu">curve</span>(<span class="fu">pbeta</span>(x, alpha[<span class="dv">3</span>], <span class="fu">sum</span>(alpha) <span class="sc">-</span> alpha[<span class="dv">3</span>]), <span class="at">col =</span> <span class="st">"red"</span>, <span class="at">add =</span> T)</span>
+<span id="cb87-7"><a href="#cb87-7" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">1</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 </section>
@@ -1626,11 +1641,11 @@ Soluzione
 <li>Si dica perché il seguente funzione non porta ad una soluzione corretta.</li>
 </ol>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb87"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb87-1"><a href="#cb87-1" aria-hidden="true" tabindex="-1"></a>my_integral <span class="ot">&lt;-</span> <span class="cf">function</span>(<span class="at">B =</span> <span class="dv">5000</span>) {</span>
-<span id="cb87-2"><a href="#cb87-2" aria-hidden="true" tabindex="-1"></a>  int <span class="ot">&lt;-</span> <span class="fu">mean</span>(<span class="fu">f</span>(<span class="fu">rnorm</span>(B)) <span class="sc">/</span> <span class="fu">g</span>(<span class="fu">rnorm</span>(B)))</span>
-<span id="cb87-3"><a href="#cb87-3" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb87-4"><a href="#cb87-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(int)</span>
-<span id="cb87-5"><a href="#cb87-5" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb88"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb88-1"><a href="#cb88-1" aria-hidden="true" tabindex="-1"></a>my_integral <span class="ot">&lt;-</span> <span class="cf">function</span>(<span class="at">B =</span> <span class="dv">5000</span>) {</span>
+<span id="cb88-2"><a href="#cb88-2" aria-hidden="true" tabindex="-1"></a>  int <span class="ot">&lt;-</span> <span class="fu">mean</span>(<span class="fu">f</span>(<span class="fu">rnorm</span>(B)) <span class="sc">/</span> <span class="fu">g</span>(<span class="fu">rnorm</span>(B)))</span>
+<span id="cb88-3"><a href="#cb88-3" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb88-4"><a href="#cb88-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(int)</span>
+<span id="cb88-5"><a href="#cb88-5" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <ol start="2" type="1">
 <li>Si costruisca una funzione che permetta di calcolare il corretto valore dell’integrale proposto.</li>
@@ -1638,14 +1653,14 @@ Soluzione
 <div class="cell">
 <details class="code-fold">
 <summary>Soluzione</summary>
-<div class="sourceCode cell-code" id="cb88"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb88-1"><a href="#cb88-1" aria-hidden="true" tabindex="-1"></a>my_integral_2 <span class="ot">&lt;-</span> <span class="cf">function</span>(<span class="at">B =</span> <span class="dv">5000</span>) {</span>
-<span id="cb88-2"><a href="#cb88-2" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb88-3"><a href="#cb88-3" aria-hidden="true" tabindex="-1"></a>  y <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(B)</span>
-<span id="cb88-4"><a href="#cb88-4" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb88-5"><a href="#cb88-5" aria-hidden="true" tabindex="-1"></a>  int <span class="ot">&lt;-</span> <span class="fu">mean</span>(<span class="fu">f</span>(y) <span class="sc">/</span> <span class="fu">g</span>(y))</span>
-<span id="cb88-6"><a href="#cb88-6" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb88-7"><a href="#cb88-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(int)</span>
-<span id="cb88-8"><a href="#cb88-8" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb89"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb89-1"><a href="#cb89-1" aria-hidden="true" tabindex="-1"></a>my_integral_2 <span class="ot">&lt;-</span> <span class="cf">function</span>(<span class="at">B =</span> <span class="dv">5000</span>) {</span>
+<span id="cb89-2"><a href="#cb89-2" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb89-3"><a href="#cb89-3" aria-hidden="true" tabindex="-1"></a>  y <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(B)</span>
+<span id="cb89-4"><a href="#cb89-4" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb89-5"><a href="#cb89-5" aria-hidden="true" tabindex="-1"></a>  int <span class="ot">&lt;-</span> <span class="fu">mean</span>(<span class="fu">f</span>(y) <span class="sc">/</span> <span class="fu">g</span>(y))</span>
+<span id="cb89-6"><a href="#cb89-6" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb89-7"><a href="#cb89-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(int)</span>
+<span id="cb89-8"><a href="#cb89-8" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 <ol start="3" type="1">
@@ -1654,36 +1669,367 @@ Soluzione
 <div class="cell">
 <details class="code-fold">
 <summary>Soluzione</summary>
-<div class="sourceCode cell-code" id="cb89"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb89-1"><a href="#cb89-1" aria-hidden="true" tabindex="-1"></a>my_integral <span class="ot">&lt;-</span> <span class="cf">function</span>(<span class="at">B =</span> <span class="dv">5000</span>) {</span>
-<span id="cb89-2"><a href="#cb89-2" aria-hidden="true" tabindex="-1"></a>  int <span class="ot">&lt;-</span> <span class="fu">mean</span>(<span class="fu">sqrt</span>(<span class="fu">abs</span>(<span class="fu">rnorm</span>(B))) <span class="sc">/</span> (<span class="fu">rnorm</span>(B)<span class="sc">^</span><span class="dv">2</span><span class="sc">+</span><span class="dv">1</span>))</span>
-<span id="cb89-3"><a href="#cb89-3" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb89-4"><a href="#cb89-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(int)</span>
-<span id="cb89-5"><a href="#cb89-5" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb89-6"><a href="#cb89-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb89-7"><a href="#cb89-7" aria-hidden="true" tabindex="-1"></a>my_integral_2 <span class="ot">&lt;-</span> <span class="cf">function</span>(<span class="at">B =</span> <span class="dv">5000</span>) {</span>
-<span id="cb89-8"><a href="#cb89-8" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb89-9"><a href="#cb89-9" aria-hidden="true" tabindex="-1"></a>  y <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(B)</span>
-<span id="cb89-10"><a href="#cb89-10" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb89-11"><a href="#cb89-11" aria-hidden="true" tabindex="-1"></a>  int <span class="ot">&lt;-</span> <span class="fu">mean</span>(<span class="fu">sqrt</span>(<span class="fu">abs</span>(y)) <span class="sc">/</span> (y<span class="sc">^</span><span class="dv">2</span><span class="sc">+</span><span class="dv">1</span>))</span>
-<span id="cb89-12"><a href="#cb89-12" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb89-13"><a href="#cb89-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(int)</span>
-<span id="cb89-14"><a href="#cb89-14" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb89-15"><a href="#cb89-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb89-16"><a href="#cb89-16" aria-hidden="true" tabindex="-1"></a><span class="fu">my_integral</span>()</span>
-<span id="cb89-17"><a href="#cb89-17" aria-hidden="true" tabindex="-1"></a><span class="fu">my_integral_2</span>()</span>
-<span id="cb89-18"><a href="#cb89-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb89-19"><a href="#cb89-19" aria-hidden="true" tabindex="-1"></a><span class="fu">integrate</span>(<span class="cf">function</span>(x) <span class="fu">sqrt</span>(<span class="fu">abs</span>(x))<span class="sc">/</span>(x<span class="sc">^</span><span class="dv">2</span><span class="sc">+</span><span class="dv">1</span>) <span class="sc">*</span> <span class="fu">dnorm</span>(x), <span class="at">lower=</span><span class="sc">-</span><span class="cn">Inf</span>, <span class="at">upper=</span><span class="cn">Inf</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb90"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb90-1"><a href="#cb90-1" aria-hidden="true" tabindex="-1"></a>my_integral <span class="ot">&lt;-</span> <span class="cf">function</span>(<span class="at">B =</span> <span class="dv">5000</span>) {</span>
+<span id="cb90-2"><a href="#cb90-2" aria-hidden="true" tabindex="-1"></a>  int <span class="ot">&lt;-</span> <span class="fu">mean</span>(<span class="fu">sqrt</span>(<span class="fu">abs</span>(<span class="fu">rnorm</span>(B))) <span class="sc">/</span> (<span class="fu">rnorm</span>(B)<span class="sc">^</span><span class="dv">2</span><span class="sc">+</span><span class="dv">1</span>))</span>
+<span id="cb90-3"><a href="#cb90-3" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb90-4"><a href="#cb90-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(int)</span>
+<span id="cb90-5"><a href="#cb90-5" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb90-6"><a href="#cb90-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb90-7"><a href="#cb90-7" aria-hidden="true" tabindex="-1"></a>my_integral_2 <span class="ot">&lt;-</span> <span class="cf">function</span>(<span class="at">B =</span> <span class="dv">5000</span>) {</span>
+<span id="cb90-8"><a href="#cb90-8" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb90-9"><a href="#cb90-9" aria-hidden="true" tabindex="-1"></a>  y <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(B)</span>
+<span id="cb90-10"><a href="#cb90-10" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb90-11"><a href="#cb90-11" aria-hidden="true" tabindex="-1"></a>  int <span class="ot">&lt;-</span> <span class="fu">mean</span>(<span class="fu">sqrt</span>(<span class="fu">abs</span>(y)) <span class="sc">/</span> (y<span class="sc">^</span><span class="dv">2</span><span class="sc">+</span><span class="dv">1</span>))</span>
+<span id="cb90-12"><a href="#cb90-12" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb90-13"><a href="#cb90-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(int)</span>
+<span id="cb90-14"><a href="#cb90-14" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb90-15"><a href="#cb90-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb90-16"><a href="#cb90-16" aria-hidden="true" tabindex="-1"></a><span class="fu">my_integral</span>()</span>
+<span id="cb90-17"><a href="#cb90-17" aria-hidden="true" tabindex="-1"></a><span class="fu">my_integral_2</span>()</span>
+<span id="cb90-18"><a href="#cb90-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb90-19"><a href="#cb90-19" aria-hidden="true" tabindex="-1"></a><span class="fu">integrate</span>(<span class="cf">function</span>(x) <span class="fu">sqrt</span>(<span class="fu">abs</span>(x))<span class="sc">/</span>(x<span class="sc">^</span><span class="dv">2</span><span class="sc">+</span><span class="dv">1</span>) <span class="sc">*</span> <span class="fu">dnorm</span>(x), <span class="at">lower=</span><span class="sc">-</span><span class="cn">Inf</span>, <span class="at">upper=</span><span class="cn">Inf</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 </section>
 </section>
 <section id="parte-4-inferenza" class="level2">
 <h2 class="anchored" data-anchor-id="parte-4-inferenza">Parte 4: Inferenza</h2>
-<section id="verificare-il-tcl" class="level3">
-<h3 class="anchored" data-anchor-id="verificare-il-tcl">Verificare il TCL</h3>
+<section id="esercizio-1-2" class="level3">
+<h3 class="anchored" data-anchor-id="esercizio-1-2">Esercizio 1</h3>
+<p>Sia <span class="math inline">\(Y_1, \dots, Y_n\)</span> un campione casuale semplice estratto da una Esponenziale di media 5.</p>
+<ol type="1">
+<li>Si ottengano 4 realizzazioni del campione di ampiezza <span class="math inline">\(n \in \{10, 50, 100, 1000\}\)</span>, salvandoli dentro una lista.</li>
+</ol>
+<div class="cell">
+<details class="code-fold">
+<summary>Soluzione</summary>
+<div class="sourceCode cell-code" id="cb91"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb91-1"><a href="#cb91-1" aria-hidden="true" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">10</span>, <span class="dv">50</span>, <span class="dv">100</span>, <span class="dv">1000</span>)</span>
+<span id="cb91-2"><a href="#cb91-2" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="fu">list</span>()</span>
+<span id="cb91-3"><a href="#cb91-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb91-4"><a href="#cb91-4" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>){</span>
+<span id="cb91-5"><a href="#cb91-5" aria-hidden="true" tabindex="-1"></a>  y[[i]] <span class="ot">&lt;-</span> <span class="fu">rexp</span>(n[i], <span class="at">rate =</span> <span class="dv">1</span><span class="sc">/</span><span class="dv">5</span>)</span>
+<span id="cb91-6"><a href="#cb91-6" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<ol start="2" type="1">
+<li>Si ottengano le stime di massima verosimiglianza (MV) per i 4 campioni considerati, misurando l’errore di stima commesso.</li>
+</ol>
+<div class="cell">
+<details class="code-fold">
+<summary>Soluzione</summary>
+<div class="sourceCode cell-code" id="cb92"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb92-1"><a href="#cb92-1" aria-hidden="true" tabindex="-1"></a>stime <span class="ot">&lt;-</span> <span class="fu">numeric</span>(<span class="dv">4</span>)</span>
+<span id="cb92-2"><a href="#cb92-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb92-3"><a href="#cb92-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>){</span>
+<span id="cb92-4"><a href="#cb92-4" aria-hidden="true" tabindex="-1"></a>  stime[i] <span class="ot">&lt;-</span> <span class="fu">mean</span>(y[[i]])</span>
+<span id="cb92-5"><a href="#cb92-5" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb92-6"><a href="#cb92-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb92-7"><a href="#cb92-7" aria-hidden="true" tabindex="-1"></a>stime <span class="sc">-</span> <span class="dv">5</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<ol start="3" type="1">
+<li>Si implementi uno studio di simulazione per verificare empiricalmente la convergenza in distribuzione dello stimatore MV. Per ciascuna delle 4 numerosità campionarie, si considerino 10000 repliche.</li>
+</ol>
+<div class="cell">
+<details class="code-fold">
+<summary>Soluzione</summary>
+<div class="sourceCode cell-code" id="cb93"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb93-1"><a href="#cb93-1" aria-hidden="true" tabindex="-1"></a>B <span class="ot">&lt;-</span> <span class="dv">10000</span></span>
+<span id="cb93-2"><a href="#cb93-2" aria-hidden="true" tabindex="-1"></a>stime_n <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="cn">NA</span>, <span class="at">ncol =</span> <span class="fu">length</span>(n), <span class="at">nrow =</span> B)</span>
+<span id="cb93-3"><a href="#cb93-3" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(stime_n) <span class="ot">&lt;-</span> n</span>
+<span id="cb93-4"><a href="#cb93-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb93-5"><a href="#cb93-5" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">2</span>))</span>
+<span id="cb93-6"><a href="#cb93-6" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">length</span>(n)){</span>
+<span id="cb93-7"><a href="#cb93-7" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span>(b <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>B){</span>
+<span id="cb93-8"><a href="#cb93-8" aria-hidden="true" tabindex="-1"></a>    y <span class="ot">&lt;-</span> <span class="fu">rexp</span>(n[i], <span class="at">rate =</span> <span class="dv">1</span><span class="sc">/</span><span class="dv">5</span>)</span>
+<span id="cb93-9"><a href="#cb93-9" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb93-10"><a href="#cb93-10" aria-hidden="true" tabindex="-1"></a>    stime_n[b,i] <span class="ot">&lt;-</span> <span class="fu">mean</span>(y)</span>
+<span id="cb93-11"><a href="#cb93-11" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb93-12"><a href="#cb93-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">hist</span>(stime_n[,i], <span class="at">prob =</span> T, </span>
+<span id="cb93-13"><a href="#cb93-13" aria-hidden="true" tabindex="-1"></a>       <span class="at">main =</span> <span class="fu">paste</span>(<span class="st">"Distr. media camp. con n = "</span>, n[i], <span class="at">sep=</span><span class="st">""</span>), <span class="at">xlab =</span> <span class="st">"stima"</span>)</span>
+<span id="cb93-14"><a href="#cb93-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">curve</span>(<span class="fu">dnorm</span>(x, <span class="dv">5</span>, <span class="fu">sqrt</span>((<span class="dv">5</span><span class="sc">^</span><span class="dv">2</span>)<span class="sc">/</span>n[i])), <span class="at">col =</span> <span class="dv">2</span>, <span class="at">add =</span> T)</span>
+<span id="cb93-15"><a href="#cb93-15" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb93-16"><a href="#cb93-16" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">1</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<ol start="4" type="1">
+<li>Si valuti empiricamente la consistenza dello stimatore MV.</li>
+</ol>
+<div class="cell">
+<details class="code-fold">
+<summary>Soluzione</summary>
+<div class="sourceCode cell-code" id="cb94"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb94-1"><a href="#cb94-1" aria-hidden="true" tabindex="-1"></a><span class="fu">boxplot</span>(stime_n)</span>
+<span id="cb94-2"><a href="#cb94-2" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">h =</span> <span class="dv">5</span>, <span class="at">col =</span> <span class="dv">2</span>,)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<ol start="5" type="1">
+<li>Come varia l’MSE (mean squared error) all’aumentare di n?</li>
+</ol>
+<div class="cell">
+<details class="code-fold">
+<summary>Soluzione</summary>
+<div class="sourceCode cell-code" id="cb95"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb95-1"><a href="#cb95-1" aria-hidden="true" tabindex="-1"></a>MSE <span class="ot">&lt;-</span> <span class="fu">apply</span>(stime_n, <span class="dv">2</span>, <span class="cf">function</span>(x) <span class="fu">mean</span>((x<span class="dv">-5</span>)<span class="sc">^</span><span class="dv">2</span>))</span>
+<span id="cb95-2"><a href="#cb95-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(n, MSE, <span class="at">pch =</span> <span class="dv">20</span>)</span>
+<span id="cb95-3"><a href="#cb95-3" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">h =</span> <span class="dv">0</span>, <span class="at">col =</span> <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
 </section>
-<section id="section" class="level3">
-<h3 class="anchored" data-anchor-id="section"></h3>
+<section id="esercizio-2-2" class="level3">
+<h3 class="anchored" data-anchor-id="esercizio-2-2">Esercizio 2</h3>
+<p>Si consideri un campione casuale di ampienzza <span class="math inline">\(n\)</span> estratto da una popolazione Normale di parametri <span class="math inline">\(\mu\)</span> e <span class="math inline">\(\sigma^2\)</span>. Si scelgano a piacere dei valori per gli ignoti parametri e si generi un campione di ampiezza <span class="math inline">\(n = 35\)</span>.</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Soluzione</summary>
+<div class="sourceCode cell-code" id="cb96"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb96-1"><a href="#cb96-1" aria-hidden="true" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">35</span></span>
+<span id="cb96-2"><a href="#cb96-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb96-3"><a href="#cb96-3" aria-hidden="true" tabindex="-1"></a>mu <span class="ot">&lt;-</span> <span class="dv">13</span></span>
+<span id="cb96-4"><a href="#cb96-4" aria-hidden="true" tabindex="-1"></a>sigma2 <span class="ot">&lt;-</span> <span class="dv">5</span></span>
+<span id="cb96-5"><a href="#cb96-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb96-6"><a href="#cb96-6" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">42</span>)</span>
+<span id="cb96-7"><a href="#cb96-7" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(n, mu, <span class="fu">sqrt</span>(sigma2))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<ol type="1">
+<li>Si consideri <span class="math inline">\(sigma^2\)</span> noto e pari al vero valore scelto. Si implementi la funzione <code>loglik_mu(mu, y)</code> che permetta di calcolara la funzione di log-verosimiglianza. Si rappresenti graficamente tale funzione in un opportuno intervallo.</li>
+</ol>
+<div class="cell">
+<details class="code-fold">
+<summary>Soluzione</summary>
+<div class="sourceCode cell-code" id="cb97"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb97-1"><a href="#cb97-1" aria-hidden="true" tabindex="-1"></a>loglik_mu <span class="ot">&lt;-</span> <span class="cf">function</span>(mu, y){</span>
+<span id="cb97-2"><a href="#cb97-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sum</span>(<span class="fu">log</span>(<span class="fu">dnorm</span>(y, mu, <span class="fu">sqrt</span>(sigma2))))</span>
+<span id="cb97-3"><a href="#cb97-3" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb97-4"><a href="#cb97-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb97-5"><a href="#cb97-5" aria-hidden="true" tabindex="-1"></a>loglik_mu <span class="ot">&lt;-</span> <span class="fu">Vectorize</span>(loglik_mu, <span class="at">vectorize.args =</span> <span class="st">"mu"</span>)</span>
+<span id="cb97-6"><a href="#cb97-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb97-7"><a href="#cb97-7" aria-hidden="true" tabindex="-1"></a><span class="fu">curve</span>(<span class="fu">loglik_mu</span>(<span class="at">mu =</span> x, y), <span class="at">xlim =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">25</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<ol start="2" type="1">
+<li>Nonostante si conosca la forma della stima MV per <span class="math inline">\(\mu\)</span>, si utilizzi una procedura di ottimizzazione numerica per ottenerla.</li>
+</ol>
+<div class="cell">
+<details class="code-fold">
+<summary>Soluzione</summary>
+<div class="sourceCode cell-code" id="cb98"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb98-1"><a href="#cb98-1" aria-hidden="true" tabindex="-1"></a>MV_mu <span class="ot">&lt;-</span> <span class="fu">nlminb</span>(<span class="at">start =</span> <span class="dv">0</span>,</span>
+<span id="cb98-2"><a href="#cb98-2" aria-hidden="true" tabindex="-1"></a>       <span class="at">objective =</span> <span class="cf">function</span>(x) <span class="sc">-</span><span class="fu">loglik_mu</span>(x, y))</span>
+<span id="cb98-3"><a href="#cb98-3" aria-hidden="true" tabindex="-1"></a>MV_mu<span class="sc">$</span>par</span>
+<span id="cb98-4"><a href="#cb98-4" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(y)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<ol start="3" type="1">
+<li>Si consideri adesso anche il parametro <span class="math inline">\(\sigma^2\)</span>. Si implementi la funzione <code>loglik_mu_sigma2(mu, y)</code> che permetta di calcolara la funzione di log-verosimiglianza per entrambi i parametri. Si rappresenti graficamente questa funzione.</li>
+</ol>
+<div class="cell">
+<details class="code-fold">
+<summary>Soluzione</summary>
+<div class="sourceCode cell-code" id="cb99"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb99-1"><a href="#cb99-1" aria-hidden="true" tabindex="-1"></a>loglik_mu_sigma2 <span class="ot">&lt;-</span> <span class="cf">function</span>(par, y){</span>
+<span id="cb99-2"><a href="#cb99-2" aria-hidden="true" tabindex="-1"></a>  mu <span class="ot">&lt;-</span> par[<span class="dv">1</span>]</span>
+<span id="cb99-3"><a href="#cb99-3" aria-hidden="true" tabindex="-1"></a>  sigma2 <span class="ot">&lt;-</span> par[<span class="dv">2</span>]</span>
+<span id="cb99-4"><a href="#cb99-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sum</span>(<span class="fu">log</span>(<span class="fu">dnorm</span>(y, mu, <span class="fu">sqrt</span>(sigma2))))</span>
+<span id="cb99-5"><a href="#cb99-5" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb99-6"><a href="#cb99-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb99-7"><a href="#cb99-7" aria-hidden="true" tabindex="-1"></a>griglia_mu <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="sc">-</span><span class="dv">5</span>, <span class="dv">25</span>, <span class="at">by =</span> <span class="fl">0.1</span>)</span>
+<span id="cb99-8"><a href="#cb99-8" aria-hidden="true" tabindex="-1"></a>griglia_sigma2 <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="fl">0.01</span>, <span class="dv">10</span>, <span class="at">by =</span> <span class="fl">0.01</span>)</span>
+<span id="cb99-9"><a href="#cb99-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb99-10"><a href="#cb99-10" aria-hidden="true" tabindex="-1"></a>griglia_parametri <span class="ot">&lt;-</span> <span class="fu">expand.grid</span>(griglia_mu, griglia_sigma2)</span>
+<span id="cb99-11"><a href="#cb99-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb99-12"><a href="#cb99-12" aria-hidden="true" tabindex="-1"></a>log_lik_values <span class="ot">&lt;-</span> <span class="fu">apply</span>(griglia_parametri, <span class="dv">1</span>, <span class="cf">function</span>(x) <span class="fu">loglik_mu_sigma2</span>(x, y))</span>
+<span id="cb99-13"><a href="#cb99-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb99-14"><a href="#cb99-14" aria-hidden="true" tabindex="-1"></a>log_lik_values <span class="ot">&lt;-</span> <span class="fu">matrix</span>(log_lik_values, <span class="at">nrow =</span> <span class="fu">length</span>(griglia_mu), <span class="at">ncol =</span> <span class="fu">length</span>(griglia_sigma2), <span class="at">byrow =</span> F)</span>
+<span id="cb99-15"><a href="#cb99-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb99-16"><a href="#cb99-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Per ottenere un grafico più leggibile,</span></span>
+<span id="cb99-17"><a href="#cb99-17" aria-hidden="true" tabindex="-1"></a><span class="co"># traspongo affinché abbia mu su asse y </span></span>
+<span id="cb99-18"><a href="#cb99-18" aria-hidden="true" tabindex="-1"></a><span class="co"># e sigma2 su asse x.</span></span>
+<span id="cb99-19"><a href="#cb99-19" aria-hidden="true" tabindex="-1"></a>log_lik_values <span class="ot">&lt;-</span> <span class="fu">t</span>(log_lik_values)</span>
+<span id="cb99-20"><a href="#cb99-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb99-21"><a href="#cb99-21" aria-hidden="true" tabindex="-1"></a><span class="fu">contour</span>(<span class="at">x =</span> griglia_sigma2, </span>
+<span id="cb99-22"><a href="#cb99-22" aria-hidden="true" tabindex="-1"></a>        <span class="at">y =</span> griglia_mu, </span>
+<span id="cb99-23"><a href="#cb99-23" aria-hidden="true" tabindex="-1"></a>        <span class="at">z =</span> log_lik_values,</span>
+<span id="cb99-24"><a href="#cb99-24" aria-hidden="true" tabindex="-1"></a>        <span class="at">nlevels =</span> <span class="dv">30</span>,</span>
+<span id="cb99-25"><a href="#cb99-25" aria-hidden="true" tabindex="-1"></a>        <span class="at">xlab =</span> <span class="fu">expression</span>(sigma2),</span>
+<span id="cb99-26"><a href="#cb99-26" aria-hidden="true" tabindex="-1"></a>        <span class="at">ylab =</span> <span class="fu">expression</span>(mu),</span>
+<span id="cb99-27"><a href="#cb99-27" aria-hidden="true" tabindex="-1"></a>        <span class="at">col =</span> <span class="dv">4</span>)</span>
+<span id="cb99-28"><a href="#cb99-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb99-29"><a href="#cb99-29" aria-hidden="true" tabindex="-1"></a><span class="co"># Noto che aumentando nlevels, si aggiungono curve nella parte iniziale del grafico,</span></span>
+<span id="cb99-30"><a href="#cb99-30" aria-hidden="true" tabindex="-1"></a><span class="co"># ma queste curve aggiuntive non mi aiutano a comprendere il grafico. </span></span>
+<span id="cb99-31"><a href="#cb99-31" aria-hidden="true" tabindex="-1"></a><span class="co"># Scelgo io dei livelli basandomi sui valori osservati di log_lik_values.</span></span>
+<span id="cb99-32"><a href="#cb99-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb99-33"><a href="#cb99-33" aria-hidden="true" tabindex="-1"></a>llog_unique <span class="ot">&lt;-</span> <span class="fu">unique</span>(log_lik_values[<span class="fu">which</span>(log_lik_values <span class="sc">!=</span> <span class="sc">-</span><span class="cn">Inf</span>)])</span>
+<span id="cb99-34"><a href="#cb99-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb99-35"><a href="#cb99-35" aria-hidden="true" tabindex="-1"></a>levels <span class="ot">&lt;-</span> <span class="fu">quantile</span>(llog_unique, <span class="at">probs=</span><span class="fu">c</span>(<span class="fu">seq</span>(.<span class="dv">05</span>,.<span class="dv">95</span>,.<span class="dv">05</span>),.<span class="dv">96</span>,.<span class="dv">97</span>,.<span class="dv">98</span>,.<span class="dv">99</span>))</span>
+<span id="cb99-36"><a href="#cb99-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb99-37"><a href="#cb99-37" aria-hidden="true" tabindex="-1"></a><span class="fu">contour</span>(<span class="at">x =</span> griglia_sigma2, </span>
+<span id="cb99-38"><a href="#cb99-38" aria-hidden="true" tabindex="-1"></a>        <span class="at">y =</span> griglia_mu, </span>
+<span id="cb99-39"><a href="#cb99-39" aria-hidden="true" tabindex="-1"></a>        <span class="at">z =</span> log_lik_values,</span>
+<span id="cb99-40"><a href="#cb99-40" aria-hidden="true" tabindex="-1"></a>        <span class="at">levels =</span> levels,</span>
+<span id="cb99-41"><a href="#cb99-41" aria-hidden="true" tabindex="-1"></a>        <span class="at">xlab =</span> <span class="fu">expression</span>(sigma2),</span>
+<span id="cb99-42"><a href="#cb99-42" aria-hidden="true" tabindex="-1"></a>        <span class="at">ylab =</span> <span class="fu">expression</span>(mu),</span>
+<span id="cb99-43"><a href="#cb99-43" aria-hidden="true" tabindex="-1"></a>        <span class="at">col =</span> <span class="dv">4</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<ol start="4" type="1">
+<li>si utilizzi una procedura di ottimizzazione numerica per ottenere la stima ML degli ignoti parametri.</li>
+</ol>
+<div class="cell">
+<details class="code-fold">
+<summary>Soluzione</summary>
+<div class="sourceCode cell-code" id="cb100"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb100-1"><a href="#cb100-1" aria-hidden="true" tabindex="-1"></a>MV_mu_sigma2 <span class="ot">&lt;-</span> <span class="fu">nlminb</span>(<span class="at">start =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">1</span>),</span>
+<span id="cb100-2"><a href="#cb100-2" aria-hidden="true" tabindex="-1"></a>       <span class="at">objective =</span> <span class="cf">function</span>(x) <span class="sc">-</span><span class="fu">loglik_mu_sigma2</span>(x, y))</span>
+<span id="cb100-3"><a href="#cb100-3" aria-hidden="true" tabindex="-1"></a>MV_mu_sigma2<span class="sc">$</span>par</span>
+<span id="cb100-4"><a href="#cb100-4" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(y)</span>
+<span id="cb100-5"><a href="#cb100-5" aria-hidden="true" tabindex="-1"></a><span class="fu">var</span>(y)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<ol start="5" type="1">
+<li>Si riportino, sul grafico ottenuto al punto 3, due punti corrispondenti al vero valore dei parametri e alla stima MV. Si commenti il grafico ottenuto.</li>
+</ol>
+<div class="cell">
+<details class="code-fold">
+<summary>Soluzione</summary>
+<div class="sourceCode cell-code" id="cb101"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb101-1"><a href="#cb101-1" aria-hidden="true" tabindex="-1"></a><span class="fu">contour</span>(<span class="at">x =</span> griglia_sigma2, </span>
+<span id="cb101-2"><a href="#cb101-2" aria-hidden="true" tabindex="-1"></a>        <span class="at">y =</span> griglia_mu, </span>
+<span id="cb101-3"><a href="#cb101-3" aria-hidden="true" tabindex="-1"></a>        <span class="at">z =</span> log_lik_values,</span>
+<span id="cb101-4"><a href="#cb101-4" aria-hidden="true" tabindex="-1"></a>        <span class="at">levels =</span> levels,</span>
+<span id="cb101-5"><a href="#cb101-5" aria-hidden="true" tabindex="-1"></a>        <span class="at">xlab =</span> <span class="fu">expression</span>(sigma2),</span>
+<span id="cb101-6"><a href="#cb101-6" aria-hidden="true" tabindex="-1"></a>        <span class="at">ylab =</span> <span class="fu">expression</span>(mu),</span>
+<span id="cb101-7"><a href="#cb101-7" aria-hidden="true" tabindex="-1"></a>        <span class="at">col =</span> <span class="dv">4</span>)</span>
+<span id="cb101-8"><a href="#cb101-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb101-9"><a href="#cb101-9" aria-hidden="true" tabindex="-1"></a><span class="fu">points</span>(sigma2, mu, <span class="at">pch =</span> <span class="dv">20</span>, <span class="at">col =</span> <span class="st">"red"</span>)</span>
+<span id="cb101-10"><a href="#cb101-10" aria-hidden="true" tabindex="-1"></a><span class="fu">points</span>(MV_mu_sigma2<span class="sc">$</span>par[<span class="dv">2</span>], MV_mu_sigma2<span class="sc">$</span>par[<span class="dv">1</span>], <span class="at">pch =</span> <span class="dv">20</span>, <span class="at">col =</span> <span class="st">"blue"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</section>
+<section id="esercizio-3-3" class="level3">
+<h3 class="anchored" data-anchor-id="esercizio-3-3">Esercizio 3</h3>
+<p>Sia <span class="math inline">\(\textbf{y} = (y_1, \dots, y_n)^\intercal\)</span> un campione di realizzazioni i.i.d. da una variabile casuale Poisson di parametro <span class="math inline">\(\theta &gt;0\)</span>. La funzione di log-verosimiglianza associata a tale campione, a meno di una costante additiva, è specificata come <span class="math display">\[l(\theta; \textbf{y}) = -n\theta + \log(\theta) \sum_{i=1}^n y_i.\]</span></p>
+<ol type="1">
+<li>Si definisca in <code>R</code> una funzione <code>loglik(theta, y)</code> che restituisca il valore della log-verosimiglianza in corrispondenza del valore <code>theta</code> indicato dall’utente.</li>
+</ol>
+<div class="cell">
+<details class="code-fold">
+<summary>Soluzione</summary>
+<div class="sourceCode cell-code" id="cb102"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb102-1"><a href="#cb102-1" aria-hidden="true" tabindex="-1"></a>loglik <span class="ot">&lt;-</span> <span class="cf">function</span>(theta, y){</span>
+<span id="cb102-2"><a href="#cb102-2" aria-hidden="true" tabindex="-1"></a>  n <span class="ot">&lt;-</span> <span class="fu">length</span>(y)</span>
+<span id="cb102-3"><a href="#cb102-3" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb102-4"><a href="#cb102-4" aria-hidden="true" tabindex="-1"></a>  ll <span class="ot">&lt;-</span> <span class="sc">-</span>n<span class="sc">*</span>theta <span class="sc">+</span> <span class="fu">sum</span>(y)<span class="sc">*</span><span class="fu">log</span>(theta)</span>
+<span id="cb102-5"><a href="#cb102-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(ll)</span>
+<span id="cb102-6"><a href="#cb102-6" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<ol start="2" type="1">
+<li>D’ora in avanti si consideri il campione <span class="math inline">\(\yv = (5, 10,  7,  7,  9,  9,  5)^\intercal\)</span>. Quanto vale la funzione di log-verosimiglianza nel punto <span class="math inline">\(\theta = 10\)</span>?</li>
+</ol>
+<div class="cell">
+<details class="code-fold">
+<summary>Soluzione</summary>
+<div class="sourceCode cell-code" id="cb103"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb103-1"><a href="#cb103-1" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">5</span>,<span class="dv">10</span>,<span class="dv">7</span>,<span class="dv">7</span>,<span class="dv">9</span>,<span class="dv">9</span>,<span class="dv">5</span>)</span>
+<span id="cb103-2"><a href="#cb103-2" aria-hidden="true" tabindex="-1"></a><span class="fu">loglik</span>(<span class="dv">10</span>, y)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<ol start="3" type="1">
+<li>Si utilizzi una apposita funzione di ottimizzazione numerica per calcolare la stima di massima verosimiglianza <span class="math inline">\(\hat{\theta}\)</span>. Si riporti il valore <span class="math inline">\(\hat{\theta}\)</span>.</li>
+</ol>
+<div class="cell">
+<details class="code-fold">
+<summary>Soluzione</summary>
+<div class="sourceCode cell-code" id="cb104"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb104-1"><a href="#cb104-1" aria-hidden="true" tabindex="-1"></a>res <span class="ot">&lt;-</span></span>
+<span id="cb104-2"><a href="#cb104-2" aria-hidden="true" tabindex="-1"></a><span class="fu">optim</span>(<span class="at">par =</span> <span class="dv">10</span>, <span class="co"># valore iniziale </span></span>
+<span id="cb104-3"><a href="#cb104-3" aria-hidden="true" tabindex="-1"></a>      <span class="at">fn =</span> <span class="cf">function</span>(x) <span class="sc">-</span><span class="fu">loglik</span>(x, y), </span>
+<span id="cb104-4"><a href="#cb104-4" aria-hidden="true" tabindex="-1"></a>      <span class="at">lower =</span> <span class="fl">1e-5</span>, </span>
+<span id="cb104-5"><a href="#cb104-5" aria-hidden="true" tabindex="-1"></a>      <span class="at">method =</span> <span class="st">"L-BFGS-B"</span>, </span>
+<span id="cb104-6"><a href="#cb104-6" aria-hidden="true" tabindex="-1"></a>      <span class="at">hessian =</span> <span class="cn">TRUE</span> <span class="co"># restituisce l'hessiana valutata nel minimo</span></span>
+<span id="cb104-7"><a href="#cb104-7" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb104-8"><a href="#cb104-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb104-9"><a href="#cb104-9" aria-hidden="true" tabindex="-1"></a>res<span class="sc">$</span>par</span>
+<span id="cb104-10"><a href="#cb104-10" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(y)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<ol start="4" type="1">
+<li>Si rappresenti graficamente la funzione di log-verosimiglianza nell’intervallo <span class="math inline">\((0, 15)\)</span>. Si sovraimponga una linea verticale <strong>rossa</strong> e <strong>tratteggiata</strong> in corrispondenza della stima di massima verosimiglianza individuata al punto precedente.</li>
+</ol>
+<div class="cell">
+<details class="code-fold">
+<summary>Soluzione</summary>
+<div class="sourceCode cell-code" id="cb105"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb105-1"><a href="#cb105-1" aria-hidden="true" tabindex="-1"></a><span class="fu">curve</span>(<span class="fu">loglik</span>(x,<span class="at">y=</span>y), <span class="at">xlim=</span><span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">15</span>), <span class="at">ylab =</span> <span class="st">"loglik"</span>, <span class="at">xlab =</span> <span class="fu">expression</span>(theta))</span>
+<span id="cb105-2"><a href="#cb105-2" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">v=</span>res<span class="sc">$</span>par, <span class="at">col=</span><span class="st">"red"</span>, <span class="at">lty=</span><span class="st">"dashed"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</section>
+<section id="esercizio-4-3" class="level3">
+<h3 class="anchored" data-anchor-id="esercizio-4-3">Esercizio 4</h3>
+<p>Sia <span class="math inline">\(Y_1, \dots, Y_n\)</span> un campione casuale estratto da una Poisson<span class="math inline">\((\lambda)\)</span>. È noto che il parametro <span class="math inline">\(\lambda &gt;0\)</span> di una Poisson coincide con il suo valore atteso e con la sua varianza.</p>
+<p>Di conseguenza, due stimatori ragionevoli per <span class="math inline">\(\lambda\)</span> sono la media campionaria <span class="math inline">\(\displaystyle \bar{Y} = \frac{1}{n} \sum_{i=1}^n Y_i\)</span> e la varianza campionaria non distorta <span class="math inline">\(\displaystyle  S^2 = \frac{1}{n-1} \sum_{i=1}^n \left(Y_i - \bar{Y} \right)^2\)</span>.</p>
+<ol type="1">
+<li>Quale stimatore risulta preferibile se il vero valore del parametro fosse <span class="math inline">\(\lambda=10\)</span> e se le stime fossero basate su campioni di ampiezza <span class="math inline">\(n = 50\)</span>? Si risponda utilizzando un approccio basato su simulazioni.</li>
+</ol>
+<div class="cell">
+<details class="code-fold">
+<summary>Soluzione</summary>
+<div class="sourceCode cell-code" id="cb106"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb106-1"><a href="#cb106-1" aria-hidden="true" tabindex="-1"></a>B <span class="ot">&lt;-</span> <span class="dv">10000</span></span>
+<span id="cb106-2"><a href="#cb106-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb106-3"><a href="#cb106-3" aria-hidden="true" tabindex="-1"></a>lambda_true <span class="ot">&lt;-</span> <span class="dv">10</span></span>
+<span id="cb106-4"><a href="#cb106-4" aria-hidden="true" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">50</span></span>
+<span id="cb106-5"><a href="#cb106-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb106-6"><a href="#cb106-6" aria-hidden="true" tabindex="-1"></a>stime_media <span class="ot">&lt;-</span> <span class="fu">numeric</span>(B)</span>
+<span id="cb106-7"><a href="#cb106-7" aria-hidden="true" tabindex="-1"></a>stime_var <span class="ot">&lt;-</span> <span class="fu">numeric</span>(B)</span>
+<span id="cb106-8"><a href="#cb106-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb106-9"><a href="#cb106-9" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(b <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>B){</span>
+<span id="cb106-10"><a href="#cb106-10" aria-hidden="true" tabindex="-1"></a>  x <span class="ot">&lt;-</span> <span class="fu">rpois</span>(n, <span class="at">lambda=</span>lambda_true)</span>
+<span id="cb106-11"><a href="#cb106-11" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb106-12"><a href="#cb106-12" aria-hidden="true" tabindex="-1"></a>  stime_media[b] <span class="ot">&lt;-</span> <span class="fu">mean</span>(x)</span>
+<span id="cb106-13"><a href="#cb106-13" aria-hidden="true" tabindex="-1"></a>  stime_var[b] <span class="ot">&lt;-</span> <span class="fu">var</span>(x)</span>
+<span id="cb106-14"><a href="#cb106-14" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb106-15"><a href="#cb106-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb106-16"><a href="#cb106-16" aria-hidden="true" tabindex="-1"></a>MSE_media <span class="ot">&lt;-</span> <span class="fu">mean</span>((stime_media <span class="sc">-</span> lambda_true)<span class="sc">^</span><span class="dv">2</span>); MSE_media</span>
+<span id="cb106-17"><a href="#cb106-17" aria-hidden="true" tabindex="-1"></a>MSE_var <span class="ot">&lt;-</span> <span class="fu">mean</span>((stime_var <span class="sc">-</span> lambda_true)<span class="sc">^</span><span class="dv">2</span>); MSE_var</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<ol start="2" type="1">
+<li>Si ottenga e si commenti una approssimazione della distribuzione dei due stimatori. Il risultato grafico è coerente con la risposta data al punto precedente?</li>
+</ol>
+<div class="cell">
+<details class="code-fold">
+<summary>Soluzione</summary>
+<div class="sourceCode cell-code" id="cb107"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb107-1"><a href="#cb107-1" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>))</span>
+<span id="cb107-2"><a href="#cb107-2" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(stime_media, <span class="at">prob=</span>T)</span>
+<span id="cb107-3"><a href="#cb107-3" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">v=</span>lambda_true, <span class="at">col=</span><span class="dv">2</span>, <span class="at">lwd=</span><span class="dv">2</span>)</span>
+<span id="cb107-4"><a href="#cb107-4" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(stime_var, <span class="at">prob=</span>T)</span>
+<span id="cb107-5"><a href="#cb107-5" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">v=</span>lambda_true, <span class="at">col=</span><span class="dv">2</span>, <span class="at">lwd=</span><span class="dv">2</span>)</span>
+<span id="cb107-6"><a href="#cb107-6" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">1</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<ol start="3" type="1">
+<li>Sempre considerando campioni di ampiezza <span class="math inline">\(n=50\)</span>, si implementi uno studio di simulazione per valutare se uno dei due stimatori proposti possa ritenersi più efficiente dell’altro per ogni possibile valore di <span class="math inline">\(\lambda\)</span>. Si commenti il risultato prodotto.</li>
+</ol>
+<div class="cell">
+<details class="code-fold">
+<summary>Soluzione</summary>
+<div class="sourceCode cell-code" id="cb108"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb108-1"><a href="#cb108-1" aria-hidden="true" tabindex="-1"></a>B <span class="ot">&lt;-</span> <span class="dv">5000</span></span>
+<span id="cb108-2"><a href="#cb108-2" aria-hidden="true" tabindex="-1"></a><span class="co"># lambda può assumere infiniti valori: tronco a 50</span></span>
+<span id="cb108-3"><a href="#cb108-3" aria-hidden="true" tabindex="-1"></a>lambda_grid <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="fl">0.5</span>, <span class="dv">50</span>, <span class="at">by=</span>.<span class="dv">5</span>)</span>
+<span id="cb108-4"><a href="#cb108-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb108-5"><a href="#cb108-5" aria-hidden="true" tabindex="-1"></a>MSE_mean <span class="ot">&lt;-</span> <span class="fu">numeric</span>(<span class="fu">length</span>(lambda_grid))</span>
+<span id="cb108-6"><a href="#cb108-6" aria-hidden="true" tabindex="-1"></a>MSE_var <span class="ot">&lt;-</span> <span class="fu">numeric</span>(<span class="fu">length</span>(lambda_grid))</span>
+<span id="cb108-7"><a href="#cb108-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb108-8"><a href="#cb108-8" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(l <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">length</span>(lambda_grid)){</span>
+<span id="cb108-9"><a href="#cb108-9" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb108-10"><a href="#cb108-10" aria-hidden="true" tabindex="-1"></a>  stime_media <span class="ot">&lt;-</span> <span class="fu">numeric</span>(B)</span>
+<span id="cb108-11"><a href="#cb108-11" aria-hidden="true" tabindex="-1"></a>  stime_var <span class="ot">&lt;-</span> <span class="fu">numeric</span>(B)</span>
+<span id="cb108-12"><a href="#cb108-12" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb108-13"><a href="#cb108-13" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span>(b <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>B){</span>
+<span id="cb108-14"><a href="#cb108-14" aria-hidden="true" tabindex="-1"></a>    x <span class="ot">&lt;-</span> <span class="fu">rpois</span>(n, <span class="at">lambda=</span>lambda_grid[l])</span>
+<span id="cb108-15"><a href="#cb108-15" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb108-16"><a href="#cb108-16" aria-hidden="true" tabindex="-1"></a>    stime_media[b] <span class="ot">&lt;-</span> <span class="fu">mean</span>(x)</span>
+<span id="cb108-17"><a href="#cb108-17" aria-hidden="true" tabindex="-1"></a>    stime_var[b] <span class="ot">&lt;-</span> <span class="fu">var</span>(x)</span>
+<span id="cb108-18"><a href="#cb108-18" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb108-19"><a href="#cb108-19" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb108-20"><a href="#cb108-20" aria-hidden="true" tabindex="-1"></a>  MSE_mean[l] <span class="ot">&lt;-</span> <span class="fu">mean</span>((stime_media <span class="sc">-</span> lambda_grid[l])<span class="sc">^</span><span class="dv">2</span>)</span>
+<span id="cb108-21"><a href="#cb108-21" aria-hidden="true" tabindex="-1"></a>  MSE_var[l] <span class="ot">&lt;-</span> <span class="fu">mean</span>((stime_var <span class="sc">-</span> lambda_grid[l])<span class="sc">^</span><span class="dv">2</span>)</span>
+<span id="cb108-22"><a href="#cb108-22" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb108-23"><a href="#cb108-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb108-24"><a href="#cb108-24" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(lambda_grid, MSE_var, <span class="at">type=</span><span class="st">"l"</span>, <span class="at">col=</span><span class="dv">1</span>)</span>
+<span id="cb108-25"><a href="#cb108-25" aria-hidden="true" tabindex="-1"></a><span class="fu">points</span>(lambda_grid, MSE_mean, <span class="at">type=</span><span class="st">"l"</span>, <span class="at">col=</span><span class="dv">2</span>)</span>
+<span id="cb108-26"><a href="#cb108-26" aria-hidden="true" tabindex="-1"></a><span class="fu">legend</span>(<span class="dv">0</span>,<span class="dv">90</span>, <span class="fu">c</span>(<span class="st">"MSE(S2)"</span>, <span class="st">"MSE(X_bar)"</span>), <span class="at">col=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>), <span class="at">lty=</span><span class="st">"solid"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
 
 
 </section>

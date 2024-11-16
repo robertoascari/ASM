@@ -1473,6 +1473,20 @@ round(cbind(p_x,
             table(sample2)/n), 4)
 ```
 
+3.    Si usi uno dei campioni ottenuti per approssimare il valore atteso, il momento secondo e la varianza di $X$.
+```{r}
+#| echo: true
+#| eval: false
+#| code-fold: true
+#| code-summary: "Soluzione"
+
+mu <- mean(sample1)
+mom2 <- mean(sample1^2)
+var <- mean((sample1-mean(sample1))^2)
+# Oppure 
+#var <- mom2 - mu^2
+```
+
 
 ### Esercizio 7
 
@@ -1669,6 +1683,388 @@ integrate(function(x) sqrt(abs(x))/(x^2+1) * dnorm(x), lower=-Inf, upper=Inf)
 
 ## Parte 4: Inferenza
 
-### Verificare il TCL
+### Esercizio 1
 
-###
+Sia $Y_1, \dots, Y_n$ un campione casuale semplice estratto da una Esponenziale di media 5. 
+
+1. Si ottengano 4 realizzazioni del campione di ampiezza $n \in \{10, 50, 100, 1000\}$, salvandoli dentro una lista.
+
+```{r}
+#| echo: true
+#| eval: false
+#| code-fold: true
+#| code-summary: "Soluzione"
+
+n <- c(10, 50, 100, 1000)
+y <- list()
+
+for(i in 1:4){
+  y[[i]] <- rexp(n[i], rate = 1/5)
+}
+```
+
+
+2. Si ottengano le stime di massima verosimiglianza (MV) per i 4 campioni considerati, misurando l'errore di stima commesso.
+
+```{r}
+#| echo: true
+#| eval: false
+#| code-fold: true
+#| code-summary: "Soluzione"
+
+stime <- numeric(4)
+
+for(i in 1:4){
+  stime[i] <- mean(y[[i]])
+}
+
+stime - 5
+```
+
+3. Si implementi uno studio di simulazione per verificare empiricalmente la convergenza in distribuzione dello stimatore MV. Per ciascuna delle 4 numerosità campionarie, si considerino 10000 repliche.
+
+```{r}
+#| echo: true
+#| eval: false
+#| code-fold: true
+#| code-summary: "Soluzione"
+
+B <- 10000
+stime_n <- matrix(NA, ncol = length(n), nrow = B)
+colnames(stime_n) <- n
+
+par(mfrow=c(2,2))
+for(i in 1:length(n)){
+  for(b in 1:B){
+    y <- rexp(n[i], rate = 1/5)
+    
+    stime_n[b,i] <- mean(y)
+  }
+  hist(stime_n[,i], prob = T, 
+       main = paste("Distr. media camp. con n = ", n[i], sep=""), xlab = "stima")
+  curve(dnorm(x, 5, sqrt((5^2)/n[i])), col = 2, add = T)
+}
+par(mfrow=c(1,1))
+```
+
+4. Si valuti empiricamente la consistenza dello stimatore MV.
+```{r}
+#| echo: true
+#| eval: false
+#| code-fold: true
+#| code-summary: "Soluzione"
+
+boxplot(stime_n)
+abline(h = 5, col = 2,)
+```
+
+5. Come varia l'MSE (mean squared error) all'aumentare di n?
+```{r}
+#| echo: true
+#| eval: false
+#| code-fold: true
+#| code-summary: "Soluzione"
+
+MSE <- apply(stime_n, 2, function(x) mean((x-5)^2))
+plot(n, MSE, pch = 20)
+abline(h = 0, col = 2)
+```
+
+
+### Esercizio 2
+
+Si consideri un campione casuale di ampienzza $n$ estratto da una popolazione Normale di parametri $\mu$ e $\sigma^2$.
+Si scelgano a piacere dei valori per gli ignoti parametri e si generi un campione di ampiezza $n = 35$.
+
+
+```{r}
+#| echo: true
+#| eval: false
+#| code-fold: true
+#| code-summary: "Soluzione"
+
+n <- 35
+
+mu <- 13
+sigma2 <- 5
+
+set.seed(42)
+y <- rnorm(n, mu, sqrt(sigma2))
+```
+
+1. Si consideri $sigma^2$ noto e pari al vero valore scelto. Si implementi la funzione `loglik_mu(mu, y)` che permetta di calcolara la funzione di log-verosimiglianza. Si rappresenti graficamente tale funzione in un opportuno intervallo.
+
+```{r}
+#| echo: true
+#| eval: false
+#| code-fold: true
+#| code-summary: "Soluzione"
+
+loglik_mu <- function(mu, y){
+  sum(log(dnorm(y, mu, sqrt(sigma2))))
+}
+
+loglik_mu <- Vectorize(loglik_mu, vectorize.args = "mu")
+
+curve(loglik_mu(mu = x, y), xlim = c(0, 25))
+```
+
+
+2. Nonostante si conosca la forma della stima MV per $\mu$, si utilizzi una procedura di ottimizzazione numerica per ottenerla.
+
+```{r}
+#| echo: true
+#| eval: false
+#| code-fold: true
+#| code-summary: "Soluzione"
+
+MV_mu <- nlminb(start = 0,
+       objective = function(x) -loglik_mu(x, y))
+MV_mu$par
+mean(y)
+```
+
+3. Si consideri adesso anche il parametro $\sigma^2$. Si implementi la funzione `loglik_mu_sigma2(mu, y)` che permetta di calcolara la funzione di log-verosimiglianza per entrambi i parametri. Si rappresenti graficamente questa funzione.
+```{r}
+#| echo: true
+#| eval: false
+#| code-fold: true
+#| code-summary: "Soluzione"
+
+loglik_mu_sigma2 <- function(par, y){
+  mu <- par[1]
+  sigma2 <- par[2]
+  sum(log(dnorm(y, mu, sqrt(sigma2))))
+}
+
+griglia_mu <- seq(-5, 25, by = 0.1)
+griglia_sigma2 <- seq(0.01, 10, by = 0.01)
+
+griglia_parametri <- expand.grid(griglia_mu, griglia_sigma2)
+
+log_lik_values <- apply(griglia_parametri, 1, function(x) loglik_mu_sigma2(x, y))
+
+log_lik_values <- matrix(log_lik_values, nrow = length(griglia_mu), ncol = length(griglia_sigma2), byrow = F)
+
+# Per ottenere un grafico più leggibile,
+# traspongo affinché abbia mu su asse y 
+# e sigma2 su asse x.
+log_lik_values <- t(log_lik_values)
+
+contour(x = griglia_sigma2, 
+        y = griglia_mu, 
+        z = log_lik_values,
+        nlevels = 30,
+        xlab = expression(sigma2),
+        ylab = expression(mu),
+        col = 4)
+
+# Noto che aumentando nlevels, si aggiungono curve nella parte iniziale del grafico,
+# ma queste curve aggiuntive non mi aiutano a comprendere il grafico. 
+# Scelgo io dei livelli basandomi sui valori osservati di log_lik_values.
+
+llog_unique <- unique(log_lik_values[which(log_lik_values != -Inf)])
+
+levels <- quantile(llog_unique, probs=c(seq(.05,.95,.05),.96,.97,.98,.99))
+
+contour(x = griglia_sigma2, 
+        y = griglia_mu, 
+        z = log_lik_values,
+        levels = levels,
+        xlab = expression(sigma2),
+        ylab = expression(mu),
+        col = 4)
+```
+
+4. si utilizzi una procedura di ottimizzazione numerica per ottenere la stima ML degli ignoti parametri.
+
+```{r}
+#| echo: true
+#| eval: false
+#| code-fold: true
+#| code-summary: "Soluzione"
+
+MV_mu_sigma2 <- nlminb(start = c(0,1),
+       objective = function(x) -loglik_mu_sigma2(x, y))
+MV_mu_sigma2$par
+mean(y)
+var(y)
+```
+5. Si riportino, sul grafico ottenuto al punto 3, due punti corrispondenti al vero valore dei parametri e alla stima MV. Si commenti il grafico ottenuto.
+
+```{r}
+#| echo: true
+#| eval: false
+#| code-fold: true
+#| code-summary: "Soluzione"
+
+contour(x = griglia_sigma2, 
+        y = griglia_mu, 
+        z = log_lik_values,
+        levels = levels,
+        xlab = expression(sigma2),
+        ylab = expression(mu),
+        col = 4)
+
+points(sigma2, mu, pch = 20, col = "red")
+points(MV_mu_sigma2$par[2], MV_mu_sigma2$par[1], pch = 20, col = "blue")
+```
+
+### Esercizio 3
+
+Sia $\textbf{y} = (y_1, \dots, y_n)^\intercal$ un campione di realizzazioni i.i.d. da una variabile casuale Poisson di parametro $\theta >0$. La funzione di log-verosimiglianza associata a tale campione, a meno di una costante additiva, è specificata come 
+$$l(\theta; \textbf{y}) = -n\theta + \log(\theta) \sum_{i=1}^n y_i.$$
+
+1. Si definisca in `R` una funzione `loglik(theta, y)` che restituisca il valore della log-verosimiglianza in corrispondenza del valore `theta` indicato dall'utente.
+
+```{r}
+#| echo: true
+#| eval: false
+#| code-fold: true
+#| code-summary: "Soluzione"
+
+loglik <- function(theta, y){
+  n <- length(y)
+  
+  ll <- -n*theta + sum(y)*log(theta)
+  return(ll)
+}
+```
+
+2. D'ora in avanti si consideri il campione $\yv = (5, 10,  7,  7,  9,  9,  5)^\intercal$. Quanto vale la funzione di log-verosimiglianza nel punto $\theta = 10$?
+
+```{r}
+#| echo: true
+#| eval: false
+#| code-fold: true
+#| code-summary: "Soluzione"
+
+y <- c(5,10,7,7,9,9,5)
+loglik(10, y)
+```
+
+
+3. Si utilizzi una apposita funzione di ottimizzazione numerica per calcolare la stima di massima verosimiglianza $\hat{\theta}$. Si riporti il valore $\hat{\theta}$. 
+
+```{r}
+#| echo: true
+#| eval: false
+#| code-fold: true
+#| code-summary: "Soluzione"
+
+res <-
+optim(par = 10, # valore iniziale 
+      fn = function(x) -loglik(x, y), 
+      lower = 1e-5, 
+      method = "L-BFGS-B", 
+      hessian = TRUE # restituisce l'hessiana valutata nel minimo
+)
+
+res$par
+mean(y)
+```
+
+
+
+4. Si rappresenti graficamente la funzione di log-verosimiglianza nell'intervallo $(0, 15)$. Si sovraimponga una linea verticale **rossa** e **tratteggiata** in corrispondenza della stima di massima verosimiglianza individuata al punto precedente.
+
+
+```{r}
+#| echo: true
+#| eval: false
+#| code-fold: true
+#| code-summary: "Soluzione"
+
+curve(loglik(x,y=y), xlim=c(0,15), ylab = "loglik", xlab = expression(theta))
+abline(v=res$par, col="red", lty="dashed")
+```
+
+
+### Esercizio 4
+
+Sia $Y_1, \dots, Y_n$ un campione casuale estratto da una Poisson$(\lambda)$. È noto che il parametro $\lambda >0$ di una Poisson coincide con il suo valore atteso e con la sua varianza.
+
+Di conseguenza, due stimatori ragionevoli per $\lambda$ sono la media campionaria $\displaystyle \bar{Y} = \frac{1}{n} \sum_{i=1}^n Y_i$ e la varianza campionaria non distorta $\displaystyle  S^2 = \frac{1}{n-1} \sum_{i=1}^n \left(Y_i - \bar{Y} \right)^2$.
+
+
+1. Quale stimatore risulta preferibile se il vero valore del parametro fosse $\lambda=10$ e se le stime fossero basate su campioni di ampiezza $n = 50$? Si risponda utilizzando un approccio basato su simulazioni.
+
+```{r}
+#| echo: true
+#| eval: false
+#| code-fold: true
+#| code-summary: "Soluzione"
+
+B <- 10000
+
+lambda_true <- 10
+n <- 50
+
+stime_media <- numeric(B)
+stime_var <- numeric(B)
+
+for(b in 1:B){
+  x <- rpois(n, lambda=lambda_true)
+  
+  stime_media[b] <- mean(x)
+  stime_var[b] <- var(x)
+}
+
+MSE_media <- mean((stime_media - lambda_true)^2); MSE_media
+MSE_var <- mean((stime_var - lambda_true)^2); MSE_var
+
+```
+
+
+2. Si ottenga e si commenti una approssimazione della distribuzione dei due stimatori. Il risultato grafico è coerente con la risposta data al punto precedente?
+    
+```{r}
+#| echo: true
+#| eval: false
+#| code-fold: true
+#| code-summary: "Soluzione"
+
+par(mfrow=c(1,2))
+hist(stime_media, prob=T)
+abline(v=lambda_true, col=2, lwd=2)
+hist(stime_var, prob=T)
+abline(v=lambda_true, col=2, lwd=2)
+par(mfrow=c(1,1))
+
+```
+
+3. Sempre considerando campioni di ampiezza $n=50$, si implementi uno studio di simulazione per valutare se uno dei due stimatori proposti possa ritenersi più efficiente dell'altro per ogni possibile valore di $\lambda$. Si commenti il risultato prodotto.
+
+```{r}
+#| echo: true
+#| eval: false
+#| code-fold: true
+#| code-summary: "Soluzione"
+
+B <- 5000
+# lambda può assumere infiniti valori: tronco a 50
+lambda_grid <- seq(0.5, 50, by=.5)
+
+MSE_mean <- numeric(length(lambda_grid))
+MSE_var <- numeric(length(lambda_grid))
+
+for(l in 1:length(lambda_grid)){
+  
+  stime_media <- numeric(B)
+  stime_var <- numeric(B)
+  
+  for(b in 1:B){
+    x <- rpois(n, lambda=lambda_grid[l])
+    
+    stime_media[b] <- mean(x)
+    stime_var[b] <- var(x)
+  }
+  
+  MSE_mean[l] <- mean((stime_media - lambda_grid[l])^2)
+  MSE_var[l] <- mean((stime_var - lambda_grid[l])^2)
+}
+
+plot(lambda_grid, MSE_var, type="l", col=1)
+points(lambda_grid, MSE_mean, type="l", col=2)
+legend(0,90, c("MSE(S2)", "MSE(X_bar)"), col=c(1,2), lty="solid")
+```
