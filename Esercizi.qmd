@@ -511,7 +511,8 @@ which(pkmn$Name == "Meganium")
 which(righe_mega == 169)
 righe_mega2 <- righe_mega[-16]
 
-# Altro modo: mi accorgo che tutti i nomi con Mega, ad eccezione di Meganium, hanno uno spazio (blank) dopo la parola Mega:
+# Altro modo: mi accorgo che tutti i nomi con Mega, ad eccezione di Meganium,
+# hanno uno spazio (blank) dopo la parola Mega:
 pkmn$Name[righe_mega]
 righe_mega2 <- grep("Mega ", pkmn$Name); righe_mega2
 
@@ -585,7 +586,8 @@ chi2_Norm <- chi2/chi2_max; chi2_Norm
 #| code-fold: true
 #| code-summary: "Soluzione"
 
-my_cov <- mean( (pkmn_sub$Attack - mean(pkmn_sub$Attack))*(pkmn_sub$Defense - mean(pkmn_sub$Defense))); my_cov
+my_cov <- 
+  mean((pkmn_sub$Attack - mean(pkmn_sub$Attack))*(pkmn_sub$Defense - mean(pkmn_sub$Defense)))
 
 cov(pkmn_sub$Attack, pkmn_sub$Defense)
 cov(pkmn_sub$Attack, pkmn_sub$Defense)*(n-1)/n
@@ -982,7 +984,8 @@ quantile(animals$sonno, probs = .6)
 #| code-fold: true
 #| code-summary: "Soluzione"
 
-plot(animals$sonno ~ animals$peso_cerv, pch = 20, main = "Sonno - Peso Cervello", xlab = "Peso cervello", ylab = "Sonno")
+plot(animals$sonno ~ animals$peso_cerv, pch = 20, 
+     main = "Sonno - Peso Cervello", xlab = "Peso cervello", ylab = "Sonno")
 ```
 
 6.  Si proponga un opportuno grafico per studiare la relazione tra `sonno` e `preda`. Si commenti il risultato ottenuto.
@@ -993,7 +996,8 @@ plot(animals$sonno ~ animals$peso_cerv, pch = 20, main = "Sonno - Peso Cervello"
 #| code-fold: true
 #| code-summary: "Soluzione"
 
-boxplot(animals$sonno ~ animals$preda, pch = 20, main = "Sonno - Preda", xlab = "Preda", ylab = "Sonno")
+boxplot(animals$sonno ~ animals$preda, pch = 20, 
+        main = "Sonno - Preda", xlab = "Preda", ylab = "Sonno")
 ```
 
 7.  Si ritiene possibile proporre un grafico per studiare la relazione tra `sonno` e `peso_cerv`, tenendo conto anche della presenza della variabile `preda`? Se si, si riporti tale grafico e lo si commenti. Altrimenti si motivi il perché non lo si ritiene possibile.
@@ -1004,7 +1008,9 @@ boxplot(animals$sonno ~ animals$preda, pch = 20, main = "Sonno - Preda", xlab = 
 #| code-fold: true
 #| code-summary: "Soluzione"
 
-plot(animals$sonno ~ animals$peso_cerv, col = animals$preda, pch = 20, main = "Sonno - Peso Cervello", xlab = "Peso cervello", ylab = "Sonno")
+plot(animals$sonno ~ animals$peso_cerv, col = animals$preda, 
+     pch = 20, main = "Sonno - Peso Cervello", 
+     xlab = "Peso cervello", ylab = "Sonno")
 
 levels(animals$preda)
 # neri: 0
@@ -1378,7 +1384,7 @@ my_pweibull(4, 1, .2)
 
 <summary>Soluzione</summary>
 
-Per ottenere la funzione quantile è necessario invertire la funzione di ripartizione ottenuta al punto precedente: $\displaystyle Q(u) = F^{-1}(u), u \in (0,1)$. Isolando $t$ dall'espressione $1- e^{-\alpha * t^\beta}$, si ottiene $Q(u) = \left[ -\frac{1}{\alpha} \log(1-u) \right]^{1/\beta}$.
+Per ottenere la funzione quantile è necessario invertire la funzione di ripartizione ottenuta al punto precedente: $\displaystyle Q(u) = F^{-1}(u), u \in (0,1)$. Isolando $t$ dall'espressione $1- e^{-\alpha t^\beta}$, si ottiene $Q(u) = \left[ -\frac{1}{\alpha} \log(1-u) \right]^{1/\beta}$.
 
 ```{r}
 #| eval: false
@@ -1433,9 +1439,9 @@ par(mfrow=c(1,1))
 
 ### Esercizio 6
 
-Si consideri una variabile casuale discreta $X$ con supporto $\mathcal{S}_X = \{2, 4, 6, 8, 10, 12\}$ e  funzione di probabilità: $\displaystyle p(x) = \frac{1}{441} \left(\frac{x}{2} \right)^3, x \in \mathcal{S}_X$. 
+Si consideri una variabile casuale discreta $X$ con supporto $\mathcal{S}_X = \{2, 4, 6, 8, 10, 12\}$ e funzione di probabilità: $\displaystyle p(x) = \frac{1}{441} \left(\frac{x}{2} \right)^3, x \in \mathcal{S}_X$.
 
-1.    Si propongano due metodi per estrarre `n` valori pseudo casuali da $X$.
+1.  Si propongano due metodi per estrarre `n` valori pseudo casuali da $X$.
 
 ```{r}
 #| echo: true
@@ -1460,7 +1466,7 @@ sample1 <- S_X[as.numeric(cut(u, aa))]
 sample2 <- sample(S_X, n, replace = T, prob = p_x)
 ```
 
-2.    Si proponga un modo per verificare se i metodi proposti sembrano generare valori proprio dalla distribuzione desiderata.
+2.  Si proponga un modo per verificare se i metodi proposti sembrano generare valori proprio dalla distribuzione desiderata.
 
 ```{r}
 #| echo: true
@@ -1473,7 +1479,8 @@ round(cbind(p_x,
             table(sample2)/n), 4)
 ```
 
-3.    Si usi uno dei campioni ottenuti per approssimare il valore atteso, il momento secondo e la varianza di $X$.
+3.  Si usi uno dei campioni ottenuti per approssimare il valore atteso, il momento secondo e la varianza di $X$.
+
 ```{r}
 #| echo: true
 #| eval: false
@@ -1487,10 +1494,9 @@ var <- mean((sample1-mean(sample1))^2)
 #var <- mom2 - mu^2
 ```
 
-
 ### Esercizio 7
 
-Si estragga un campione di ampiezza $n = 200$ da una Normale con media $\mu = 15$ e varianza $\sigma^2 = 20$. 
+Si estragga un campione di ampiezza $n = 200$ da una Normale con media $\mu = 15$ e varianza $\sigma^2 = 20$.
 
 ```{r}
 #| echo: true
@@ -1506,7 +1512,7 @@ set.seed(678)
 y <- rnorm(n, mu, sqrt(sigma2))
 ```
 
-1. Si considerino $\mu$ e $\sigma^2$ entrambi ignoti. Si fornisca una stima per entrambi i parametri. Qual è l'errore commesso dai due stimatori, in questo caso?
+1.  Si considerino $\mu$ e $\sigma^2$ entrambi ignoti. Si fornisca una stima per entrambi i parametri. Qual è l'errore commesso dai due stimatori, in questo caso?
 
 ```{r}
 #| echo: true
@@ -1521,7 +1527,7 @@ mu - mu_hat
 sigma2 - sigma2_hat
 ```
 
-2. Si vuole sottoporre a verifica $H_0: \mu = 5$ vs. $H_1: \mu \neq 5$ ad un livello $\alpha = 0.05$. Si determini la conclusione inferenziale ricorrendo alla regione critica.
+2.  Si vuole sottoporre a verifica $H_0: \mu = 5$ vs. $H_1: \mu \neq 5$ ad un livello $\alpha = 0.05$. Si determini la conclusione inferenziale ricorrendo alla regione critica.
 
 ```{r}
 #| echo: true
@@ -1540,7 +1546,7 @@ ifelse(abs(stat_test) >= abs(soglia), "Rifiuto H0", "Non rifiuto H0")
 
 ```
 
-3. Si risolva il punto precedente ricorrendo al concetto di p-value.
+3.  Si risolva il punto precedente ricorrendo al concetto di p-value.
 
 ```{r}
 #| echo: true
@@ -1553,12 +1559,11 @@ p_value <- pnorm(-abs(stat_test)); p_value
 ifelse(p_value < alpha, "Rifiuto H0", "Non rifiuto H0")
 ```
 
-
 ### Esercizio 8
 
 Una distribuzione (multivariata) per [dati composizionali](https://en.wikipedia.org/wiki/Compositional_data) è la distribuzione [Dirichlet](https://en.wikipedia.org/wiki/Dirichlet_distribution). Siano $\displaystyle \textbf{x} = (x_1, \dots, x_D)^\intercal \in \mathcal{S}^D = \{ \textbf{x} = (x_1, \dots, x_D)^\intercal : x_d > 0, \sum_{d=1}^D x_d = 1\}$, $\boldsymbol{\alpha} = (\alpha_1, \dots, \alpha_D)^\intercal$ un vettore $D$-dimensionale con elementi positivi e $\displaystyle \alpha^+ = \sum_{d=1}^D \alpha_d$; la funzione di densità congiunta della Dirichlet è data da $$\displaystyle f(\textbf{x}; \boldsymbol{\alpha}) = \frac{\Gamma(\alpha^+)}{\prod_{d=1}^D \Gamma(\alpha_d)} \prod_{d=1}^D x_d^{\alpha_d - 1},$$ se $\textbf{x}\in\mathcal{S}^D$ e 0 altrimenti.
 
-1. Si implementi una funzione `ddir` che permetta di calcolare la densità congiunta di un vettore composizionale $\textbf{x}$ e la si valuti nel punto $\textbf{x} = (.2, .1, .4, .05, .25)^\intercal$ con $\boldsymbol{\alpha} = (4, 1, 10, 5, 2)^\intercal$.
+1.  Si implementi una funzione `ddir` che permetta di calcolare la densità congiunta di un vettore composizionale $\textbf{x}$ e la si valuti nel punto $\textbf{x} = (.2, .1, .4, .05, .25)^\intercal$ con $\boldsymbol{\alpha} = (4, 1, 10, 5, 2)^\intercal$.
 
 ```{r}
 #| echo: true
@@ -1580,7 +1585,7 @@ alpha <- c(4, 1, 10, 5, 2)
 ddir(x, alpha)
 ```
 
-2. Siano $Y_1, \dots Y_D$ delle variabili casuali indipendenti tali che $Y_d \sim Gamma(\alpha_d, 1)$. Definendo $\displaystyle Y^+ = \sum_{d=1}^D Y_d$, si può dimostrare che $\displaystyle (Y_1 / Y^+, \dots, Y_D/Y^+)^\intercal \sim Dirichlet(\boldsymbol{\alpha})$. Si utilizzi questa relazione per costruire un vettore `sample_dir` di valori pseudo-casuali da una Dirichlet con $D = 5$ e $\boldsymbol{\alpha} = (4, 2, 10, 5, 3)^\intercal$.
+2.  Siano $Y_1, \dots Y_D$ delle variabili casuali indipendenti tali che $Y_d \sim Gamma(\alpha_d, 1)$. Definendo $\displaystyle Y^+ = \sum_{d=1}^D Y_d$, si può dimostrare che $\displaystyle (Y_1 / Y^+, \dots, Y_D/Y^+)^\intercal \sim Dirichlet(\boldsymbol{\alpha})$. Si utilizzi questa relazione per costruire un vettore `sample_dir` di valori pseudo-casuali da una Dirichlet con $D = 5$ e $\boldsymbol{\alpha} = (4, 2, 10, 5, 3)^\intercal$.
 
 ```{r}
 #| echo: true
@@ -1601,7 +1606,7 @@ for(d in 1:D){
 sample_dir <- t(apply(y_matrix, 1, function(x) x/sum(x)))
 ```
 
-3.    Si confronti la distribuzione del terzo elemento di `sample_dir` con quella di una $Beta(\alpha_3, \alpha^+ - \alpha_3)$. Si commenti questo confronto, facendo autonomamente una ricerca sul legame che intercorre tra queste due distribuzioni.
+3.  Si confronti la distribuzione del terzo elemento di `sample_dir` con quella di una $Beta(\alpha_3, \alpha^+ - \alpha_3)$. Si commenti questo confronto, facendo autonomamente una ricerca sul legame che intercorre tra queste due distribuzioni.
 
 ```{r}
 #| echo: true
@@ -1620,9 +1625,9 @@ par(mfrow=c(1, 1))
 
 ### Esercizio 9
 
-Si supponga di essere interessato ad approssimare, mediante il metodo Monte Carlo, il valore del seguente integrale: $$\int_{-\infty}^{+\infty} \frac{f(x)}{g(x)} \phi(x) dx,$$ dove $phi(x)$ rappresenta la funzione di densità di una Normale standard.
+Si supponga di essere interessato ad approssimare, mediante il metodo Monte Carlo, il valore del seguente integrale: $$\int_{-\infty}^{+\infty} \frac{f(x)}{g(x)} \phi(x) dx,$$ dove $\phi(x)$ rappresenta la funzione di densità di una Normale standard.
 
-1. Si dica perché il seguente funzione non porta ad una soluzione corretta.
+1.  Si dica perché il seguente funzione non porta ad una soluzione corretta.
 
 ```{r}
 my_integral <- function(B = 5000) {
@@ -1632,8 +1637,7 @@ my_integral <- function(B = 5000) {
 }
 ```
 
-
-2. Si costruisca una funzione che permetta di calcolare il corretto valore dell'integrale proposto.
+2.  Si costruisca una funzione che permetta di calcolare il corretto valore dell'integrale proposto.
 
 ```{r}
 #| echo: true
@@ -1642,16 +1646,14 @@ my_integral <- function(B = 5000) {
 #| code-summary: "Soluzione"
 
 my_integral_2 <- function(B = 5000) {
-  
   y <- rnorm(B)
-  
   int <- mean(f(y) / g(y))
   
   return(int)
 }
 ```
 
-3. Si considerino le funzioni $f(x) = \sqrt{|x|}$ e $g(x) = x^2 + 1$. Si calcoli il valore dell'integrale con gli approcci del punto 1 e punto 2 li si confronti con la funzione `integrate`.
+3.  Si considerino le funzioni $f(x) = \sqrt{|x|}$ e $g(x) = x^2 + 1$. Si calcoli il valore dell'integrale con gli approcci del punto 1 e punto 2 li si confronti con la funzione `integrate`.
 
 ```{r}
 #| echo: true
@@ -1680,14 +1682,13 @@ my_integral_2()
 integrate(function(x) sqrt(abs(x))/(x^2+1) * dnorm(x), lower=-Inf, upper=Inf)
 ```
 
-
 ## Parte 4: Inferenza
 
 ### Esercizio 1
 
-Sia $Y_1, \dots, Y_n$ un campione casuale semplice estratto da una Esponenziale di media 5. 
+Sia $Y_1, \dots, Y_n$ un campione casuale semplice estratto da una Esponenziale di media 5.
 
-1. Si ottengano 4 realizzazioni del campione di ampiezza $n \in \{10, 50, 100, 1000\}$, salvandoli dentro una lista.
+1.  Si ottengano 4 realizzazioni del campione di ampiezza $n \in \{10, 50, 100, 1000\}$, salvandoli dentro una lista.
 
 ```{r}
 #| echo: true
@@ -1703,8 +1704,7 @@ for(i in 1:4){
 }
 ```
 
-
-2. Si ottengano le stime di massima verosimiglianza (MV) per i 4 campioni considerati, misurando l'errore di stima commesso.
+2.  Si ottengano le stime di massima verosimiglianza (MV) per i 4 campioni considerati, misurando l'errore di stima commesso.
 
 ```{r}
 #| echo: true
@@ -1721,7 +1721,7 @@ for(i in 1:4){
 stime - 5
 ```
 
-3. Si implementi uno studio di simulazione per verificare empiricalmente la convergenza in distribuzione dello stimatore MV. Per ciascuna delle 4 numerosità campionarie, si considerino 10000 repliche.
+3.  Si implementi uno studio di simulazione per verificare empiricalmente la convergenza in distribuzione dello stimatore MV. Per ciascuna delle 4 numerosità campionarie, si considerino 10000 repliche.
 
 ```{r}
 #| echo: true
@@ -1747,7 +1747,8 @@ for(i in 1:length(n)){
 par(mfrow=c(1,1))
 ```
 
-4. Si valuti empiricamente la consistenza dello stimatore MV.
+4.  Si valuti empiricamente la consistenza dello stimatore MV.
+
 ```{r}
 #| echo: true
 #| eval: false
@@ -1758,7 +1759,8 @@ boxplot(stime_n)
 abline(h = 5, col = 2,)
 ```
 
-5. Come varia l'MSE (mean squared error) all'aumentare di $n$?
+5.  Come varia l'MSE (mean squared error) all'aumentare di $n$?
+
 ```{r}
 #| echo: true
 #| eval: false
@@ -1770,12 +1772,9 @@ plot(n, MSE, pch = 20)
 abline(h = 0, col = 2)
 ```
 
-
 ### Esercizio 2
 
-Si consideri un campione casuale di ampienzza $n$ estratto da una popolazione Normale di parametri $\mu$ e $\sigma^2$.
-Si scelgano a piacere dei valori per gli ignoti parametri e si generi un campione di ampiezza $n = 35$.
-
+Si consideri un campione casuale di ampiezza $n$ estratto da una popolazione Normale di parametri $\mu$ e $\sigma^2$. Si scelgano a piacere dei valori per gli ignoti parametri e si generi un campione di ampiezza $n = 35$.
 
 ```{r}
 #| echo: true
@@ -1792,7 +1791,7 @@ set.seed(42)
 y <- rnorm(n, mu, sqrt(sigma2))
 ```
 
-1. Si consideri $sigma^2$ noto e pari al vero valore scelto. Si implementi la funzione `loglik_mu(mu, y)` che permetta di calcolara la funzione di log-verosimiglianza. Si rappresenti graficamente tale funzione in un opportuno intervallo.
+1.  Si consideri $\sigma^2$ noto e pari al vero valore scelto. Si implementi la funzione `loglik_mu(mu, y)` che permetta di calcolara la funzione di log-verosimiglianza. Si rappresenti graficamente tale funzione in un opportuno intervallo.
 
 ```{r}
 #| echo: true
@@ -1809,8 +1808,7 @@ loglik_mu <- Vectorize(loglik_mu, vectorize.args = "mu")
 curve(loglik_mu(mu = x, y), xlim = c(0, 25))
 ```
 
-
-2. Nonostante si conosca la forma della stima MV per $\mu$, si utilizzi una procedura di ottimizzazione numerica per ottenerla.
+2.  Nonostante si conosca la forma della stima MV per $\mu$, si utilizzi una procedura di ottimizzazione numerica per ottenerla.
 
 ```{r}
 #| echo: true
@@ -1824,7 +1822,8 @@ MV_mu$par
 mean(y)
 ```
 
-3. Si consideri adesso anche il parametro $\sigma^2$. Si implementi la funzione `loglik_mu_sigma2(mu, y)` che permetta di calcolara la funzione di log-verosimiglianza per entrambi i parametri. Si rappresenti graficamente questa funzione.
+3.  Adesso si consideri ignoto anche il parametro $\sigma^2$. Si implementi la funzione `loglik_mu_sigma2(mu, y)` che permetta di calcolara la funzione di log-verosimiglianza per entrambi i parametri. Si rappresenti graficamente questa funzione.
+
 ```{r}
 #| echo: true
 #| eval: false
@@ -1844,7 +1843,8 @@ griglia_parametri <- expand.grid(griglia_mu, griglia_sigma2)
 
 log_lik_values <- apply(griglia_parametri, 1, function(x) loglik_mu_sigma2(x, y))
 
-log_lik_values <- matrix(log_lik_values, nrow = length(griglia_mu), ncol = length(griglia_sigma2), byrow = F)
+log_lik_values <- matrix(log_lik_values, nrow = length(griglia_mu), 
+                         ncol = length(griglia_sigma2), byrow = F)
 
 # Per ottenere un grafico più leggibile,
 # traspongo affinché abbia mu su asse y 
@@ -1876,7 +1876,7 @@ contour(x = griglia_sigma2,
         col = 4)
 ```
 
-4. si utilizzi una procedura di ottimizzazione numerica per ottenere la stima ML degli ignoti parametri.
+4.  si utilizzi una procedura di ottimizzazione numerica per ottenere la stima ML degli ignoti parametri.
 
 ```{r}
 #| echo: true
@@ -1890,7 +1890,8 @@ MV_mu_sigma2$par
 mean(y)
 var(y)
 ```
-5. Si riportino, sul grafico ottenuto al punto 3, due punti corrispondenti al vero valore dei parametri e alla stima MV. Si commenti il grafico ottenuto.
+
+5.  Si riportino, sul grafico ottenuto al punto 3, due punti corrispondenti al vero valore dei parametri e alla stima MV. Si commenti il grafico ottenuto.
 
 ```{r}
 #| echo: true
@@ -1912,10 +1913,9 @@ points(MV_mu_sigma2$par[2], MV_mu_sigma2$par[1], pch = 20, col = "blue")
 
 ### Esercizio 3
 
-Sia $\textbf{y} = (y_1, \dots, y_n)^\intercal$ un campione di realizzazioni i.i.d. da una variabile casuale Poisson di parametro $\theta >0$. La funzione di log-verosimiglianza associata a tale campione, a meno di una costante additiva, è specificata come 
-$$l(\theta; \textbf{y}) = -n\theta + \log(\theta) \sum_{i=1}^n y_i.$$
+Sia $\textbf{y} = (y_1, \dots, y_n)^\intercal$ un campione di realizzazioni i.i.d. da una variabile casuale Poisson di parametro $\theta >0$. La funzione di log-verosimiglianza associata a tale campione, a meno di una costante additiva, è specificata come $$l(\theta; \textbf{y}) = -n\theta + \log(\theta) \sum_{i=1}^n y_i.$$
 
-1. Si definisca in `R` una funzione `loglik(theta, y)` che restituisca il valore della log-verosimiglianza in corrispondenza del valore `theta` indicato dall'utente.
+1.  Si definisca in `R` una funzione `loglik(theta, y)` che restituisca il valore della log-verosimiglianza in corrispondenza del valore `theta` indicato dall'utente.
 
 ```{r}
 #| echo: true
@@ -1931,7 +1931,7 @@ loglik <- function(theta, y){
 }
 ```
 
-2. D'ora in avanti si consideri il campione $\yv = (5, 10,  7,  7,  9,  9,  5)^\intercal$. Quanto vale la funzione di log-verosimiglianza nel punto $\theta = 10$?
+2.  D'ora in avanti si consideri il campione $\yv = (5, 10,  7,  7,  9,  9,  5)^\intercal$. Quanto vale la funzione di log-verosimiglianza nel punto $\theta = 10$?
 
 ```{r}
 #| echo: true
@@ -1943,8 +1943,7 @@ y <- c(5,10,7,7,9,9,5)
 loglik(10, y)
 ```
 
-
-3. Si utilizzi una apposita funzione di ottimizzazione numerica per calcolare la stima di massima verosimiglianza $\hat{\theta}$. Si riporti il valore $\hat{\theta}$. 
+3.  Si utilizzi una apposita funzione di ottimizzazione numerica per calcolare la stima di massima verosimiglianza $\hat{\theta}$. Si riporti il valore $\hat{\theta}$.
 
 ```{r}
 #| echo: true
@@ -1964,10 +1963,7 @@ res$par
 mean(y)
 ```
 
-
-
-4. Si rappresenti graficamente la funzione di log-verosimiglianza nell'intervallo $(0, 15)$. Si sovraimponga una linea verticale **rossa** e **tratteggiata** in corrispondenza della stima di massima verosimiglianza individuata al punto precedente.
-
+4.  Si rappresenti graficamente la funzione di log-verosimiglianza nell'intervallo $(0, 15)$. Si sovraimponga una linea verticale **rossa** e **tratteggiata** in corrispondenza della stima di massima verosimiglianza individuata al punto precedente.
 
 ```{r}
 #| echo: true
@@ -1979,15 +1975,13 @@ curve(loglik(x,y=y), xlim=c(0,15), ylab = "loglik", xlab = expression(theta))
 abline(v=res$par, col="red", lty="dashed")
 ```
 
-
 ### Esercizio 4
 
 Sia $Y_1, \dots, Y_n$ un campione casuale estratto da una Poisson$(\lambda)$. È noto che il parametro $\lambda >0$ di una Poisson coincide con il suo valore atteso e con la sua varianza.
 
 Di conseguenza, due stimatori ragionevoli per $\lambda$ sono la media campionaria $\displaystyle \bar{Y} = \frac{1}{n} \sum_{i=1}^n Y_i$ e la varianza campionaria non distorta $\displaystyle  S^2 = \frac{1}{n-1} \sum_{i=1}^n \left(Y_i - \bar{Y} \right)^2$.
 
-
-1. Quale stimatore risulta preferibile se il vero valore del parametro fosse $\lambda=10$ e se le stime fossero basate su campioni di ampiezza $n = 50$? Si risponda utilizzando un approccio basato su simulazioni.
+1.  Quale stimatore risulta preferibile se il vero valore del parametro fosse $\lambda=10$ e se le stime fossero basate su campioni di ampiezza $n = 50$? Si risponda utilizzando un approccio basato su simulazioni.
 
 ```{r}
 #| echo: true
@@ -2015,9 +2009,8 @@ MSE_var <- mean((stime_var - lambda_true)^2); MSE_var
 
 ```
 
+2.  Si ottenga e si commenti una approssimazione della distribuzione dei due stimatori. Il risultato grafico è coerente con la risposta data al punto precedente?
 
-2. Si ottenga e si commenti una approssimazione della distribuzione dei due stimatori. Il risultato grafico è coerente con la risposta data al punto precedente?
-    
 ```{r}
 #| echo: true
 #| eval: false
@@ -2033,7 +2026,7 @@ par(mfrow=c(1,1))
 
 ```
 
-3. Sempre considerando campioni di ampiezza $n=50$, si implementi uno studio di simulazione per valutare se uno dei due stimatori proposti possa ritenersi più efficiente dell'altro per ogni possibile valore di $\lambda$. Si commenti il risultato prodotto.
+3.  Sempre considerando campioni di ampiezza $n=50$, si implementi uno studio di simulazione per valutare se uno dei due stimatori proposti possa ritenersi più efficiente dell'altro per ogni possibile valore di $\lambda$. Si commenti il risultato prodotto.
 
 ```{r}
 #| echo: true

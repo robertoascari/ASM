@@ -660,11 +660,12 @@ window.Quarto = {
 <span id="cb28-7"><a href="#cb28-7" aria-hidden="true" tabindex="-1"></a><span class="fu">which</span>(righe_mega <span class="sc">==</span> <span class="dv">169</span>)</span>
 <span id="cb28-8"><a href="#cb28-8" aria-hidden="true" tabindex="-1"></a>righe_mega2 <span class="ot">&lt;-</span> righe_mega[<span class="sc">-</span><span class="dv">16</span>]</span>
 <span id="cb28-9"><a href="#cb28-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb28-10"><a href="#cb28-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Altro modo: mi accorgo che tutti i nomi con Mega, ad eccezione di Meganium, hanno uno spazio (blank) dopo la parola Mega:</span></span>
-<span id="cb28-11"><a href="#cb28-11" aria-hidden="true" tabindex="-1"></a>pkmn<span class="sc">$</span>Name[righe_mega]</span>
-<span id="cb28-12"><a href="#cb28-12" aria-hidden="true" tabindex="-1"></a>righe_mega2 <span class="ot">&lt;-</span> <span class="fu">grep</span>(<span class="st">"Mega "</span>, pkmn<span class="sc">$</span>Name); righe_mega2</span>
-<span id="cb28-13"><a href="#cb28-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb28-14"><a href="#cb28-14" aria-hidden="true" tabindex="-1"></a>pkmn <span class="ot">&lt;-</span> pkmn[<span class="sc">-</span>righe_mega,]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb28-10"><a href="#cb28-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Altro modo: mi accorgo che tutti i nomi con Mega, ad eccezione di Meganium,</span></span>
+<span id="cb28-11"><a href="#cb28-11" aria-hidden="true" tabindex="-1"></a><span class="co"># hanno uno spazio (blank) dopo la parola Mega:</span></span>
+<span id="cb28-12"><a href="#cb28-12" aria-hidden="true" tabindex="-1"></a>pkmn<span class="sc">$</span>Name[righe_mega]</span>
+<span id="cb28-13"><a href="#cb28-13" aria-hidden="true" tabindex="-1"></a>righe_mega2 <span class="ot">&lt;-</span> <span class="fu">grep</span>(<span class="st">"Mega "</span>, pkmn<span class="sc">$</span>Name); righe_mega2</span>
+<span id="cb28-14"><a href="#cb28-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-15"><a href="#cb28-15" aria-hidden="true" tabindex="-1"></a>pkmn <span class="ot">&lt;-</span> pkmn[<span class="sc">-</span>righe_mega,]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 <ol start="2" type="1">
@@ -726,10 +727,11 @@ window.Quarto = {
 <div class="cell">
 <details class="code-fold">
 <summary>Soluzione</summary>
-<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>my_cov <span class="ot">&lt;-</span> <span class="fu">mean</span>( (pkmn_sub<span class="sc">$</span>Attack <span class="sc">-</span> <span class="fu">mean</span>(pkmn_sub<span class="sc">$</span>Attack))<span class="sc">*</span>(pkmn_sub<span class="sc">$</span>Defense <span class="sc">-</span> <span class="fu">mean</span>(pkmn_sub<span class="sc">$</span>Defense))); my_cov</span>
-<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a><span class="fu">cov</span>(pkmn_sub<span class="sc">$</span>Attack, pkmn_sub<span class="sc">$</span>Defense)</span>
-<span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a><span class="fu">cov</span>(pkmn_sub<span class="sc">$</span>Attack, pkmn_sub<span class="sc">$</span>Defense)<span class="sc">*</span>(n<span class="dv">-1</span>)<span class="sc">/</span>n</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>my_cov <span class="ot">&lt;-</span> </span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mean</span>((pkmn_sub<span class="sc">$</span>Attack <span class="sc">-</span> <span class="fu">mean</span>(pkmn_sub<span class="sc">$</span>Attack))<span class="sc">*</span>(pkmn_sub<span class="sc">$</span>Defense <span class="sc">-</span> <span class="fu">mean</span>(pkmn_sub<span class="sc">$</span>Defense)))</span>
+<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a><span class="fu">cov</span>(pkmn_sub<span class="sc">$</span>Attack, pkmn_sub<span class="sc">$</span>Defense)</span>
+<span id="cb32-5"><a href="#cb32-5" aria-hidden="true" tabindex="-1"></a><span class="fu">cov</span>(pkmn_sub<span class="sc">$</span>Attack, pkmn_sub<span class="sc">$</span>Defense)<span class="sc">*</span>(n<span class="dv">-1</span>)<span class="sc">/</span>n</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 <ol start="6" type="1">
@@ -1069,7 +1071,8 @@ Si ottenga la matrice di varianze e covarianze del dataset <code>medals_composit
 <div class="cell">
 <details class="code-fold">
 <summary>Soluzione</summary>
-<div class="sourceCode cell-code" id="cb57"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb57-1"><a href="#cb57-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(animals<span class="sc">$</span>sonno <span class="sc">~</span> animals<span class="sc">$</span>peso_cerv, <span class="at">pch =</span> <span class="dv">20</span>, <span class="at">main =</span> <span class="st">"Sonno - Peso Cervello"</span>, <span class="at">xlab =</span> <span class="st">"Peso cervello"</span>, <span class="at">ylab =</span> <span class="st">"Sonno"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb57"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb57-1"><a href="#cb57-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(animals<span class="sc">$</span>sonno <span class="sc">~</span> animals<span class="sc">$</span>peso_cerv, <span class="at">pch =</span> <span class="dv">20</span>, </span>
+<span id="cb57-2"><a href="#cb57-2" aria-hidden="true" tabindex="-1"></a>     <span class="at">main =</span> <span class="st">"Sonno - Peso Cervello"</span>, <span class="at">xlab =</span> <span class="st">"Peso cervello"</span>, <span class="at">ylab =</span> <span class="st">"Sonno"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 <ol start="6" type="1">
@@ -1078,7 +1081,8 @@ Si ottenga la matrice di varianze e covarianze del dataset <code>medals_composit
 <div class="cell">
 <details class="code-fold">
 <summary>Soluzione</summary>
-<div class="sourceCode cell-code" id="cb58"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb58-1"><a href="#cb58-1" aria-hidden="true" tabindex="-1"></a><span class="fu">boxplot</span>(animals<span class="sc">$</span>sonno <span class="sc">~</span> animals<span class="sc">$</span>preda, <span class="at">pch =</span> <span class="dv">20</span>, <span class="at">main =</span> <span class="st">"Sonno - Preda"</span>, <span class="at">xlab =</span> <span class="st">"Preda"</span>, <span class="at">ylab =</span> <span class="st">"Sonno"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb58"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb58-1"><a href="#cb58-1" aria-hidden="true" tabindex="-1"></a><span class="fu">boxplot</span>(animals<span class="sc">$</span>sonno <span class="sc">~</span> animals<span class="sc">$</span>preda, <span class="at">pch =</span> <span class="dv">20</span>, </span>
+<span id="cb58-2"><a href="#cb58-2" aria-hidden="true" tabindex="-1"></a>        <span class="at">main =</span> <span class="st">"Sonno - Preda"</span>, <span class="at">xlab =</span> <span class="st">"Preda"</span>, <span class="at">ylab =</span> <span class="st">"Sonno"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 <ol start="7" type="1">
@@ -1087,11 +1091,13 @@ Si ottenga la matrice di varianze e covarianze del dataset <code>medals_composit
 <div class="cell">
 <details class="code-fold">
 <summary>Soluzione</summary>
-<div class="sourceCode cell-code" id="cb59"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb59-1"><a href="#cb59-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(animals<span class="sc">$</span>sonno <span class="sc">~</span> animals<span class="sc">$</span>peso_cerv, <span class="at">col =</span> animals<span class="sc">$</span>preda, <span class="at">pch =</span> <span class="dv">20</span>, <span class="at">main =</span> <span class="st">"Sonno - Peso Cervello"</span>, <span class="at">xlab =</span> <span class="st">"Peso cervello"</span>, <span class="at">ylab =</span> <span class="st">"Sonno"</span>)</span>
-<span id="cb59-2"><a href="#cb59-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb59-3"><a href="#cb59-3" aria-hidden="true" tabindex="-1"></a><span class="fu">levels</span>(animals<span class="sc">$</span>preda)</span>
-<span id="cb59-4"><a href="#cb59-4" aria-hidden="true" tabindex="-1"></a><span class="co"># neri: 0</span></span>
-<span id="cb59-5"><a href="#cb59-5" aria-hidden="true" tabindex="-1"></a><span class="co"># rossi: 1</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb59"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb59-1"><a href="#cb59-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(animals<span class="sc">$</span>sonno <span class="sc">~</span> animals<span class="sc">$</span>peso_cerv, <span class="at">col =</span> animals<span class="sc">$</span>preda, </span>
+<span id="cb59-2"><a href="#cb59-2" aria-hidden="true" tabindex="-1"></a>     <span class="at">pch =</span> <span class="dv">20</span>, <span class="at">main =</span> <span class="st">"Sonno - Peso Cervello"</span>, </span>
+<span id="cb59-3"><a href="#cb59-3" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlab =</span> <span class="st">"Peso cervello"</span>, <span class="at">ylab =</span> <span class="st">"Sonno"</span>)</span>
+<span id="cb59-4"><a href="#cb59-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb59-5"><a href="#cb59-5" aria-hidden="true" tabindex="-1"></a><span class="fu">levels</span>(animals<span class="sc">$</span>preda)</span>
+<span id="cb59-6"><a href="#cb59-6" aria-hidden="true" tabindex="-1"></a><span class="co"># neri: 0</span></span>
+<span id="cb59-7"><a href="#cb59-7" aria-hidden="true" tabindex="-1"></a><span class="co"># rossi: 1</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 </section>
@@ -1426,7 +1432,7 @@ Soluzione
 <summary>
 Soluzione
 </summary>
-<p>Per ottenere la funzione quantile è necessario invertire la funzione di ripartizione ottenuta al punto precedente: <span class="math inline">\(\displaystyle Q(u) = F^{-1}(u), u \in (0,1)\)</span>. Isolando <span class="math inline">\(t\)</span> dall’espressione <span class="math inline">\(1- e^{-\alpha * t^\beta}\)</span>, si ottiene <span class="math inline">\(Q(u) = \left[ -\frac{1}{\alpha} \log(1-u) \right]^{1/\beta}\)</span>.</p>
+<p>Per ottenere la funzione quantile è necessario invertire la funzione di ripartizione ottenuta al punto precedente: <span class="math inline">\(\displaystyle Q(u) = F^{-1}(u), u \in (0,1)\)</span>. Isolando <span class="math inline">\(t\)</span> dall’espressione <span class="math inline">\(1- e^{-\alpha t^\beta}\)</span>, si ottiene <span class="math inline">\(Q(u) = \left[ -\frac{1}{\alpha} \log(1-u) \right]^{1/\beta}\)</span>.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb75"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb75-1"><a href="#cb75-1" aria-hidden="true" tabindex="-1"></a>my_qweibull <span class="ot">&lt;-</span> <span class="cf">function</span>(u, alpha, beta){</span>
 <span id="cb75-2"><a href="#cb75-2" aria-hidden="true" tabindex="-1"></a>  q <span class="ot">&lt;-</span> (<span class="sc">-</span>alpha<span class="sc">^</span>(<span class="sc">-</span><span class="dv">1</span>) <span class="sc">*</span> <span class="fu">log</span>(<span class="dv">1</span><span class="sc">-</span>u))<span class="sc">^</span>(<span class="dv">1</span><span class="sc">/</span>beta)</span>
@@ -1636,7 +1642,7 @@ Soluzione
 </section>
 <section id="esercizio-9-1" class="level3">
 <h3 class="anchored" data-anchor-id="esercizio-9-1">Esercizio 9</h3>
-<p>Si supponga di essere interessato ad approssimare, mediante il metodo Monte Carlo, il valore del seguente integrale: <span class="math display">\[\int_{-\infty}^{+\infty} \frac{f(x)}{g(x)} \phi(x) dx,\]</span> dove <span class="math inline">\(phi(x)\)</span> rappresenta la funzione di densità di una Normale standard.</p>
+<p>Si supponga di essere interessato ad approssimare, mediante il metodo Monte Carlo, il valore del seguente integrale: <span class="math display">\[\int_{-\infty}^{+\infty} \frac{f(x)}{g(x)} \phi(x) dx,\]</span> dove <span class="math inline">\(\phi(x)\)</span> rappresenta la funzione di densità di una Normale standard.</p>
 <ol type="1">
 <li>Si dica perché il seguente funzione non porta ad una soluzione corretta.</li>
 </ol>
@@ -1654,13 +1660,11 @@ Soluzione
 <details class="code-fold">
 <summary>Soluzione</summary>
 <div class="sourceCode cell-code" id="cb89"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb89-1"><a href="#cb89-1" aria-hidden="true" tabindex="-1"></a>my_integral_2 <span class="ot">&lt;-</span> <span class="cf">function</span>(<span class="at">B =</span> <span class="dv">5000</span>) {</span>
-<span id="cb89-2"><a href="#cb89-2" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb89-3"><a href="#cb89-3" aria-hidden="true" tabindex="-1"></a>  y <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(B)</span>
+<span id="cb89-2"><a href="#cb89-2" aria-hidden="true" tabindex="-1"></a>  y <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(B)</span>
+<span id="cb89-3"><a href="#cb89-3" aria-hidden="true" tabindex="-1"></a>  int <span class="ot">&lt;-</span> <span class="fu">mean</span>(<span class="fu">f</span>(y) <span class="sc">/</span> <span class="fu">g</span>(y))</span>
 <span id="cb89-4"><a href="#cb89-4" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb89-5"><a href="#cb89-5" aria-hidden="true" tabindex="-1"></a>  int <span class="ot">&lt;-</span> <span class="fu">mean</span>(<span class="fu">f</span>(y) <span class="sc">/</span> <span class="fu">g</span>(y))</span>
-<span id="cb89-6"><a href="#cb89-6" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb89-7"><a href="#cb89-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(int)</span>
-<span id="cb89-8"><a href="#cb89-8" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb89-5"><a href="#cb89-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(int)</span>
+<span id="cb89-6"><a href="#cb89-6" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 <ol start="3" type="1">
@@ -1774,7 +1778,7 @@ Soluzione
 </section>
 <section id="esercizio-2-2" class="level3">
 <h3 class="anchored" data-anchor-id="esercizio-2-2">Esercizio 2</h3>
-<p>Si consideri un campione casuale di ampienzza <span class="math inline">\(n\)</span> estratto da una popolazione Normale di parametri <span class="math inline">\(\mu\)</span> e <span class="math inline">\(\sigma^2\)</span>. Si scelgano a piacere dei valori per gli ignoti parametri e si generi un campione di ampiezza <span class="math inline">\(n = 35\)</span>.</p>
+<p>Si consideri un campione casuale di ampiezza <span class="math inline">\(n\)</span> estratto da una popolazione Normale di parametri <span class="math inline">\(\mu\)</span> e <span class="math inline">\(\sigma^2\)</span>. Si scelgano a piacere dei valori per gli ignoti parametri e si generi un campione di ampiezza <span class="math inline">\(n = 35\)</span>.</p>
 <div class="cell">
 <details class="code-fold">
 <summary>Soluzione</summary>
@@ -1788,7 +1792,7 @@ Soluzione
 </details>
 </div>
 <ol type="1">
-<li>Si consideri <span class="math inline">\(sigma^2\)</span> noto e pari al vero valore scelto. Si implementi la funzione <code>loglik_mu(mu, y)</code> che permetta di calcolara la funzione di log-verosimiglianza. Si rappresenti graficamente tale funzione in un opportuno intervallo.</li>
+<li>Si consideri <span class="math inline">\(\sigma^2\)</span> noto e pari al vero valore scelto. Si implementi la funzione <code>loglik_mu(mu, y)</code> che permetta di calcolara la funzione di log-verosimiglianza. Si rappresenti graficamente tale funzione in un opportuno intervallo.</li>
 </ol>
 <div class="cell">
 <details class="code-fold">
@@ -1815,7 +1819,7 @@ Soluzione
 </details>
 </div>
 <ol start="3" type="1">
-<li>Si consideri adesso anche il parametro <span class="math inline">\(\sigma^2\)</span>. Si implementi la funzione <code>loglik_mu_sigma2(mu, y)</code> che permetta di calcolara la funzione di log-verosimiglianza per entrambi i parametri. Si rappresenti graficamente questa funzione.</li>
+<li>Adesso si consideri ignoto anche il parametro <span class="math inline">\(\sigma^2\)</span>. Si implementi la funzione <code>loglik_mu_sigma2(mu, y)</code> che permetta di calcolara la funzione di log-verosimiglianza per entrambi i parametri. Si rappresenti graficamente questa funzione.</li>
 </ol>
 <div class="cell">
 <details class="code-fold">
@@ -1833,36 +1837,37 @@ Soluzione
 <span id="cb99-11"><a href="#cb99-11" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb99-12"><a href="#cb99-12" aria-hidden="true" tabindex="-1"></a>log_lik_values <span class="ot">&lt;-</span> <span class="fu">apply</span>(griglia_parametri, <span class="dv">1</span>, <span class="cf">function</span>(x) <span class="fu">loglik_mu_sigma2</span>(x, y))</span>
 <span id="cb99-13"><a href="#cb99-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb99-14"><a href="#cb99-14" aria-hidden="true" tabindex="-1"></a>log_lik_values <span class="ot">&lt;-</span> <span class="fu">matrix</span>(log_lik_values, <span class="at">nrow =</span> <span class="fu">length</span>(griglia_mu), <span class="at">ncol =</span> <span class="fu">length</span>(griglia_sigma2), <span class="at">byrow =</span> F)</span>
-<span id="cb99-15"><a href="#cb99-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb99-16"><a href="#cb99-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Per ottenere un grafico più leggibile,</span></span>
-<span id="cb99-17"><a href="#cb99-17" aria-hidden="true" tabindex="-1"></a><span class="co"># traspongo affinché abbia mu su asse y </span></span>
-<span id="cb99-18"><a href="#cb99-18" aria-hidden="true" tabindex="-1"></a><span class="co"># e sigma2 su asse x.</span></span>
-<span id="cb99-19"><a href="#cb99-19" aria-hidden="true" tabindex="-1"></a>log_lik_values <span class="ot">&lt;-</span> <span class="fu">t</span>(log_lik_values)</span>
-<span id="cb99-20"><a href="#cb99-20" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb99-21"><a href="#cb99-21" aria-hidden="true" tabindex="-1"></a><span class="fu">contour</span>(<span class="at">x =</span> griglia_sigma2, </span>
-<span id="cb99-22"><a href="#cb99-22" aria-hidden="true" tabindex="-1"></a>        <span class="at">y =</span> griglia_mu, </span>
-<span id="cb99-23"><a href="#cb99-23" aria-hidden="true" tabindex="-1"></a>        <span class="at">z =</span> log_lik_values,</span>
-<span id="cb99-24"><a href="#cb99-24" aria-hidden="true" tabindex="-1"></a>        <span class="at">nlevels =</span> <span class="dv">30</span>,</span>
-<span id="cb99-25"><a href="#cb99-25" aria-hidden="true" tabindex="-1"></a>        <span class="at">xlab =</span> <span class="fu">expression</span>(sigma2),</span>
-<span id="cb99-26"><a href="#cb99-26" aria-hidden="true" tabindex="-1"></a>        <span class="at">ylab =</span> <span class="fu">expression</span>(mu),</span>
-<span id="cb99-27"><a href="#cb99-27" aria-hidden="true" tabindex="-1"></a>        <span class="at">col =</span> <span class="dv">4</span>)</span>
-<span id="cb99-28"><a href="#cb99-28" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb99-29"><a href="#cb99-29" aria-hidden="true" tabindex="-1"></a><span class="co"># Noto che aumentando nlevels, si aggiungono curve nella parte iniziale del grafico,</span></span>
-<span id="cb99-30"><a href="#cb99-30" aria-hidden="true" tabindex="-1"></a><span class="co"># ma queste curve aggiuntive non mi aiutano a comprendere il grafico. </span></span>
-<span id="cb99-31"><a href="#cb99-31" aria-hidden="true" tabindex="-1"></a><span class="co"># Scelgo io dei livelli basandomi sui valori osservati di log_lik_values.</span></span>
-<span id="cb99-32"><a href="#cb99-32" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb99-33"><a href="#cb99-33" aria-hidden="true" tabindex="-1"></a>llog_unique <span class="ot">&lt;-</span> <span class="fu">unique</span>(log_lik_values[<span class="fu">which</span>(log_lik_values <span class="sc">!=</span> <span class="sc">-</span><span class="cn">Inf</span>)])</span>
-<span id="cb99-34"><a href="#cb99-34" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb99-35"><a href="#cb99-35" aria-hidden="true" tabindex="-1"></a>levels <span class="ot">&lt;-</span> <span class="fu">quantile</span>(llog_unique, <span class="at">probs=</span><span class="fu">c</span>(<span class="fu">seq</span>(.<span class="dv">05</span>,.<span class="dv">95</span>,.<span class="dv">05</span>),.<span class="dv">96</span>,.<span class="dv">97</span>,.<span class="dv">98</span>,.<span class="dv">99</span>))</span>
-<span id="cb99-36"><a href="#cb99-36" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb99-37"><a href="#cb99-37" aria-hidden="true" tabindex="-1"></a><span class="fu">contour</span>(<span class="at">x =</span> griglia_sigma2, </span>
-<span id="cb99-38"><a href="#cb99-38" aria-hidden="true" tabindex="-1"></a>        <span class="at">y =</span> griglia_mu, </span>
-<span id="cb99-39"><a href="#cb99-39" aria-hidden="true" tabindex="-1"></a>        <span class="at">z =</span> log_lik_values,</span>
-<span id="cb99-40"><a href="#cb99-40" aria-hidden="true" tabindex="-1"></a>        <span class="at">levels =</span> levels,</span>
-<span id="cb99-41"><a href="#cb99-41" aria-hidden="true" tabindex="-1"></a>        <span class="at">xlab =</span> <span class="fu">expression</span>(sigma2),</span>
-<span id="cb99-42"><a href="#cb99-42" aria-hidden="true" tabindex="-1"></a>        <span class="at">ylab =</span> <span class="fu">expression</span>(mu),</span>
-<span id="cb99-43"><a href="#cb99-43" aria-hidden="true" tabindex="-1"></a>        <span class="at">col =</span> <span class="dv">4</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb99-14"><a href="#cb99-14" aria-hidden="true" tabindex="-1"></a>log_lik_values <span class="ot">&lt;-</span> <span class="fu">matrix</span>(log_lik_values, <span class="at">nrow =</span> <span class="fu">length</span>(griglia_mu), </span>
+<span id="cb99-15"><a href="#cb99-15" aria-hidden="true" tabindex="-1"></a>                         <span class="at">ncol =</span> <span class="fu">length</span>(griglia_sigma2), <span class="at">byrow =</span> F)</span>
+<span id="cb99-16"><a href="#cb99-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb99-17"><a href="#cb99-17" aria-hidden="true" tabindex="-1"></a><span class="co"># Per ottenere un grafico più leggibile,</span></span>
+<span id="cb99-18"><a href="#cb99-18" aria-hidden="true" tabindex="-1"></a><span class="co"># traspongo affinché abbia mu su asse y </span></span>
+<span id="cb99-19"><a href="#cb99-19" aria-hidden="true" tabindex="-1"></a><span class="co"># e sigma2 su asse x.</span></span>
+<span id="cb99-20"><a href="#cb99-20" aria-hidden="true" tabindex="-1"></a>log_lik_values <span class="ot">&lt;-</span> <span class="fu">t</span>(log_lik_values)</span>
+<span id="cb99-21"><a href="#cb99-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb99-22"><a href="#cb99-22" aria-hidden="true" tabindex="-1"></a><span class="fu">contour</span>(<span class="at">x =</span> griglia_sigma2, </span>
+<span id="cb99-23"><a href="#cb99-23" aria-hidden="true" tabindex="-1"></a>        <span class="at">y =</span> griglia_mu, </span>
+<span id="cb99-24"><a href="#cb99-24" aria-hidden="true" tabindex="-1"></a>        <span class="at">z =</span> log_lik_values,</span>
+<span id="cb99-25"><a href="#cb99-25" aria-hidden="true" tabindex="-1"></a>        <span class="at">nlevels =</span> <span class="dv">30</span>,</span>
+<span id="cb99-26"><a href="#cb99-26" aria-hidden="true" tabindex="-1"></a>        <span class="at">xlab =</span> <span class="fu">expression</span>(sigma2),</span>
+<span id="cb99-27"><a href="#cb99-27" aria-hidden="true" tabindex="-1"></a>        <span class="at">ylab =</span> <span class="fu">expression</span>(mu),</span>
+<span id="cb99-28"><a href="#cb99-28" aria-hidden="true" tabindex="-1"></a>        <span class="at">col =</span> <span class="dv">4</span>)</span>
+<span id="cb99-29"><a href="#cb99-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb99-30"><a href="#cb99-30" aria-hidden="true" tabindex="-1"></a><span class="co"># Noto che aumentando nlevels, si aggiungono curve nella parte iniziale del grafico,</span></span>
+<span id="cb99-31"><a href="#cb99-31" aria-hidden="true" tabindex="-1"></a><span class="co"># ma queste curve aggiuntive non mi aiutano a comprendere il grafico. </span></span>
+<span id="cb99-32"><a href="#cb99-32" aria-hidden="true" tabindex="-1"></a><span class="co"># Scelgo io dei livelli basandomi sui valori osservati di log_lik_values.</span></span>
+<span id="cb99-33"><a href="#cb99-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb99-34"><a href="#cb99-34" aria-hidden="true" tabindex="-1"></a>llog_unique <span class="ot">&lt;-</span> <span class="fu">unique</span>(log_lik_values[<span class="fu">which</span>(log_lik_values <span class="sc">!=</span> <span class="sc">-</span><span class="cn">Inf</span>)])</span>
+<span id="cb99-35"><a href="#cb99-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb99-36"><a href="#cb99-36" aria-hidden="true" tabindex="-1"></a>levels <span class="ot">&lt;-</span> <span class="fu">quantile</span>(llog_unique, <span class="at">probs=</span><span class="fu">c</span>(<span class="fu">seq</span>(.<span class="dv">05</span>,.<span class="dv">95</span>,.<span class="dv">05</span>),.<span class="dv">96</span>,.<span class="dv">97</span>,.<span class="dv">98</span>,.<span class="dv">99</span>))</span>
+<span id="cb99-37"><a href="#cb99-37" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb99-38"><a href="#cb99-38" aria-hidden="true" tabindex="-1"></a><span class="fu">contour</span>(<span class="at">x =</span> griglia_sigma2, </span>
+<span id="cb99-39"><a href="#cb99-39" aria-hidden="true" tabindex="-1"></a>        <span class="at">y =</span> griglia_mu, </span>
+<span id="cb99-40"><a href="#cb99-40" aria-hidden="true" tabindex="-1"></a>        <span class="at">z =</span> log_lik_values,</span>
+<span id="cb99-41"><a href="#cb99-41" aria-hidden="true" tabindex="-1"></a>        <span class="at">levels =</span> levels,</span>
+<span id="cb99-42"><a href="#cb99-42" aria-hidden="true" tabindex="-1"></a>        <span class="at">xlab =</span> <span class="fu">expression</span>(sigma2),</span>
+<span id="cb99-43"><a href="#cb99-43" aria-hidden="true" tabindex="-1"></a>        <span class="at">ylab =</span> <span class="fu">expression</span>(mu),</span>
+<span id="cb99-44"><a href="#cb99-44" aria-hidden="true" tabindex="-1"></a>        <span class="at">col =</span> <span class="dv">4</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 <ol start="4" type="1">
