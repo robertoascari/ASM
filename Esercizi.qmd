@@ -1758,7 +1758,7 @@ boxplot(stime_n)
 abline(h = 5, col = 2,)
 ```
 
-5. Come varia l'MSE (mean squared error) all'aumentare di n?
+5. Come varia l'MSE (mean squared error) all'aumentare di $n$?
 ```{r}
 #| echo: true
 #| eval: false
