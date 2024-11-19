@@ -6,6 +6,10 @@ editor: visual
 toc: true
 ---
 
+Il modo migliore (e forse l'unico) per padroneggiare un linguaggio di programmazione è quello di continuare ad esercitarsi. Si consiglia vivamente di [**non guardare le soluzioni**]{.text-primary} prima di aver provato a ragionare e sbattere la testa in autonomia sulla risoluzione degli esercizi. 
+
+Come sempre, non esiste un unico modo per ottenere lo stesso risultato: approcci differenti dalle soluzioni proposte possono comunque portare al risultato corretto!
+
 ## Parte 1: Introduzione ad R.
 
 ### Esercizio 1
@@ -39,7 +43,7 @@ curve((2*pi*sigma2)^(-1/2)*exp(-1/(2*sigma2)*(x-mu)^2), xlim=c(-5,5),
       ylab = "f(x)", xlab="x")
 ```
 
-3.  Si sovraimponga, al grafico precedente, una linea verticale in corrispondenza del punto $-3$ ed una linea orizzontale in corrispondenza del punto $f(-3)$.
+3.  Si sovraimponga al grafico precedente una linea verticale in corrispondenza del punto $-3$ ed una linea orizzontale in corrispondenza del punto $f(-3)$.
 
 ```{r}
 #| echo: true
@@ -85,7 +89,9 @@ n*(n+1)/2
 
 ### Esercizio 3
 
-Si crei un vettore `v` contenente i numeri interi da 1 a 250. 1. Si estraggano gli elementi in posizione pari e si calcoli la loro somma.
+Si crei un vettore `v` contenente i numeri interi da 1 a 250. 
+
+1. Si estraggano gli elementi in posizione pari e si calcoli la loro somma.
 
 ```{r}
 #| echo: true
@@ -97,7 +103,7 @@ v <- 1:250
 sum(v[2*(1:floor(length(v)/2))])
 ```
 
-2.  Si utilizzi il vettore `v` per determinare il numero di interi tra 1 e 250 che sono maggiori di 97 e che sono numeri dispari.
+2.  Si utilizzi il vettore `v` per determinare il numero di interi tra 1 e 250 che risultano maggiori di 97 e dispari.
 
 ```{r}
 #| echo: true
@@ -113,7 +119,6 @@ sum(booleani)
 ### Esercizio 4
 
 1.  Si scriva una funzione che, senza utilizzare la funzione `t()`, restituisca la trasposta di una matrice `mat` ricevuta come argomento.
-2.  Si costruisca una matrica a piacere con cui verificare che il codice prodotto produca lo stesso risultato della funzione `t()`.
 
 ```{r}
 #| echo: true
@@ -134,6 +139,17 @@ my_trasp <- function(mat){
   }
   return(trasp)
 }
+```
+
+2.  Si costruisca una matrice a piacere con cui verificare che il codice prodotto produca lo stesso risultato della funzione `t()`.
+
+```{r}
+#| echo: true
+#| eval: false
+#| code-fold: true
+#| code-summary: "Soluzione"
+
+A <- matrix(c(1,3,4,2,9,0), ncol=2)
 
 A
 my_trasp(A)
@@ -197,7 +213,6 @@ is.primo(13)
 ### Esercizio 7
 
 1.  Si scriva una funzione che riceva come argomenti un vettore `voti` ed un vettore `CFU`. La funzione deve restituire una lista, avente come primo elemento la media aritmetica dei voti e come secondo elemento la media aritmetica ponderata degli stessi.
-2.  Si utilizzi la funzione appena scritta per calcolare le medie dei propri voti, verificando la correttezza dei risultati tramite il proprio libretto online.
 
 ```{r}
 #| echo: true
@@ -213,10 +228,22 @@ medie <- function(voti, CFU){
   return(output)
 }
 
+```
+
+2.  Si utilizzi la funzione appena scritta per calcolare le medie dei propri voti, verificando la correttezza dei risultati tramite il proprio libretto online.
+
+```{r}
+#| echo: true
+#| eval: false
+#| code-fold: true
+#| code-summary: "Soluzione"
+
+# Esempio 1:
 miei_voti <- rep(18, 7)
 miei_CFU <- c(6, 9, 9, 6, 9, 6, 6)
 medie(miei_voti, miei_CFU)
 
+# Esempio 2:
 miei_voti2 <- c(27, 30, 18, 25, 30, 23, 30)
 miei_CFU2 <- c(6, 9, 9, 6, 9, 6, 6)
 medie(miei_voti2, miei_CFU2)
@@ -224,7 +251,9 @@ medie(miei_voti2, miei_CFU2)
 
 ### Esercizio 8
 
-Si consideri un vettore numerico a piacere. 1. Si scriva una funzione che restituisca il vettore standardizzato.
+Si consideri un vettore numerico a piacere. 
+
+1. Si scriva una funzione che restituisca il vettore standardizzato.
 
 ```{r}
 #| echo: true
@@ -242,7 +271,7 @@ s <- stand(x)
 c(mean(s), sd(s))
 ```
 
-2.  Si scriva una funzione che normalizzi il vettore (cioè scalare il vettore in modo tale che i suoi elementi assumano valori in $[0,1]$).
+2.  Si scriva una funzione che normalizzi il vettore (cioè che scali il vettore in modo tale che i suoi elementi assumano valori in $[0,1]$).
 
 ```{r}
 #| echo: true
@@ -288,7 +317,7 @@ pitag(5,4)
 
 Il seguente esercizio è estratto da un tema d'esame del prof. Rigon.
 
-I numeri di Stirling del secondo tipo $S(n,k)$ rappresentano il numero di possibili partizioni di $n$ oggetti formate da $k$ elementi. Si può dimostrare che $\displaystyle S(n,k) = \frac{1}{k!} \sum_{j=0}^k (-1)^{k-j} {k \choose j} j^n,$ per $k = 1, \dots, n$. Invece, il numero di Bell $B(n)$ rappresenta il numero di possibili partizioni di un insieme di $n$ elementi, indipendentemente dal numero di termini: $\displaystyle B(n) = \sum_{k=1}^n S(n,k)$.
+I numeri di Stirling del secondo tipo $S(n,k)$ rappresentano il numero di possibili partizioni di $n$ oggetti formate da $k$ elementi. Si può dimostrare che $$\displaystyle S(n,k) = \frac{1}{k!} \sum_{j=0}^k (-1)^{k-j} {k \choose j} j^n,$$ per $k = 1, \dots, n$. Invece, il numero di Bell $B(n)$ rappresenta il numero di possibili partizioni di un insieme di $n$ elementi, indipendentemente dal numero di termini: $$\displaystyle B(n) = \sum_{k=1}^n S(n,k).$$
 
 1.  Si scrivano le funzioni `my_stirling(n,k)` e `my_bell(n)` che calcolano, rispettivamente, $S(n,k)$ e $B(n)$.
 
@@ -338,9 +367,9 @@ my_bell(10)
 
 ### Esercizio 1
 
-Si considerino i dati presenti nel dataset `Prestige` del pacchetto `carData`, riguardanti un certo insieme di professioni, raccolti nel 1971 in Canada.
+Si considerino i dati presenti nel dataset `Prestige` del pacchetto `carData`, riguardanti un certo insieme di professioni. I dati sono stati raccolti nel 1971 in Canada.
 
-1.  Quante professioni sono state studiate? Quante variabili sono state raccolte?
+1.  Quante professioni sono state analizzate? Quante variabili sono state raccolte?
 
 ```{r}
 #| echo: true
@@ -454,18 +483,18 @@ table(Prestige2$women2)/nrow(Prestige2)
 
 ### Esercizio 2
 
-Si carichino in `R` i dati contenuti nel file `Pokemon.csv`, scaricabili al seguente [link](https://robertoascari.github.io/data/Pokemon.csv). Il dataset contiene dati circa 800 Pokémon e le seguetni variabili:
+Si carichino in `R` i dati contenuti nel file `Pokemon.csv`, scaricabili al seguente [link](https://robertoascari.github.io/data/Pokemon.csv). Il dataset contiene dati relativi a 800 Pokémon e le seguetni variabili:
 
--   `ID`: l'ID del Pokémon;
+-   `ID`: un numero identificativo del Pokémon;
 -   `Name`: il nome del Pokémon;
 -   `Type1` e `Type2`: il tipo primario e quello secondario del Pokémon;
--   `Total`:la somma delle statistiche del Pokémon;
--   `HP`: i punti vista (Health Points) del Pokémon;
+-   `Total`: la somma delle statistiche del Pokémon;
+-   `HP`: i Punti Vita (Health Points) del Pokémon;
 -   `Attack` e `SpAtk`: le statistiche attacco e attacco speciale del Pokémon;
 -   `Defense` e `sPDef`: le statistiche difesa e difesa speciale del Pokémon;
 -   `Speed`: la statistica velocità del Pokémon;
--   `Generation`: la generazione del Pokémon;
--   `Legendary`: stringa facente riferimento al fatto se il Pokémon è leggendario (True) o no (False).
+-   `Generation`: la [generazione](https://it.wikipedia.org/wiki/Pok%C3%A9mon_(serie_di_videogiochi) del Pokémon;
+-   `Legendary`: stringa facente riferimento al fatto che il Pokémon sia leggendario (True) o no (False).
 
 ```{r}
 #| echo: true
@@ -477,7 +506,7 @@ pkmn <- read.table("Pokemon.csv", header = TRUE, sep = ",",
                    stringsAsFactors = FALSE)
 ```
 
-1.  Si ispezioni la variabile `Legendary`. Come mai non è di classe `logi`, pur avendo modalità associabili a "Vero" e "Falso"? Si sovrascriva la variabile con una sua versione `logi`.
+1.  Si ispezioni la variabile `Legendary`. Come mai non è di classe `logical`, pur avendo modalità associabili a "Vero" e "Falso"? Si sovrascriva la variabile con una sua versione `logical`.
 
 ```{r}
 #| echo: true
@@ -519,7 +548,7 @@ righe_mega2 <- grep("Mega ", pkmn$Name); righe_mega2
 pkmn <- pkmn[-righe_mega,]
 ```
 
-2.  Si crei un dataset `pkmn_sub` contenente i dati dei Pokémon appartenenti alla prima o alla seconda generazione. D'ora in poi, si faccia riferimento a questo `data.frame`.
+3.  Si crei un dataset `pkmn_sub` contenente i dati dei Pokémon appartenenti alla prima o alla seconda generazione. D'ora in poi, si faccia riferimento a questo `data.frame`.
 
 ```{r}
 #| echo: true
@@ -530,7 +559,7 @@ pkmn <- pkmn[-righe_mega,]
 pkmn_sub <- subset(pkmn, Generation == 1 | Generation == 2)
 ```
 
-3.  Si codifichino in `factor` le variabili che si ritiene sensato lo siano.
+4.  Quali variabili dovrebbero essere `factor`? Le si converta.
 
 ```{r}
 #| echo: true
@@ -543,7 +572,7 @@ pkmn_sub$Type2 <- as.factor(pkmn_sub$Type2)
 pkmn_sub$Generation <- as.factor(pkmn_sub$Generation)
 ```
 
-4.  Come si distribuiscono i Pokémon leggendari tra le due generazioni considerate? Si misuri il grado di connessione con un opportuno indice.
+5.  Come si distribuiscono i Pokémon leggendari tra le due generazioni considerate? Si misuri il grado di connessione con un opportuno indice normalizzato.
 
 ```{r}
 #| echo: true
@@ -578,7 +607,7 @@ chi2_max <- n*min(n_gen-1, n_leg - 1)
 chi2_Norm <- chi2/chi2_max; chi2_Norm
 ```
 
-5.  Si calcoli, tramite la sua definizione, il valore della covarianza tra `Attack` e `Defense`. Si confronti il risultato ottenuto con quello fornito dalla funzione `cov()`.
+6.  Si calcoli, tramite la sua definizione, il valore della covarianza tra `Attack` e `Defense`. Si confronti il risultato ottenuto con quello fornito dalla funzione `cov()`.
 
 ```{r}
 #| echo: true
@@ -593,7 +622,7 @@ cov(pkmn_sub$Attack, pkmn_sub$Defense)
 cov(pkmn_sub$Attack, pkmn_sub$Defense)*(n-1)/n
 ```
 
-6.  Si ottengano i boxplot relativi alla distribuzione di `Attack` condizionata per `Type1`.
+7.  Si ottengano i boxplot relativi alla distribuzione di `Attack` condizionata per `Type1`.
 
 ```{r}
 #| echo: true
@@ -604,7 +633,7 @@ cov(pkmn_sub$Attack, pkmn_sub$Defense)*(n-1)/n
 boxplot(pkmn_sub$Attack ~ pkmn_sub$Type1, xlab = "Tipo1", ylab = "Attacco")
 ```
 
-7.  Si proponga un modo per ottenere le medie condizionate di `Attack` entro ogni modalità di `Type1`.
+8.  Si proponga un metodo per ottenere le medie condizionate di `Attack` entro ogni modalità di `Type1`.
 
 ```{r}
 #| echo: true
@@ -632,7 +661,7 @@ medie_condiz
 medie_condiz_2
 ```
 
-8.  Si costruisca un `data.frame` contenente esclusivamente le variabili quantitative di `pkmn_sub`. Si utilizzi questo `data.frame` per costruire la matrice di correlazione (arrotondata alla terza cifra decimale) e la matrice di diagrammi a dispersione. Si colorino i punti dei diagrammi a dispersione sulla base del valore di `Legendary`.
+9.  Si costruisca un `data.frame` contenente esclusivamente le variabili quantitative di `pkmn_sub`. Si utilizzi questo `data.frame` per costruire la matrice di correlazione (arrotondata alla terza cifra decimale) e la matrice di diagrammi a dispersione. Si colorino i punti dei diagrammi a dispersione sulla base del valore di `Legendary`.
 
 ```{r}
 #| echo: true
@@ -649,7 +678,7 @@ plot(pkmn_quantit, pch = 20, col = as.factor(pkmn_sub$Legendary))
 
 ### Esercizio 3
 
-Si consideri il dataset `flights` del pacchetto `nycflights13`, relativo a voli aerei partiti da aeroporti di New York nel 2013. Una volta caricato il dataset, si guardi la relativa pagina di `help` per comprendere le variabili presenti.
+Si consideri il dataset `flights` del pacchetto `nycflights13`, relativo a voli aerei partiti da aeroporti di New York nel 2013. Una volta caricato il dataset, si legga la relativa pagina di `help` per comprendere le variabili presenti.
 
 L'oggetto `flights` è di classe `tibble`, una classe proposta negli ultimi anni per gestire dataset in modo differente rispetto ai classici `data.frame`. Possiamo definire i `tibble` come una sottoclasse dei `data.frame` (quindi tutti i `tibble` sono `data.frame`, ma non tutti i `data.frame` sono `tibble`). Si faccia riferimento a questo [link](https://tibble.tidyverse.org/) per maggiori informazioni.
 
@@ -690,7 +719,7 @@ tt <- table(flights$origin); tt
 names(tt)[which.max(tt)]
 ```
 
-3.  Si vuole indagare l'eterogeneità della variabile `month`, per valutare quindi se le partenze possono ritenersi equiripartite nei mesi dell'anno. Si calcolino quindi l'indice di Gini normalizzato e l'indice di Shannon normalizzato.
+3.  Si vuole indagare l'eterogeneità della variabile `month`, per valutare se le partenze possono ritenersi equiripartite nei mesi dell'anno. Si calcolino quindi l'indice di Gini normalizzato e l'indice di Shannon normalizzato.
 
 ```{r}
 #| echo: true
@@ -734,7 +763,7 @@ table(flights$arrival)
 flights$total_delay <- flights$dep_delay + flights$arr_delay
 ```
 
-6.  Si calcoli il ritardo totale medio per compagnia aerea (in inglese carrier). Quale compagnia sembra essere la più efficiente, sulla base di questa piccola analisi?
+6.  Si calcoli il ritardo totale medio per compagnia aerea (in inglese carrier). Quale compagnia sembra essere la più efficiente, sulla base di questa semplice analisi?
 
 ```{r}
 #| echo: true
@@ -778,7 +807,7 @@ tt_route <- table(flights$route)
 names(tt_route)[which.max(tt_route)]
 ```
 
-8.  In future analisi legate al turismo, si sarà interessati a studiare i soli voli decollati nel periodo estivo. A tal fine, si costruisca un dataset `flights_summer` riguardanti i voli partiti dal 1 giugno al 31 agosto.
+8.  In future analisi legate al turismo, si vorrà studiare i soli voli decollati nel periodo estivo. A tal fine, si costruisca un dataset `flights_summer` riguardanti i voli partiti tra il 1 giugno ed il 31 agosto.
 
 ```{r}
 #| echo: true
@@ -865,7 +894,7 @@ plot(Olympics$TotalMedals ~ Olympics$GDP, pch=20, ylab="Medaglie totali", xlab="
 par(mfrow=c(1,1))
 ```
 
-6.  Creare un `data.frame` denominato `medals_composition` che riporti solo i paesi che hanno conquistato almeno una medaglia e la [composizione](https://en.wikipedia.org/wiki/Compositional_data) delle medaglie vinte da ciascun paese, specificata in base alle diverse tipologie di medaglie. Più precisamente, si deve costruire un dataset con tre variabili contenenti, rispettivamente, la **proporzione** di medaglie d'oro, d'argento e di bronzo vinte da ciascun paese.
+6.  Creare un `data.frame` denominato `medals_composition` che faccia riferimenti ai soli paesi che hanno conquistato almeno una medaglia e che contenga la [composizione](https://en.wikipedia.org/wiki/Compositional_data) delle medaglie vinte da ciascun paese, specificata in base alle diverse tipologie di medaglie. Più precisamente, si deve costruire un dataset con tre variabili contenenti, rispettivamente, la **proporzione** di medaglie d'oro, d'argento e di bronzo vinte da ciascun paese.
 
 ```{r}
 #| echo: true
@@ -881,7 +910,7 @@ medals_composition <-
 medals_composition <- t(apply(medals_composition, 1, function(x) x/sum(x)))
 ```
 
-7.  Una caratteristica dei dati composizionali è che ogni unità statistica è associata ad un vettore con elementi positivi i quali sommano a 1. Si verifichino queste due caratteristiche in merito al dataset `medals_composition`.
+7.  Una caratteristica dei dati composizionali è che ogni unità statistica è associata ad un vettore con elementi positivi, i quali sommano a 1. Si verifichino queste due caratteristiche in merito al dataset `medals_composition`.
 
 ```{r}
 #| echo: true
@@ -911,7 +940,7 @@ rowSums(Sigma)
 
 ### Esercizio 5
 
-Si importi il dataset \texttt{animals.csv}, scaricabile al seguente [link](https://robertoascari.github.io/data/animals.csv), contenente informazioni su 38 specie di animali. In particolare si hanno le seguenti variabili:
+Si importi il dataset `animals.csv`, scaricabile al seguente [link](https://robertoascari.github.io/data/animals.csv), contenente informazioni su 38 specie di animali. In particolare, il dataset contiene le seguenti variabili:
 
 -   `specie_tr`: specie dell'animale;
 -   `peso_corpo`: peso del corpo, in Kg;
@@ -919,12 +948,12 @@ Si importi il dataset \texttt{animals.csv}, scaricabile al seguente [link](https
 -   `leggero`: numero di ore di sonno leggero (ore al giorno);
 -   `profondo`: numero di ore di sonno profondo (ore al giorno);
 -   `anni_vita`: speranza di vita alla nascita, in anni;
--   `gestazione`: tempo di gestazione, in giorni
+-   `gestazione`: tempo di gestazione, in giorni;
 -   `preda`: indice qualitativo di predazione (0 = *raramente è una preda*, 1 = *è molto spesso una preda*);
 -   `esposto`: indice qualitativo di esposizione durante il sonno (0 = *poco esposto*, 1 = *molto esposto*);
 -   `pericolo`: indice qualitativo di pericolo (0 = *gli altri animali non rappresentano un pericolo per lui*, 1 = *gli altri animali rappresentano un grave pericolo per lui*).
 
-1 - Convertire le variabili qualitative in factor.
+1. Convertire le variabili qualitative in factor.
 
 ```{r}
 #| echo: true
@@ -941,7 +970,7 @@ animals$esposto <- as.factor(animals$esposto)
 animals$pericolo <- as.factor(animals$pericolo)
 ```
 
-2.  Si calcoli una nuova variabile `sonno`, rappresentante il numero totale di ore di sonno giornaliere.
+2.  Si aggiunga al dataset la nuova variabile `sonno`, rappresentante il numero totale di ore di sonno giornaliere.
 
 ```{r}
 #| echo: true
@@ -1000,7 +1029,7 @@ boxplot(animals$sonno ~ animals$preda, pch = 20,
         main = "Sonno - Preda", xlab = "Preda", ylab = "Sonno")
 ```
 
-7.  Si ritiene possibile proporre un grafico per studiare la relazione tra `sonno` e `peso_cerv`, tenendo conto anche della presenza della variabile `preda`? Se si, si riporti tale grafico e lo si commenti. Altrimenti si motivi il perché non lo si ritiene possibile.
+7.  Si ritiene possibile costruire un grafico per studiare la relazione tra `sonno` e `peso_cerv`, tenendo conto anche della presenza della variabile `preda`? Se si, si riporti tale grafico e lo si commenti. Altrimenti, si motivi il perché non lo si ritiene possibile.
 
 ```{r}
 #| echo: true
@@ -1060,7 +1089,7 @@ curve(pchisq(x, g), col = 2, add = T)
 par(mfrow=c(1,1))
 ```
 
-3.  Si ricorda che se $X_1, \dots, X_g$ sono i.i.d. e $X_j \sim N(0,1)$, allora $\displaystyle \sum_{j=1}^g X_j \sim \chi^2_g$. Si uti questo risultato teorico per ottenere un campione di `8000` valori da una $\chi^2_10$ sfruttando unicamente la funzione `rnorm()`.
+3.  Si ricorda che se $X_1, \dots, X_g$ sono i.i.d. e $X_j \sim N(0,1)$, allora $\displaystyle \sum_{j=1}^g X_j^2 \sim \chi^2_g$. Si usi questo risultato teorico per ottenere un campione di `8000` valori da una $\chi^2_{10}$ sfruttando unicamente la funzione `rnorm()`.
 
 ```{r}
 #| echo: true
@@ -1094,7 +1123,7 @@ curve(dchisq(x, g), add = T, col = "red")
 par(mfrow=c(1,1))
 ```
 
-4.  Nell'inferenza è spesso necessario ricavare ricavare dei quantili di una $\chi^2_g$. Si utilizzi R per ottenere il quantile di ordine 0.95 di una $\chi^2_{10}$ in due modi differenti, uno esatto ed uno approssimato.
+4.  Nell'inferenza è spesso necessario ricavare dei quantili di una $\chi^2_g$. Si utilizzi `R` per ottenere il quantile di ordine 0.95 di una $\chi^2_{10}$ in due modi differenti, uno esatto ed uno approssimato.
 
 ```{r}
 #| echo: true
@@ -1109,9 +1138,10 @@ quantile(chi2_10_primo, probs = .95)
 
 ### Esercizio 2 (difficile):
 
-In una foresta incantata, alla fine del giorno 0 vengono piantati 6 semi magici. Dal giorno 1 in avanti, alla fine di ogni giornata, ogni seme ha una probabilità del 50% di trasformarsi in un albero. Una volta trasformato, esso resterà un albero per sempre. Si implementi una simulazione per approssimare il numero atteso (medio) di giorni necessari affinchè tutti i semi diventino degli alberi.
+In una foresta incantata, alla fine del giorno 0 vengono piantati 6 semi magici. Dal giorno 1 in avanti, alla fine di ogni giornata, ogni seme ha una probabilità pari a 0.5 di trasformarsi in un albero. Una volta trasformato, esso resterà un albero per sempre. \
+Si implementi una simulazione per approssimare il numero atteso (medio) di giorni necessari affinchè tutti i semi diventino degli alberi.
 
-La fonte dell'esercizio e la sua risoluzione analitica, possono essere trovati in [questo video](https://www.youtube.com/watch?v=RY7YKSw1t_M&t=669s).
+La fonte dell'esercizio e la sua risoluzione analitica possono essere trovati in [questo video](https://www.youtube.com/watch?v=RY7YKSw1t_M&t=669s).
 
 ```{r}
 #| echo: true
@@ -1144,9 +1174,9 @@ mean(replicate(nsim, max(rgeom(6,0.5))+1))
 
 ### Esercizio 3
 
-Siano $p_1(x)$ e $p_2(x)$ due funzioni di probabilità associate a due variabili casuali discrete $X_1$ e $X_2$ caratterizzate sullo stesso supporto $\mathcal{S} = \{x_1, \dots, x_k\}$. La divergenza dii Kullback-Leibler di $X_1$ da $X_2$ è definita come $KL(p_1 || p_2) = \displaystyle \sum_{j=1}^k p_1(x_j) \log \frac{p_1(x_j)}{p_2(x_j)}$
+Siano $p_1(x)$ e $p_2(x)$ due funzioni di probabilità associate a due variabili casuali discrete $X_1$ e $X_2$ caratterizzate sullo stesso supporto $\mathcal{S} = \{x_1, \dots, x_k\}$. La divergenza dii Kullback-Leibler di $X_1$ da $X_2$ è definita come $KL(p_1 || p_2) = \displaystyle \sum_{j=1}^k p_1(x_j) \log \left(\frac{p_1(x_j)}{p_2(x_j)}\right)$
 
-1.  Si calcoli il valore della divergenza di Kullback-Leibler di $X_1$ da $X_2$ considerando $X_1$ e $X_2$ distribuite come Binomiali di parametro $n = 20$ e probabilità di successo $\theta_1 = 0.2$ e $\theta_2 = 0.1$.
+1.  Si calcoli il valore della divergenza di Kullback-Leibler di $X_1$ da $X_2$ considerando $X_1$ e $X_2$ distribuite come Binomiali di parametro $n = 20$ e probabilità di successo rispettivamente $\theta_1 = 0.2$ e $\theta_2 = 0.1$.
 
 ```{r}
 #| echo: true
@@ -1185,7 +1215,7 @@ KL_x2_da_x1 <- sum(p2*log(p2/p1))
 KL_x1_da_x2; KL_x2_da_x1
 ```
 
-3.  Si calcoli la stessa quantità facendo variare $\theta_2 \in \{0.05, 0.1, 0.2, 0.3, 0.5, 0.7, 0.9\}$. Da questi risultati è possibile intuire cosa misura questo indice?
+3.  Si calcoli la stessa quantità del punto 1 facendo variare $\theta_2 \in \{0.05, 0.1, 0.2, 0.3, 0.5, 0.7, 0.9\}$. Da questi risultati è possibile intuire quale aspetto viene misurato da questo indice?
 
 ```{r}
 #| echo: true
@@ -1337,7 +1367,7 @@ plot(table(esiti)/B, main = "Distribuzione di probabilità di X", ylab="Prob. (a
 
 La variabile casuale Weibull, molto utilizzata nella teoria dei valori estremi, è caratterizzata dalla seguente funzione di densità:
 
-$\displaystyle f(y; \alpha, \beta) = \alpha \beta y^{\beta - 1} e^{-\alpha y^\beta}$, se $y > 0$, dove $\alpha$ e $\beta$ sono due parametri positivi.
+$$ f(y; \alpha, \beta) = \alpha \beta y^{\beta - 1} e^{-\alpha y^\beta},$$ se $y > 0$, dove $\alpha$ e $\beta$ sono due parametri positivi.
 
 1.  Si scriva una funzione in `R` chiamata `my_dweibull` che calcoli la funzione di densità di una Weibull.
 
@@ -1441,7 +1471,8 @@ par(mfrow=c(1,1))
 
 Si consideri una variabile casuale discreta $X$ con supporto $\mathcal{S}_X = \{2, 4, 6, 8, 10, 12\}$ e funzione di probabilità: $\displaystyle p(x) = \frac{1}{441} \left(\frac{x}{2} \right)^3, x \in \mathcal{S}_X$.
 
-1.  Si propongano due metodi per estrarre `n` valori pseudo casuali da $X$.
+1. Si verifichi che la funzione $p(x)$ è una funzione di probabilità.
+
 
 ```{r}
 #| echo: true
@@ -1451,6 +1482,17 @@ Si consideri una variabile casuale discreta $X$ con supporto $\mathcal{S}_X = \{
 
 S_X <- 2*(1:6)
 p_x <- (1/441)*(S_X/2)^3
+
+sum(p_x)
+```
+
+2.  Si propongano due metodi per estrarre `n` valori pseudo casuali da $X$.
+
+```{r}
+#| echo: true
+#| eval: false
+#| code-fold: true
+#| code-summary: "Soluzione"
 
 n <- 8000
 
@@ -1466,7 +1508,7 @@ sample1 <- S_X[as.numeric(cut(u, aa))]
 sample2 <- sample(S_X, n, replace = T, prob = p_x)
 ```
 
-2.  Si proponga un modo per verificare se i metodi proposti sembrano generare valori proprio dalla distribuzione desiderata.
+3.  Si proponga un modo per verificare se i metodi proposti sembrano generare valori proprio dalla distribuzione desiderata.
 
 ```{r}
 #| echo: true
@@ -1479,7 +1521,7 @@ round(cbind(p_x,
             table(sample2)/n), 4)
 ```
 
-3.  Si usi uno dei campioni ottenuti per approssimare il valore atteso, il momento secondo e la varianza di $X$.
+4.  Si usi uno dei campioni ottenuti per approssimare il valore atteso, il momento secondo e la varianza di $X$.
 
 ```{r}
 #| echo: true
@@ -1512,7 +1554,7 @@ set.seed(678)
 y <- rnorm(n, mu, sqrt(sigma2))
 ```
 
-1.  Si considerino $\mu$ e $\sigma^2$ entrambi ignoti. Si fornisca una stima per entrambi i parametri. Qual è l'errore commesso dai due stimatori, in questo caso?
+1.  Si considerino $\mu$ e $\sigma^2$ entrambi ignoti e si fornisca una stima per entrambi i parametri. Qual è l'errore commesso dai due stimatori, in questo caso?
 
 ```{r}
 #| echo: true
@@ -1527,7 +1569,7 @@ mu - mu_hat
 sigma2 - sigma2_hat
 ```
 
-2.  Si vuole sottoporre a verifica $H_0: \mu = 5$ vs. $H_1: \mu \neq 5$ ad un livello $\alpha = 0.05$. Si determini la conclusione inferenziale ricorrendo alla regione critica.
+2.  Si vuole sottoporre a verifica $H_0: \mu = 5$ vs. $H_1: \mu \neq 5$ ad un livello $\alpha = 0.05$. Si determini la conclusione inferenziale, ricorrendo alla regione critica.
 
 ```{r}
 #| echo: true
@@ -1561,7 +1603,7 @@ ifelse(p_value < alpha, "Rifiuto H0", "Non rifiuto H0")
 
 ### Esercizio 8
 
-Una distribuzione (multivariata) per [dati composizionali](https://en.wikipedia.org/wiki/Compositional_data) è la distribuzione [Dirichlet](https://en.wikipedia.org/wiki/Dirichlet_distribution). Siano $\displaystyle \textbf{x} = (x_1, \dots, x_D)^\intercal \in \mathcal{S}^D = \{ \textbf{x} = (x_1, \dots, x_D)^\intercal : x_d > 0, \sum_{d=1}^D x_d = 1\}$, $\boldsymbol{\alpha} = (\alpha_1, \dots, \alpha_D)^\intercal$ un vettore $D$-dimensionale con elementi positivi e $\displaystyle \alpha^+ = \sum_{d=1}^D \alpha_d$; la funzione di densità congiunta della Dirichlet è data da $$\displaystyle f(\textbf{x}; \boldsymbol{\alpha}) = \frac{\Gamma(\alpha^+)}{\prod_{d=1}^D \Gamma(\alpha_d)} \prod_{d=1}^D x_d^{\alpha_d - 1},$$ se $\textbf{x}\in\mathcal{S}^D$ e 0 altrimenti.
+Una distribuzione (multivariata) per [dati composizionali](https://en.wikipedia.org/wiki/Compositional_data) è la distribuzione [Dirichlet](https://en.wikipedia.org/wiki/Dirichlet_distribution). Siano $\displaystyle \textbf{x} = (x_1, \dots, x_D)^\intercal \in \mathcal{S}^D = \{ \textbf{x} = (x_1, \dots, x_D)^\intercal : x_d > 0, \sum_{d=1}^D x_d = 1\}$, $\boldsymbol{\alpha} = (\alpha_1, \dots, \alpha_D)^\intercal$ un vettore $D$-dimensionale con elementi positivi e $\displaystyle \alpha^+ = \sum_{d=1}^D \alpha_d$; allora la funzione di densità congiunta della Dirichlet è data da $$\displaystyle f(\textbf{x}; \boldsymbol{\alpha}) = \frac{\Gamma(\alpha^+)}{\prod_{d=1}^D \Gamma(\alpha_d)} \prod_{d=1}^D x_d^{\alpha_d - 1},$$ se $\textbf{x}\in\mathcal{S}^D$ e 0 altrimenti.
 
 1.  Si implementi una funzione `ddir` che permetta di calcolare la densità congiunta di un vettore composizionale $\textbf{x}$ e la si valuti nel punto $\textbf{x} = (.2, .1, .4, .05, .25)^\intercal$ con $\boldsymbol{\alpha} = (4, 1, 10, 5, 2)^\intercal$.
 
@@ -1585,7 +1627,7 @@ alpha <- c(4, 1, 10, 5, 2)
 ddir(x, alpha)
 ```
 
-2.  Siano $Y_1, \dots Y_D$ delle variabili casuali indipendenti tali che $Y_d \sim Gamma(\alpha_d, 1)$. Definendo $\displaystyle Y^+ = \sum_{d=1}^D Y_d$, si può dimostrare che $\displaystyle (Y_1 / Y^+, \dots, Y_D/Y^+)^\intercal \sim Dirichlet(\boldsymbol{\alpha})$. Si utilizzi questa relazione per costruire un vettore `sample_dir` di valori pseudo-casuali da una Dirichlet con $D = 5$ e $\boldsymbol{\alpha} = (4, 2, 10, 5, 3)^\intercal$.
+2.  Siano $Y_1, \dots Y_D$ delle variabili casuali indipendenti tali che $Y_d \sim Gamma(\alpha_d, 1)$. Definendo $\displaystyle Y^+ = \sum_{d=1}^D Y_d$, si può dimostrare che $\displaystyle (Y_1 / Y^+, \dots, Y_D/Y^+)^\intercal \sim Dirichlet(\boldsymbol{\alpha})$. Si utilizzi questa relazione per costruire un oggetto (vettore? matrice? lista? altro?) `sample_dir` contenente ` B = 5000` dati composizionali pseudo-casuali da una Dirichlet con $D = 5$ e $\boldsymbol{\alpha} = (4, 2, 10, 5, 3)^\intercal$.
 
 ```{r}
 #| echo: true
@@ -1623,6 +1665,7 @@ curve(pbeta(x, alpha[3], sum(alpha) - alpha[3]), col = "red", add = T)
 par(mfrow=c(1, 1))
 ```
 
+
 ### Esercizio 9
 
 Si supponga di essere interessato ad approssimare, mediante il metodo Monte Carlo, il valore del seguente integrale: $$\int_{-\infty}^{+\infty} \frac{f(x)}{g(x)} \phi(x) dx,$$ dove $\phi(x)$ rappresenta la funzione di densità di una Normale standard.
@@ -1653,7 +1696,7 @@ my_integral_2 <- function(B = 5000) {
 }
 ```
 
-3.  Si considerino le funzioni $f(x) = \sqrt{|x|}$ e $g(x) = x^2 + 1$. Si calcoli il valore dell'integrale con gli approcci del punto 1 e punto 2 li si confronti con la funzione `integrate`.
+3.  Si considerino le funzioni $f(x) = \sqrt{|x|}$ e $g(x) = x^2 + 1$. Si calcoli il valore dell'integrale con gli approcci del punto 1 e punto 2 e li si confronti con il risultato della funzione `integrate`.
 
 ```{r}
 #| echo: true
@@ -1682,13 +1725,70 @@ my_integral_2()
 integrate(function(x) sqrt(abs(x))/(x^2+1) * dnorm(x), lower=-Inf, upper=Inf)
 ```
 
+### Esercizio 10
+
+
+Si consideri la variabile casuale continua [Half-Normal](https://en.wikipedia.org/wiki/Half-normal_distribution), caratterizzata dalla seguente funzione di densità:
+
+$$f(y) = \sqrt{\frac{2}{\pi}} \exp\lbrace-y^2/2\rbrace,$$ se y > 0.
+
+
+Questa variabile casuale può essere vista come trasformazione di una Normale Standard: se $Z \sim N(0,1)$, allora $Y = |Z| \sim$ Half-Normal.
+
+1. Scrivere una funzione in R chiamata `dhalf` che calcoli la funzione di densità di una Half-Normal.
+
+```{r}
+#| echo: true
+#| eval: false
+#| code-fold: true
+#| code-summary: "Soluzione"
+
+dhalf <- function(y) sqrt(2/pi)*exp(-y^2/2)
+```
+
+
+2. Si sviluppi una strategia che permetta di generare valori pseudo-casuali da $Y$.
+
+```{r}
+#| echo: true
+#| eval: false
+#| code-fold: true
+#| code-summary: "Soluzione"
+
+B <- 10000
+
+y <- abs(rnorm(B))
+```
+3. Confrontare l'istogramma di 10000 valori pseudo-casuali generati da una Half-Normal con la relativa funzione di densità.
+
+```{r}
+#| echo: true
+#| eval: false
+#| code-fold: true
+#| code-summary: "Soluzione"
+
+hist(y, prob = T, main = "Istogramma Half-Normal")
+curve(dhalf(y = x), col = 2, add = T)
+```
+
+4. Si approssimi il valore atteso di una Half-Normal.
+
+```{r}
+#| echo: true
+#| eval: false
+#| code-fold: true
+#| code-summary: "Soluzione"
+
+mean(y)
+```
+
 ## Parte 4: Inferenza
 
 ### Esercizio 1
 
 Sia $Y_1, \dots, Y_n$ un campione casuale semplice estratto da una Esponenziale di media 5.
 
-1.  Si ottengano 4 realizzazioni del campione di ampiezza $n \in \{10, 50, 100, 1000\}$, salvandoli dentro una lista.
+1.  Si ottengano 4 realizzazioni campionarie di ampiezza $n \in \{10, 50, 100, 1000\}$, salvandoli all'interno di una lista.
 
 ```{r}
 #| echo: true
@@ -1721,7 +1821,7 @@ for(i in 1:4){
 stime - 5
 ```
 
-3.  Si implementi uno studio di simulazione per verificare empiricalmente la convergenza in distribuzione dello stimatore MV. Per ciascuna delle 4 numerosità campionarie, si considerino 10000 repliche.
+3.  Si implementi uno studio di simulazione per verificare empiricalmente la convergenza in distribuzione dello stimatore MV. Per ciascuna delle 4 numerosità campionarie considerate, si considerino 10000 repliche.
 
 ```{r}
 #| echo: true
@@ -1756,7 +1856,7 @@ par(mfrow=c(1,1))
 #| code-summary: "Soluzione"
 
 boxplot(stime_n)
-abline(h = 5, col = 2,)
+abline(h = 5, col = 2)
 ```
 
 5.  Come varia l'MSE (mean squared error) all'aumentare di $n$?
@@ -1791,7 +1891,7 @@ set.seed(42)
 y <- rnorm(n, mu, sqrt(sigma2))
 ```
 
-1.  Si consideri $\sigma^2$ noto e pari al vero valore scelto. Si implementi la funzione `loglik_mu(mu, y)` che permetta di calcolara la funzione di log-verosimiglianza. Si rappresenti graficamente tale funzione in un opportuno intervallo.
+1.  Si consideri $\sigma^2$ **noto e pari al vero valore scelto**. Si implementi la funzione `loglik_mu(mu, y)` che permetta di calcolare la funzione di log-verosimiglianza. Si rappresenti graficamente tale funzione in un opportuno intervallo.
 
 ```{r}
 #| echo: true
@@ -1822,7 +1922,7 @@ MV_mu$par
 mean(y)
 ```
 
-3.  Adesso si consideri ignoto anche il parametro $\sigma^2$. Si implementi la funzione `loglik_mu_sigma2(mu, y)` che permetta di calcolara la funzione di log-verosimiglianza per entrambi i parametri. Si rappresenti graficamente questa funzione.
+3.  Adesso si consideri **ignoto** anche il parametro $\sigma^2$. Si implementi la funzione `loglik_mu_sigma2(mu, y)` che permetta di calcolara la funzione di log-verosimiglianza per entrambi i parametri. Si rappresenti graficamente questa funzione.
 
 ```{r}
 #| echo: true
@@ -1876,7 +1976,7 @@ contour(x = griglia_sigma2,
         col = 4)
 ```
 
-4.  si utilizzi una procedura di ottimizzazione numerica per ottenere la stima ML degli ignoti parametri.
+4.  Si utilizzi una procedura di ottimizzazione numerica per ottenere la stima ML degli ignoti parametri.
 
 ```{r}
 #| echo: true
@@ -1891,7 +1991,7 @@ mean(y)
 var(y)
 ```
 
-5.  Si riportino, sul grafico ottenuto al punto 3, due punti corrispondenti al vero valore dei parametri e alla stima MV. Si commenti il grafico ottenuto.
+5.  Si riportino, sul grafico ottenuto al punto 3, due punti corrispondenti al vero valore dei parametri e alla stima MV. Si commenti il grafico ottenuto, ragionando sull'eventuale distanza tra questi due punti.
 
 ```{r}
 #| echo: true
@@ -1931,7 +2031,7 @@ loglik <- function(theta, y){
 }
 ```
 
-2.  D'ora in avanti si consideri il campione $\yv = (5, 10,  7,  7,  9,  9,  5)^\intercal$. Quanto vale la funzione di log-verosimiglianza nel punto $\theta = 10$?
+2.  D'ora in avanti si consideri il campione $\textbf{y} = (5, 10,  7,  7,  9,  9,  5)^\intercal$. Quanto vale la funzione di log-verosimiglianza nel punto $\theta = 10$?
 
 ```{r}
 #| echo: true
@@ -1977,9 +2077,9 @@ abline(v=res$par, col="red", lty="dashed")
 
 ### Esercizio 4
 
-Sia $Y_1, \dots, Y_n$ un campione casuale estratto da una Poisson$(\lambda)$. È noto che il parametro $\lambda >0$ di una Poisson coincide con il suo valore atteso e con la sua varianza.
+Sia $Y_1, \dots, Y_n$ un campione casuale estratto da una Poisson$(\lambda)$. È noto che il parametro $\lambda >0$ di una Poisson coincide sia con il suo valore atteso che con la sua varianza.
 
-Di conseguenza, due stimatori ragionevoli per $\lambda$ sono la media campionaria $\displaystyle \bar{Y} = \frac{1}{n} \sum_{i=1}^n Y_i$ e la varianza campionaria non distorta $\displaystyle  S^2 = \frac{1}{n-1} \sum_{i=1}^n \left(Y_i - \bar{Y} \right)^2$.
+Di conseguenza, due stimatori ragionevoli per $\lambda$ sono la media campionaria $$\displaystyle \bar{Y} = \frac{1}{n} \sum_{i=1}^n Y_i$$ e la varianza campionaria non distorta $$\displaystyle  S^2 = \frac{1}{n-1} \sum_{i=1}^n \left(Y_i - \bar{Y} \right)^2.$$
 
 1.  Quale stimatore risulta preferibile se il vero valore del parametro fosse $\lambda=10$ e se le stime fossero basate su campioni di ampiezza $n = 50$? Si risponda utilizzando un approccio basato su simulazioni.
 
