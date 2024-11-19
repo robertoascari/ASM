@@ -2161,3 +2161,54 @@ plot(lambda_grid, MSE_var, type="l", col=1)
 points(lambda_grid, MSE_mean, type="l", col=2)
 legend(0,90, c("MSE(S2)", "MSE(X_bar)"), col=c(1,2), lty="solid")
 ```
+
+
+### Esercizio 5
+
+Siano $x_1, \dots, x_n$ delle realizzazioni i.i.d. da $X \sim N(5, 15)$. Si realizzi uno studio di simulazione che confronti la media campionaria e la media troncata di livello $\alpha = 5\%$. Si tratta di stimatori consistenti per la media della popolazione?
+
+La media troncata non considera le prime ed ultime $k$ osservazioni, dove $k = n \cdot\alpha$ (approssimato all'intero più vicino). Se $x_{(1)},\dots,x_{(n)}$ è il campione ordinato, la media troncata è quindi definita come
+
+$$
+\hat{\mu}_\text{tr} = \frac{1}{n - 2 k } \sum_{i=k+1}^{n-k} x_{(i)}.
+$$ 
+
+In `R` si può usare il comando `mean(x, trim = alpha)`.
+
+
+```{r}
+#| echo: true
+#| eval: false
+#| code-fold: true
+#| code-summary: "Soluzione"
+
+mu <- 5 
+sigma <- sqrt(15)
+
+B <- 8000
+  
+n <- c(5, 20, 50, 100, 200, 500)
+alpha <- 0.05
+
+stime_mean <- matrix(NA, ncol = length(n), nrow = B)
+stime_trimmed_mean <- matrix(NA, ncol = length(n), nrow = B)
+
+colnames(stime_mean) <- paste0("n = ", n, sep="")
+colnames(stime_trimmed_mean) <- paste0("n = ", n, sep="")
+
+for(b in 1:B){
+  for(j in 1:length(n)){
+    y <- rnorm(n[j], mu, sigma)
+    
+    stime_mean[b,j] <- mean(y)
+    stime_trimmed_mean[b,j] <- mean(y, trim = alpha)
+  }
+}
+
+par(mfrow=c(2,1))
+boxplot(stime_mean, main = "Media Campionaria")
+abline(h = mu, col = 2, lty = "dashed")
+boxplot(stime_trimmed_mean, main = "Media Campionaria Troncata")
+abline(h = mu, col = 2, lty = "dashed")
+par(mfrow=c(2,1))
+```

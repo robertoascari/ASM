@@ -186,6 +186,7 @@ window.Quarto = {
   <li><a href="#esercizio-2-2" id="toc-esercizio-2-2" class="nav-link" data-scroll-target="#esercizio-2-2">Esercizio 2</a></li>
   <li><a href="#esercizio-3-3" id="toc-esercizio-3-3" class="nav-link" data-scroll-target="#esercizio-3-3">Esercizio 3</a></li>
   <li><a href="#esercizio-4-3" id="toc-esercizio-4-3" class="nav-link" data-scroll-target="#esercizio-4-3">Esercizio 4</a></li>
+  <li><a href="#esercizio-5-3" id="toc-esercizio-5-3" class="nav-link" data-scroll-target="#esercizio-5-3">Esercizio 5</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -2115,6 +2116,49 @@ Soluzione
 <span id="cb115-24"><a href="#cb115-24" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(lambda_grid, MSE_var, <span class="at">type=</span><span class="st">"l"</span>, <span class="at">col=</span><span class="dv">1</span>)</span>
 <span id="cb115-25"><a href="#cb115-25" aria-hidden="true" tabindex="-1"></a><span class="fu">points</span>(lambda_grid, MSE_mean, <span class="at">type=</span><span class="st">"l"</span>, <span class="at">col=</span><span class="dv">2</span>)</span>
 <span id="cb115-26"><a href="#cb115-26" aria-hidden="true" tabindex="-1"></a><span class="fu">legend</span>(<span class="dv">0</span>,<span class="dv">90</span>, <span class="fu">c</span>(<span class="st">"MSE(S2)"</span>, <span class="st">"MSE(X_bar)"</span>), <span class="at">col=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>), <span class="at">lty=</span><span class="st">"solid"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</section>
+<section id="esercizio-5-3" class="level3">
+<h3 class="anchored" data-anchor-id="esercizio-5-3">Esercizio 5</h3>
+<p>Siano <span class="math inline">\(x_1, \dots, x_n\)</span> delle realizzazioni i.i.d. da <span class="math inline">\(X \sim N(5, 15)\)</span>. Si realizzi uno studio di simulazione che confronti la media campionaria e la media troncata di livello <span class="math inline">\(\alpha = 5\%\)</span>. Si tratta di stimatori consistenti per la media della popolazione?</p>
+<p>La media troncata non considera le prime ed ultime <span class="math inline">\(k\)</span> osservazioni, dove <span class="math inline">\(k = n \cdot\alpha\)</span> (approssimato all’intero più vicino). Se <span class="math inline">\(x_{(1)},\dots,x_{(n)}\)</span> è il campione ordinato, la media troncata è quindi definita come</p>
+<p><span class="math display">\[
+\hat{\mu}_\text{tr} = \frac{1}{n - 2 k } \sum_{i=k+1}^{n-k} x_{(i)}.
+\]</span></p>
+<p>In <code>R</code> si può usare il comando <code>mean(x, trim = alpha)</code>.</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Soluzione</summary>
+<div class="sourceCode cell-code" id="cb116"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb116-1"><a href="#cb116-1" aria-hidden="true" tabindex="-1"></a>mu <span class="ot">&lt;-</span> <span class="dv">5</span> </span>
+<span id="cb116-2"><a href="#cb116-2" aria-hidden="true" tabindex="-1"></a>sigma <span class="ot">&lt;-</span> <span class="fu">sqrt</span>(<span class="dv">15</span>)</span>
+<span id="cb116-3"><a href="#cb116-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb116-4"><a href="#cb116-4" aria-hidden="true" tabindex="-1"></a>B <span class="ot">&lt;-</span> <span class="dv">8000</span></span>
+<span id="cb116-5"><a href="#cb116-5" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb116-6"><a href="#cb116-6" aria-hidden="true" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">5</span>, <span class="dv">20</span>, <span class="dv">50</span>, <span class="dv">100</span>, <span class="dv">200</span>, <span class="dv">500</span>)</span>
+<span id="cb116-7"><a href="#cb116-7" aria-hidden="true" tabindex="-1"></a>alpha <span class="ot">&lt;-</span> <span class="fl">0.05</span></span>
+<span id="cb116-8"><a href="#cb116-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb116-9"><a href="#cb116-9" aria-hidden="true" tabindex="-1"></a>stime_mean <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="cn">NA</span>, <span class="at">ncol =</span> <span class="fu">length</span>(n), <span class="at">nrow =</span> B)</span>
+<span id="cb116-10"><a href="#cb116-10" aria-hidden="true" tabindex="-1"></a>stime_trimmed_mean <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="cn">NA</span>, <span class="at">ncol =</span> <span class="fu">length</span>(n), <span class="at">nrow =</span> B)</span>
+<span id="cb116-11"><a href="#cb116-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb116-12"><a href="#cb116-12" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(stime_mean) <span class="ot">&lt;-</span> <span class="fu">paste0</span>(<span class="st">"n = "</span>, n, <span class="at">sep=</span><span class="st">""</span>)</span>
+<span id="cb116-13"><a href="#cb116-13" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(stime_trimmed_mean) <span class="ot">&lt;-</span> <span class="fu">paste0</span>(<span class="st">"n = "</span>, n, <span class="at">sep=</span><span class="st">""</span>)</span>
+<span id="cb116-14"><a href="#cb116-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb116-15"><a href="#cb116-15" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(b <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>B){</span>
+<span id="cb116-16"><a href="#cb116-16" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span>(j <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">length</span>(n)){</span>
+<span id="cb116-17"><a href="#cb116-17" aria-hidden="true" tabindex="-1"></a>    y <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(n[j], mu, sigma)</span>
+<span id="cb116-18"><a href="#cb116-18" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb116-19"><a href="#cb116-19" aria-hidden="true" tabindex="-1"></a>    stime_mean[b,j] <span class="ot">&lt;-</span> <span class="fu">mean</span>(y)</span>
+<span id="cb116-20"><a href="#cb116-20" aria-hidden="true" tabindex="-1"></a>    stime_trimmed_mean[b,j] <span class="ot">&lt;-</span> <span class="fu">mean</span>(y, <span class="at">trim =</span> alpha)</span>
+<span id="cb116-21"><a href="#cb116-21" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb116-22"><a href="#cb116-22" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb116-23"><a href="#cb116-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb116-24"><a href="#cb116-24" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">1</span>))</span>
+<span id="cb116-25"><a href="#cb116-25" aria-hidden="true" tabindex="-1"></a><span class="fu">boxplot</span>(stime_mean, <span class="at">main =</span> <span class="st">"Media Campionaria"</span>)</span>
+<span id="cb116-26"><a href="#cb116-26" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">h =</span> mu, <span class="at">col =</span> <span class="dv">2</span>, <span class="at">lty =</span> <span class="st">"dashed"</span>)</span>
+<span id="cb116-27"><a href="#cb116-27" aria-hidden="true" tabindex="-1"></a><span class="fu">boxplot</span>(stime_trimmed_mean, <span class="at">main =</span> <span class="st">"Media Campionaria Troncata"</span>)</span>
+<span id="cb116-28"><a href="#cb116-28" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">h =</span> mu, <span class="at">col =</span> <span class="dv">2</span>, <span class="at">lty =</span> <span class="st">"dashed"</span>)</span>
+<span id="cb116-29"><a href="#cb116-29" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">1</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 
