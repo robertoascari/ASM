@@ -6,7 +6,7 @@ editor: visual
 toc: true
 ---
 
-Il modo migliore (e forse l'unico) per padroneggiare un linguaggio di programmazione è quello di continuare ad esercitarsi. Si consiglia vivamente di [**non guardare le soluzioni**]{.text-primary} prima di aver provato a ragionare e sbattere la testa in autonomia sulla risoluzione degli esercizi. 
+Il modo migliore (e forse l'unico) per padroneggiare un linguaggio di programmazione è quello di continuare ad esercitarsi. Si consiglia vivamente di [**non guardare le soluzioni**]{.text-primary} prima di aver provato a ragionare e sbattere la testa in autonomia sulla risoluzione degli esercizi.
 
 Come sempre, non esiste un unico modo per ottenere lo stesso risultato: approcci differenti dalle soluzioni proposte possono comunque portare al risultato corretto!
 
@@ -89,9 +89,9 @@ n*(n+1)/2
 
 ### Esercizio 3
 
-Si crei un vettore `v` contenente i numeri interi da 1 a 250. 
+Si crei un vettore `v` contenente i numeri interi da 1 a 250.
 
-1. Si estraggano gli elementi in posizione pari e si calcoli la loro somma.
+1.  Si estraggano gli elementi in posizione pari e si calcoli la loro somma.
 
 ```{r}
 #| echo: true
@@ -251,9 +251,9 @@ medie(miei_voti2, miei_CFU2)
 
 ### Esercizio 8
 
-Si consideri un vettore numerico a piacere. 
+Si consideri un vettore numerico a piacere.
 
-1. Si scriva una funzione che restituisca il vettore standardizzato.
+1.  Si scriva una funzione che restituisca il vettore standardizzato.
 
 ```{r}
 #| echo: true
@@ -493,7 +493,7 @@ Si carichino in `R` i dati contenuti nel file `Pokemon.csv`, scaricabili al segu
 -   `Attack` e `SpAtk`: le statistiche attacco e attacco speciale del Pokémon;
 -   `Defense` e `sPDef`: le statistiche difesa e difesa speciale del Pokémon;
 -   `Speed`: la statistica velocità del Pokémon;
--   `Generation`: la [generazione](https://it.wikipedia.org/wiki/Pok%C3%A9mon_(serie_di_videogiochi) del Pokémon;
+-   `Generation`: la \[generazione\](https://it.wikipedia.org/wiki/Pok%C3%A9mon\_(serie_di_videogiochi) del Pokémon;
 -   `Legendary`: stringa facente riferimento al fatto che il Pokémon sia leggendario (True) o no (False).
 
 ```{r}
@@ -953,7 +953,7 @@ Si importi il dataset `animals.csv`, scaricabile al seguente [link](https://robe
 -   `esposto`: indice qualitativo di esposizione durante il sonno (0 = *poco esposto*, 1 = *molto esposto*);
 -   `pericolo`: indice qualitativo di pericolo (0 = *gli altri animali non rappresentano un pericolo per lui*, 1 = *gli altri animali rappresentano un grave pericolo per lui*).
 
-1. Convertire le variabili qualitative in factor.
+1.  Convertire le variabili qualitative in factor.
 
 ```{r}
 #| echo: true
@@ -1138,7 +1138,7 @@ quantile(chi2_10_primo, probs = .95)
 
 ### Esercizio 2 (difficile):
 
-In una foresta incantata, alla fine del giorno 0 vengono piantati 6 semi magici. Dal giorno 1 in avanti, alla fine di ogni giornata, ogni seme ha una probabilità pari a 0.5 di trasformarsi in un albero. Una volta trasformato, esso resterà un albero per sempre. \
+In una foresta incantata, alla fine del giorno 0 vengono piantati 6 semi magici. Dal giorno 1 in avanti, alla fine di ogni giornata, ogni seme ha una probabilità pari a 0.5 di trasformarsi in un albero. Una volta trasformato, esso resterà un albero per sempre.\
 Si implementi una simulazione per approssimare il numero atteso (medio) di giorni necessari affinchè tutti i semi diventino degli alberi.
 
 La fonte dell'esercizio e la sua risoluzione analitica possono essere trovati in [questo video](https://www.youtube.com/watch?v=RY7YKSw1t_M&t=669s).
@@ -1174,7 +1174,7 @@ mean(replicate(nsim, max(rgeom(6,0.5))+1))
 
 ### Esercizio 3
 
-Siano $p_1(x)$ e $p_2(x)$ due funzioni di probabilità associate a due variabili casuali discrete $X_1$ e $X_2$ caratterizzate sullo stesso supporto $\mathcal{S} = \{x_1, \dots, x_k\}$. La divergenza dii Kullback-Leibler di $X_1$ da $X_2$ è definita come $KL(p_1 || p_2) = \displaystyle \sum_{j=1}^k p_1(x_j) \log \left(\frac{p_1(x_j)}{p_2(x_j)}\right)$
+Siano $p_1(x)$ e $p_2(x)$ due funzioni di probabilità associate a due variabili casuali discrete $X_1$ e $X_2$ caratterizzate sullo stesso supporto $\mathcal{S} = \{x_1, \dots, x_k\}$. La divergenza di Kullback-Leibler di $X_1$ da $X_2$ è definita come $KL(p_1 || p_2) = \displaystyle \sum_{j=1}^k p_1(x_j) \log \left(\frac{p_1(x_j)}{p_2(x_j)}\right).$
 
 1.  Si calcoli il valore della divergenza di Kullback-Leibler di $X_1$ da $X_2$ considerando $X_1$ e $X_2$ distribuite come Binomiali di parametro $n = 20$ e probabilità di successo rispettivamente $\theta_1 = 0.2$ e $\theta_2 = 0.1$.
 
@@ -1471,8 +1471,7 @@ par(mfrow=c(1,1))
 
 Si consideri una variabile casuale discreta $X$ con supporto $\mathcal{S}_X = \{2, 4, 6, 8, 10, 12\}$ e funzione di probabilità: $\displaystyle p(x) = \frac{1}{441} \left(\frac{x}{2} \right)^3, x \in \mathcal{S}_X$.
 
-1. Si verifichi che la funzione $p(x)$ è una funzione di probabilità.
-
+1.  Si verifichi che la funzione $p(x)$ è una funzione di probabilità.
 
 ```{r}
 #| echo: true
@@ -1627,7 +1626,7 @@ alpha <- c(4, 1, 10, 5, 2)
 ddir(x, alpha)
 ```
 
-2.  Siano $Y_1, \dots Y_D$ delle variabili casuali indipendenti tali che $Y_d \sim Gamma(\alpha_d, 1)$. Definendo $\displaystyle Y^+ = \sum_{d=1}^D Y_d$, si può dimostrare che $\displaystyle (Y_1 / Y^+, \dots, Y_D/Y^+)^\intercal \sim Dirichlet(\boldsymbol{\alpha})$. Si utilizzi questa relazione per costruire un oggetto (vettore? matrice? lista? altro?) `sample_dir` contenente ` B = 5000` dati composizionali pseudo-casuali da una Dirichlet con $D = 5$ e $\boldsymbol{\alpha} = (4, 2, 10, 5, 3)^\intercal$.
+2.  Siano $Y_1, \dots Y_D$ delle variabili casuali indipendenti tali che $Y_d \sim Gamma(\alpha_d, 1)$. Definendo $\displaystyle Y^+ = \sum_{d=1}^D Y_d$, si può dimostrare che $\displaystyle (Y_1 / Y^+, \dots, Y_D/Y^+)^\intercal \sim Dirichlet(\boldsymbol{\alpha})$. Si utilizzi questa relazione per costruire un oggetto (vettore? matrice? lista? altro?) `sample_dir` contenente `B = 5000` dati composizionali pseudo-casuali da una Dirichlet con $D = 5$ e $\boldsymbol{\alpha} = (4, 2, 10, 5, 3)^\intercal$.
 
 ```{r}
 #| echo: true
@@ -1664,7 +1663,6 @@ plot(ecdf(sample_dir[,3]))
 curve(pbeta(x, alpha[3], sum(alpha) - alpha[3]), col = "red", add = T)
 par(mfrow=c(1, 1))
 ```
-
 
 ### Esercizio 9
 
@@ -1727,15 +1725,13 @@ integrate(function(x) sqrt(abs(x))/(x^2+1) * dnorm(x), lower=-Inf, upper=Inf)
 
 ### Esercizio 10
 
-
 Si consideri la variabile casuale continua [Half-Normal](https://en.wikipedia.org/wiki/Half-normal_distribution), caratterizzata dalla seguente funzione di densità:
 
-$$f(y) = \sqrt{\frac{2}{\pi}} \exp\lbrace-y^2/2\rbrace,$$ se y > 0.
-
+$$f(y) = \sqrt{\frac{2}{\pi}} \exp\lbrace-y^2/2\rbrace,$$ se y \> 0.
 
 Questa variabile casuale può essere vista come trasformazione di una Normale Standard: se $Z \sim N(0,1)$, allora $Y = |Z| \sim$ Half-Normal.
 
-1. Scrivere una funzione in R chiamata `dhalf` che calcoli la funzione di densità di una Half-Normal.
+1.  Scrivere una funzione in R chiamata `dhalf` che calcoli la funzione di densità di una Half-Normal.
 
 ```{r}
 #| echo: true
@@ -1746,8 +1742,7 @@ Questa variabile casuale può essere vista come trasformazione di una Normale St
 dhalf <- function(y) sqrt(2/pi)*exp(-y^2/2)
 ```
 
-
-2. Si sviluppi una strategia che permetta di generare valori pseudo-casuali da $Y$.
+2.  Si sviluppi una strategia che permetta di generare valori pseudo-casuali da $Y$.
 
 ```{r}
 #| echo: true
@@ -1759,7 +1754,8 @@ B <- 10000
 
 y <- abs(rnorm(B))
 ```
-3. Confrontare l'istogramma di 10000 valori pseudo-casuali generati da una Half-Normal con la relativa funzione di densità.
+
+3.  Confrontare l'istogramma di 10000 valori pseudo-casuali generati da una Half-Normal con la relativa funzione di densità.
 
 ```{r}
 #| echo: true
@@ -1771,7 +1767,7 @@ hist(y, prob = T, main = "Istogramma Half-Normal")
 curve(dhalf(y = x), col = 2, add = T)
 ```
 
-4. Si approssimi il valore atteso di una Half-Normal.
+4.  Si approssimi il valore atteso di una Half-Normal.
 
 ```{r}
 #| echo: true
@@ -2162,7 +2158,6 @@ points(lambda_grid, MSE_mean, type="l", col=2)
 legend(0,90, c("MSE(S2)", "MSE(X_bar)"), col=c(1,2), lty="solid")
 ```
 
-
 ### Esercizio 5
 
 Siano $x_1, \dots, x_n$ delle realizzazioni i.i.d. da $X \sim N(5, 15)$. Si realizzi uno studio di simulazione che confronti la media campionaria e la media troncata di livello $\alpha = 5\%$. Si tratta di stimatori consistenti per la media della popolazione?
@@ -2171,10 +2166,9 @@ La media troncata non considera le prime ed ultime $k$ osservazioni, dove $k = n
 
 $$
 \hat{\mu}_\text{tr} = \frac{1}{n - 2 k } \sum_{i=k+1}^{n-k} x_{(i)}.
-$$ 
+$$
 
 In `R` si può usare il comando `mean(x, trim = alpha)`.
-
 
 ```{r}
 #| echo: true
