@@ -369,14 +369,15 @@ Si considerino le matrici $A$ e $B$ definite nel seguente modo: $$A = \begin{bma
    2 & 1 & 5 & 3\\
    6 & 7 & 9 & 1\\
    8 & 3 & 0 & 0
-   \end{bmatrix}, \text{ e } B = \begin{bmatrix}
+   \end{bmatrix} \text{ e } B = \begin{bmatrix}
    -2 & 4 & 7 \\
    -6 & 3 & 5 \\
    3 & 3 & -8 \\
    4 & 4 & -2 
    \end{bmatrix}$$
 
-1. Si definiscano le matrici in `R`.
+1.  Si definiscano tali matrici in `R`.
+
 ```{r}
 #| echo: true
 #| eval: false
@@ -388,7 +389,7 @@ A <- matrix(c(2, 1, 5, 3, 6, 7, 9, 1, 8, 3, 0, 0), byrow = T, ncol = 4)
 B <- matrix(c(-2, 4, 7,-6, 3, 5, 3, 3, -8, 4, 4, -2), byrow = T, ncol = 3)
 ```
 
-2. Si aggiunga alla matrice $A$ un'ulteriore riga rappresentante l'ultima colonna nella matrice $B$.
+2.  Si aggiunga alla matrice $A$ un'ulteriore riga pari all'ultima colonna della matrice $B$.
 
 ```{r}
 #| echo: true
@@ -400,8 +401,7 @@ A <- rbind(A, B[,3])
 A
 ```
 
-
-3. Si consideri e si risolva il seguente sistema lineare:
+3.  Si consideri e si risolva il seguente sistema lineare:
 
 $$A =  \left\{\begin{array}{l}
    2x + y + 5z + 3w = -3\\
@@ -409,7 +409,7 @@ $$A =  \left\{\begin{array}{l}
    8x + 3y = 0  \\
    7x + 5y  -8z -2w = -10
    \end{array}\right.$$
-   
+
 ```{r}
 #| echo: true
 #| eval: false
@@ -420,7 +420,8 @@ c <- c(-3, 1, 0, -10)
 
 soluzione <- solve(A) %*% c; soluzione
 ```
-4. Si verifichi che la soluzione individuata sia effettivamente una soluzione del sistema proposto.
+
+4.  Si verifichi che la soluzione individuata sia effettivamente una soluzione del sistema proposto.
 
 ```{r}
 #| echo: true
@@ -435,8 +436,6 @@ all(c(round(sum(A[1,] * sol),10) == c[1],
       round(sum(A[3,] * sol),10) == c[3],
       round(sum(A[4,] * sol),10) == c[4]))
 ```
-
-
 
 ## Parte 2: Descrittiva
 
