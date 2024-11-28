@@ -291,7 +291,7 @@ c(min(n), max(n))
 
 ### Esercizio 1.9
 
-Si implementi una funzione che riceve due interi $n$ e $k$ e restituisca una [tavola pitagorica](https://it.wikipedia.org/wiki/Tavola_pitagorica) di dimensione $n \times k$.
+Si implementi una funzione che riceva due interi $n$ e $k$ e restituisca una [tavola pitagorica](https://it.wikipedia.org/wiki/Tavola_pitagorica) di dimensione $n \times k$.
 
 ```{r}
 #| echo: true
@@ -341,7 +341,7 @@ my_bell <- function(n){
 }
 ```
 
-2.  In quanti modi è possibile dividere un insieme di 10 oggetti utilizzando 5 gruppi?
+2.  In quanti modi è possibile dividere un insieme di 10 oggetti utilizzando gruppi di 5 elementi?
 
 ```{r}
 #| echo: true
