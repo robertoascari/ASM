@@ -437,6 +437,8 @@ all(c(round(sum(A[1,] * sol),10) == c[1],
       round(sum(A[4,] * sol),10) == c[4]))
 ```
 
+
+
 ## Parte 2: Descrittiva
 
 ### Esercizio 2.1
