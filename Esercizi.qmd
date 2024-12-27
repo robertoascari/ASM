@@ -895,7 +895,7 @@ flights_summer <- subset(flights, month %in% c(6,7,8))
 
 ### Esercizio 2.4
 
-Si consideri il dataset `olympics.RData` (scaricabile al seguente [link](https://robertoascari.github.io/data/olympics.csv)), contenente dati relativi alle Olimpiadi di Londra 2012. In particolare, il dataset contiente le seguenti variabili:
+Si consideri il dataset `olympics.RData` (scaricabile al seguente [link](https://robertoascari.github.io/data/olympics.RData)), contenente dati relativi alle Olimpiadi di Londra 2012. In particolare, il dataset contiente le seguenti variabili:
 
 -   `Country`: nome del paese;
 -   `GoldMedals`: numero di medaglie d'oro vinte a Londra 2012;
