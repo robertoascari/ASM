@@ -1374,6 +1374,44 @@ KL
 mean(KL_sim)
 ```
 
+
+6. Si replichi quanto fatto nel punto 5 considerando due distribuzioni Geometriche di probabilità pari a $\pi_1 = 0.45$ e $\pi_2 = 0.9$, rispettivamente.
+
+
+```{r}
+#| echo: true
+#| eval: false
+#| code-fold: true
+#| code-summary: "Soluzione"
+
+# Modo 1: Tronco il supporto ad un elemento sufficientemente alto
+
+pi1 <- .45
+pi2 <- .9
+
+S_X <- 0:100
+
+p1 <- dgeom(S_X, pi1)
+p2 <- dgeom(S_X, pi2)
+KL <- sum(p1*log(p1/p2))
+
+
+# Modo 2: uso Monte Carlo:
+
+B <- 15000
+pi1 <- .45
+pi2 <- .9
+KL_sim <- numeric(B)
+
+x <- rgeom(B, pi1)
+
+KL_sim <- log(dgeom(x, pi1)/dgeom(x, pi2))
+
+KL
+mean(KL_sim)
+```
+
+
 ### Esercizio 3.4
 
 In un popolare gioco di ruolo, giocatori e giocatrici devono lanciare dei dadi a 20 facce per superare delle prove.
