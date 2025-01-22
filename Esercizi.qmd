@@ -1247,6 +1247,171 @@ mean(replicate(nsim, max(rgeom(6,0.5))+1))
 ```
 
 
+### Esercizio 3.3
+
+Siano $p_1(x)$ e $p_2(x)$ due funzioni di probabilità associate a due variabili casuali discrete $X_1$ e $X_2$ caratterizzate sullo stesso supporto $\mathcal{S} = \{x_1, \dots, x_k\}$. La divergenza di Kullback-Leibler di $X_1$ da $X_2$ è definita come $KL(p_1 || p_2) = \displaystyle \sum_{j=1}^k p_1(x_j) \log \left(\frac{p_1(x_j)}{p_2(x_j)}\right).$
+
+1.  Si calcoli il valore della divergenza di Kullback-Leibler di $X_1$ da $X_2$ considerando $X_1$ e $X_2$ distribuite come Binomiali di parametro $n = 20$ e probabilità di successo rispettivamente $\theta_1 = 0.2$ e $\theta_2 = 0.1$.
+
+```{r}
+#| echo: true
+#| eval: false
+#| code-fold: true
+#| code-summary: "Soluzione"
+
+n <- 20
+theta1 <- 0.2
+theta2 <- 0.1
+
+p1 <- dbinom(0:n, n, theta1)
+p2 <- dbinom(0:n, n, theta2)
+
+sum(p1*log(p1/p2))
+```
+
+2.  La divergenza di Kullback-Leibler gode della proprietà di simmetria?
+
+```{r}
+#| echo: true
+#| eval: false
+#| code-fold: true
+#| code-summary: "Soluzione"
+
+n <- 20
+theta1 <- 0.2
+theta2 <- 0.1
+
+p1 <- dbinom(0:n, n, theta1)
+p2 <- dbinom(0:n, n, theta2)
+
+KL_x1_da_x2 <- sum(p1*log(p1/p2))
+KL_x2_da_x1 <- sum(p2*log(p2/p1))
+
+KL_x1_da_x2; KL_x2_da_x1
+```
+
+3.  Si calcoli la stessa quantità del punto 1 facendo variare $\theta_2 \in \{0.05, 0.1, 0.2, 0.3, 0.5, 0.7, 0.9\}$. Da questi risultati è possibile intuire quale aspetto viene misurato da questo indice?
+
+```{r}
+#| echo: true
+#| eval: false
+#| code-fold: true
+#| code-summary: "Soluzione"
+
+n <- 20
+theta1 <- 0.2
+theta2_vec <- c(.05, .1, .2, .3, .5, .7, .9)
+
+p1 <- dbinom(0:n, n, theta1)
+
+KL <- numeric(length(theta2_vec))
+
+for(i in 1:length(theta2_vec)){
+  theta2 <- theta2_vec[i]
+  
+  p2 <- dbinom(0:n, n, theta2)
+
+  KL[i] <- sum(p1*log(p1/p2))
+}
+plot(theta2_vec, KL)
+```
+
+4.  Ci si convinca che $\displaystyle KL(p_1 || p_2) = \mathbb{E}\left[\log\left\{\frac{p_1(X_1)}{p_2(X_1)} \right\} \right]$. Si utilizzi questo risultato per ottenere un'approssimazione Monte Carlo di quanto ottenuto al punto 1.
+
+```{r}
+#| echo: true
+#| eval: false
+#| code-fold: true
+#| code-summary: "Soluzione"
+
+B <- 8000
+n <- 20
+theta1 <- .2
+theta2 <- .1
+KL_sim <- numeric(B)
+
+for(b in 1:B){
+  x_j <- rbinom(1, n, theta1)
+  
+  KL_sim[b] <- log(dbinom(x_j, n, theta1)/dbinom(x_j, n, theta2))
+}
+mean(KL_sim)
+```
+
+5.  Si considerino ora $X_1$ e $X_2$ distribuite secondo distribuzioni Poisson di parametri $\lambda_1$ e $\lambda_2$. Dato che il supporto della Poisson è illimitato, per calcolare la divergenza di Kullback-Leibler bisognerebbe calcolare una serie numerica. Si proponga almeno un modo per ottenere la divergenza di Kullback-Leibler considerando $\lambda_1 = 2$ e $\lambda_2 = 10$.
+
+```{r}
+#| echo: true
+#| eval: false
+#| code-fold: true
+#| code-summary: "Soluzione"
+
+# Modo 1: Tronco il supporto ad un elemento sufficientemente alto
+
+lambda1 <- 2
+lambda2 <- 10
+
+S_X <- 0:100
+
+p1 <- dpois(S_X, lambda1)
+p2 <- dpois(S_X, lambda2)
+KL <- sum(p1*log(p1/p2))
+
+
+# Modo 2: uso Monte Carlo:
+
+B <- 15000
+lambda1 <- 2
+lambda2 <- 10
+KL_sim <- numeric(B)
+
+for(b in 1:B){
+  x_j <- rpois(1, lambda1)
+  
+  KL_sim[b] <- log(dpois(x_j, lambda1)/dpois(x_j, lambda2))
+}
+
+KL
+mean(KL_sim)
+```
+
+
+6. Si replichi quanto fatto nel punto 5 considerando due distribuzioni Geometriche di probabilità pari a $\pi_1 = 0.45$ e $\pi_2 = 0.9$, rispettivamente.
+
+
+```{r}
+#| echo: true
+#| eval: false
+#| code-fold: true
+#| code-summary: "Soluzione"
+
+# Modo 1: Tronco il supporto ad un elemento sufficientemente alto
+
+pi1 <- .45
+pi2 <- .9
+
+S_X <- 0:100
+
+p1 <- dgeom(S_X, pi1)
+p2 <- dgeom(S_X, pi2)
+KL <- sum(p1*log(p1/p2))
+
+
+# Modo 2: uso Monte Carlo:
+
+B <- 15000
+pi1 <- .45
+pi2 <- .9
+KL_sim <- numeric(B)
+
+x <- rgeom(B, pi1)
+
+KL_sim <- log(dgeom(x, pi1)/dgeom(x, pi2))
+
+KL
+mean(KL_sim)
+```
+
 
 ### Esercizio 3.4
 
