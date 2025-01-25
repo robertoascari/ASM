@@ -23,7 +23,7 @@ editor: visual
 
 Ai seguenti link è possibile scaricare le ultime versioni di [R](https://cran.r-project.org/bin/windows/base/) e di [RStudio](https://posit.co/download/rstudio-desktop/).
 
-## Esercizi aggiuntivi:
+## Esercizi aggiuntivi
 
 Ulteriori esercizi relativi alla Parte 1 del corso possono essere trovati al seguente [link](Esercizi.qmd).
 

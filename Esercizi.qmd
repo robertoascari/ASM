@@ -1120,6 +1120,86 @@ levels(animals$preda)
 # rossi: 1
 ```
 
+### Esercizio 2.6
+
+Si importi in memoria il dataset `datasaurus.csv`, scaricabile al seguente [link](https://robertoascari.github.io/data/datasaurus.csv), contenente tre colonne:
+
+-   `x` e `y`, che rappresentano coordinate cartesiane;
+-   `dataset`, che identifica il gruppo di appartenenza di ciascuna riga.
+
+Ogni sottoinsieme di righe con lo stesso valore nella colonna `dataset` costituisce un dataset distinto. Ad esempio, tutte le righe con `dataset` pari a `"ABC"` compongono il dataset denominato `"ABC"`.
+
+1.  Si rimuovano dal `data.frame` tutte le righe che fanno riferimento al dataset `"slant_down"`.
+
+```{r}
+#| echo: true
+#| eval: false
+#| code-fold: true
+#| code-summary: "Soluzione"
+
+datasaurus <- 
+  read.table("datasaurus.csv", sep = ",", header = T)
+
+datasaurus2 <- 
+  subset(datasaurus, dataset != "slant_down")
+```
+
+2.  Quante modalità assume adesso la variabile `dataset`? Si salvi questo valore in un oggetto chiamato `D`.
+
+```{r}
+#| echo: true
+#| eval: false
+#| code-fold: true
+#| code-summary: "Soluzione"
+
+D <- length(unique(datasaurus2$dataset)); D
+```
+
+3.  Si vogliono studiare alcune statistiche di sintesi ($\bar{x}, \bar{y}, s^2_{x}, s^2_{y}$ e $\rho_{x,y}$) per ognuno dei `D` dataset. Si salvino queste statistiche in una matrice `stat_sintesi` avente 5 colonne (i.e., le 5 statistiche di sintesi) e `D` righe (i.e., i `D` dataset).
+
+```{r}
+#| echo: true
+#| eval: false
+#| code-fold: true
+#| code-summary: "Soluzione"
+
+stat_sintesi <- matrix(NA, ncol = 5, nrow = D)
+
+colnames(stat_sintesi) <- c("Media_X", "Media_Y",
+                            "Var_X", "Var_Y", "Cov_XY")
+
+
+for(d in 1:D){
+  data_sub <- subset(datasaurus2, dataset == unique(datasaurus2$dataset)[d])
+  
+  stat_sintesi[d,1] <- mean(data_sub$x)
+  stat_sintesi[d,2] <- mean(data_sub$y)
+  stat_sintesi[d,3] <- var(data_sub$x)
+  stat_sintesi[d,4] <- var(data_sub$y)
+  stat_sintesi[d,5] <- cov(data_sub$x, data_sub$y)
+}
+
+stat_sintesi
+```
+
+4.  Si imposti una finestra grafica che possa contenere `D` grafici. Si ottengano i diagrammi a dispersione delle variabili `x` e `y` per ciascuno dei dataset. Che conclusione possiamo trarre dall'analisi congiunta di `stat_sintesi` e del grafico appena costruito?
+
+```{r}
+#| echo: true
+#| eval: false
+#| code-fold: true
+#| code-summary: "Soluzione"
+
+par(mfrow=c(3,4))
+for(d in 1:D){
+  
+  data_sub <- subset(datasaurus2, dataset == unique(datasaurus2$dataset)[d])
+  
+  plot(data_sub$x, data_sub$y, pch = 20, main = unique(datasaurus2$dataset)[d])
+}
+par(mfrow=c(1,1))
+```
+
 ## Parte 3: Probabilità
 
 ### Esecizio 3.1
@@ -1245,7 +1325,6 @@ mean(days)
 # Oppure:
 mean(replicate(nsim, max(rgeom(6,0.5))+1))
 ```
-
 
 ### Esercizio 3.3
 
@@ -1375,9 +1454,7 @@ KL
 mean(KL_sim)
 ```
 
-
-6. Si replichi quanto fatto nel punto 5 considerando due distribuzioni Geometriche di probabilità pari a $\pi_1 = 0.45$ e $\pi_2 = 0.9$, rispettivamente.
-
+6.  Si replichi quanto fatto nel punto 5 considerando due distribuzioni Geometriche di probabilità pari a $\pi_1 = 0.45$ e $\pi_2 = 0.9$, rispettivamente.
 
 ```{r}
 #| echo: true
@@ -1411,7 +1488,6 @@ KL_sim <- log(dgeom(x, pi1)/dgeom(x, pi2))
 KL
 mean(KL_sim)
 ```
-
 
 ### Esercizio 3.4
 
@@ -2319,3 +2395,113 @@ boxplot(stime_trimmed_mean, main = "Media Campionaria Troncata")
 abline(h = mu, col = 2, lty = "dashed")
 par(mfrow=c(2,1))
 ```
+
+### Esercizio 4.6
+
+Si consideri un campione casuale semplice di ampiezza $n$ estratto da una Normale con varianza $\sigma^2$ **ignota**. Si è interessati a fare inferenza sull'ignota media $\mu$ della popolazione.
+
+Ai fini di questo esercizio e con le assunzioni fatte, si ricorda che un intervallo di confidenza a livello $1-\alpha$ per l'ignota media ha forma $$\bar{y} \pm t_{n-1; 1-\alpha/2} \sqrt{\frac{s^2}{n}},$$ dove $\bar {y}$ e $s^2$ rapprentano rispettivamente la media e la varianza campionaria non distorta.
+
+1. Si consideri il campione $\textbf{y} = (17.6,  8.3, 12.7, 14, 12.9, 10.5, 18.2)^\intercal$. Si costruisca un intervallo di confidenza a livello 98% per $\mu$ e se ne riportino gli estremi nel seguente riquadro.
+
+```{r}
+#| echo: true
+#| eval: false
+#| code-fold: true
+#| code-summary: "Soluzione"
+
+y <- c(17.6, 8.3, 12.7, 14, 12.9, 10.5, 18.2)
+
+alpha <- .02
+n <- length(y)
+
+mean(y) + c(-1,1)*qt(1-alpha/2, n-1)*sqrt(var(y)/length(y))
+```
+
+2.  Si implementi uno studio di simulazione atto a verificare empiricamente che, costruendo intervalli di confidenza al 95% per $\mu$ con la precedente formula, il 95% degli intervalli costruiti contiene il vero valore del parametro, mentre il restante 5% no. Si basi la simulazione su $B = 10'000$ repliche e campioni di ampiezza $n=100$; si considerino inoltre i valori $\mu = 11$ e $\sigma^2 = 23$ come veri valori dei parametri. Si imposti il proprio numero di matricola come seme (seed).
+
+```{r}
+#| echo: true
+#| eval: false
+#| code-fold: true
+#| code-summary: "Soluzione"
+
+set.seed(42)
+
+B <- 10000
+coverage <- numeric(B)
+
+n <- 100
+mu_true <- 11
+var_true <- 23
+
+alpha <- 0.05
+
+for(b in 1:B){
+  y <- rnorm(n, mu_true, sqrt(var_true))
+  IC <- mean(y) + c(-1,1)*qt(1-alpha/2, n-1)*sqrt(var(y)/n)
+  
+  coverage[b] <- IC[2] >= mu_true & IC[1] <= mu_true
+}
+
+mean(coverage)
+```
+
+
+3.  Si implementi uno studio di simulazione basato su $B = 5'000$ repliche per studiare la lunghezza media degli intervalli di confidenza per $\mu$ a livello 95% su campioni di ampiezza crescente, considerando $n \in \{10, 20, 50, 100\}$. Si rappresenti graficamente la relazione tra $n$ e la lunghezza media dell'intervallo.
+
+```{r}
+#| echo: true
+#| eval: false
+#| code-fold: true
+#| code-summary: "Soluzione"
+
+B <- 5000
+n_vec <- c(10, 20, 50, 100)
+lunghezza <- matrix(NA, ncol = length(n_vec), nrow = B)
+
+alpha <- 0.05
+
+for(b in 1:B){
+  for(nn in 1:length(n_vec)){
+    n <- n_vec[nn]
+    
+    y <- rnorm(n, mu_true, sqrt(var_true))
+    IC <- mean(y) + c(-1,1)*qt(1-alpha/2, n-1)*sqrt(var(y)/n)
+    
+    lunghezza[b, nn] <- IC[2] - IC[1]
+  }
+}
+
+plot(n_vec, colMeans(lunghezza))
+```
+
+4.  Si implementi uno studio di simulazione basato su $B = 5'000$ repliche per studiare la lunghezza media degli intervalli di confidenza per $\mu$ su campioni di ampiezza $n=100$ considerando i seguenti livelli di confidenza $1-\alpha \in \{0.85, 0.9, 0.95, 0.99\}$. Si rappresenti graficamente la relazione tra $1-\alpha$ e la lunghezza media dell'intervallo.
+
+```{r}
+#| echo: true
+#| eval: false
+#| code-fold: true
+#| code-summary: "Soluzione"
+
+B <- 5000
+conf_vec <- c(.85, .9, .95, .99)
+lunghezza <- matrix(NA, ncol = length(conf_vec), nrow = B)
+
+n <- 100
+
+for(b in 1:B){
+  for(aa in 1:length(conf_vec)){
+    alpha <- 1-conf_vec[aa]
+
+    y <- rnorm(n, mu_true, sqrt(var_true))
+    IC <- mean(y) + c(-1,1)*qt(1-alpha/2, n-1)*sqrt(var(y)/n)
+    
+    lunghezza[b, aa] <- IC[2] - IC[1]
+  }
+}
+
+plot(conf_vec, colMeans(lunghezza))
+```
+
+
