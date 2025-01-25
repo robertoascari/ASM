@@ -2402,7 +2402,7 @@ Si consideri un campione casuale semplice di ampiezza $n$ estratto da una Normal
 
 Ai fini di questo esercizio e con le assunzioni fatte, si ricorda che un intervallo di confidenza a livello $1-\alpha$ per l'ignota media ha forma $$\bar{y} \pm t_{n-1; 1-\alpha/2} \sqrt{\frac{s^2}{n}},$$ dove $\bar {y}$ e $s^2$ rapprentano rispettivamente la media e la varianza campionaria non distorta.
 
-1. Si consideri il campione $\textbf{y} = (17.6,  8.3, 12.7, 14, 12.9, 10.5, 18.2)^\intercal$. Si costruisca un intervallo di confidenza a livello 98% per $\mu$ e se ne riportino gli estremi nel seguente riquadro.
+1.  Si consideri il campione $\textbf{y} = (17.6,  8.3, 12.7, 14, 12.9, 10.5, 18.2)^\intercal$. Si costruisca un intervallo di confidenza a livello 98% per $\mu$ e se ne riportino gli estremi nel seguente riquadro.
 
 ```{r}
 #| echo: true
@@ -2446,7 +2446,6 @@ for(b in 1:B){
 
 mean(coverage)
 ```
-
 
 3.  Si implementi uno studio di simulazione basato su $B = 5'000$ repliche per studiare la lunghezza media degli intervalli di confidenza per $\mu$ a livello 95% su campioni di ampiezza crescente, considerando $n \in \{10, 20, 50, 100\}$. Si rappresenti graficamente la relazione tra $n$ e la lunghezza media dell'intervallo.
 
@@ -2503,5 +2502,3 @@ for(b in 1:B){
 
 plot(conf_vec, colMeans(lunghezza))
 ```
-
-
